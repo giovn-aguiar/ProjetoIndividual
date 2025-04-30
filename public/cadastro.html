@@ -38,13 +38,20 @@
             <h1>Cadastre-se!</h1>
         </div>
 
+        <div class="login">
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+              </div>
+            </div>
+
         <div class="campos-cadastrar">
             Nome: <input id="inputNome" type="text"><br>
             Nickname: <input id="inputNick" type="text"><br>
             Email: <input id="inputEmail" type="text"><br>
             Senha: <input id="inputSenha" type="password"><br>
             Confirme sua senha: <input id="inputConfirmar" type="password"><br>
-            <button>Cadastrar</button>
+            <button onclick="cadastrar()">Cadastrar</button>
         </div>
 
     </div>
