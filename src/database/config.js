@@ -5,7 +5,7 @@ var mySqlConfig = {
     host: "127.0.0.1", //inserir host
     database: "underline", //inserir banco
     user: "padrao", // inserir usuario 
-    password: "all*", // inserir senha 
+    password: "", // inserir senha 
     port: 3306
 };
 
