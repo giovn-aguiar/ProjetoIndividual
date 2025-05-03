@@ -1,0 +1,68 @@
+:root{
+    --roxo-destaque: #26043A;
+    --amarelo: #FFDF90;
+}
+
+.titulo-cabecalho{
+    padding: 70px 70px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.imagem {
+    width: 100vw;
+    background-color: var(--roxo-destaque);
+    margin-bottom: -10px;
+}
+
+.introducao{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--roxo-destaque);
+    text-align: center;
+    gap: 30px;
+    padding: 0px 100px 80px 100px;
+}
+
+.introducao h2{
+    font-size: 45px;
+    font-weight: 700;
+
+}
+
+/* seção desafios */
+
+.desafios h2{
+    font-size: 35px;
+}
+.desafios{
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    text-align: center;
+    gap: 50px;
+}
+
+.cards-desafios{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.play-desafios{
+    margin-top: 30px;
+}
+
+.play-desafios a{
+    color: var(--roxo-destaque);
+    background-color: var(--amarelo);
+    padding: 10px 40px 10px 40px;
+    border-radius: 5px;
+    font-size: 25px;
+}
+
+.card-desafios-individual{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
