@@ -6,6 +6,10 @@
     color: antiquewhite;
 }
 
+a {
+    text-decoration: none;
+}
+
 .container{
     width: 100vw;
     background-color: #481C63;
@@ -26,7 +30,7 @@ align-items: center;
 .paginas{
     display: flex;
     gap: 50px;
-    padding-left: 50px;
+    padding-left: 30px;
 }
 
 nav {
@@ -40,8 +44,12 @@ nav {
     padding: 10px 20px;
 }
 
-a {
-    text-decoration: none;
+
+
+.login{
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .btnLogin{
@@ -49,12 +57,6 @@ a {
     padding: 20px;
     border-radius: 10px;
     color: #481C63;
-}
-
-.login{
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
 .imagem {
