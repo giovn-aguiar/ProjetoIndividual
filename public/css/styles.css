@@ -8,6 +8,11 @@
     --rosa: #EB4F80;
 }
 
+html {
+  scrollbar-color: #ff69b4 #ffe4f0; /* polegar / trilho */
+  scrollbar-width: thin;
+}
+
 .container{
     background-color: #481C63;
 }
@@ -40,7 +45,6 @@
 .introducao h2{
     font-size: 45px;
     font-weight: 700;
-
 }
 
 /* seção desafios */
@@ -55,7 +59,7 @@
     padding: 80px;
     text-align: center;
     gap: 50px;
-    margin: 60px;
+    margin: 110px;
 }
 
 
@@ -91,13 +95,12 @@
     display: flex;
     flex-direction: row;
     background-color:var(--rosa);
-    text-align: start;
     justify-content: center;
-    margin-left: 60px;
-    margin-right: 60px;
-    padding: 100px 50px 100px 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 100px 0px 100px 0px;
     border-radius: 20px;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .comunidades img{
@@ -109,7 +112,7 @@
     flex-direction: column;
     padding: 30px;
     gap: 30px;
-    width: 30rem;
+    width: 40rem;
 }
 
 .conteudo-comunidades h2{
@@ -158,6 +161,7 @@
     flex-direction: column;
     background-color: var(--roxo-fundo);
     margin: 10px;
+    width: 350px;
     padding-bottom: 20px;
     border-radius: 20px;
     align-items:flex-start;
@@ -198,10 +202,48 @@ gap: 50px;
 
 /* Responsividade */
 
-@media (min-width: 1700px) {
- /* seção desafios */
- .cards-desafios{
-    min-width: 20px;
-}
+@media (min-width: 1200px){
 
+    /*cabecalho*/
+    .cabecalho h1{
+        font-size: 6git 0px;
+    }
+
+    /* seção introducao*/
+
+    .introducao h2{
+        font-size: 70px;
+    }
+
+    .introducao {
+        padding-left: 400px;
+        padding-right: 400px;
+    }
+     /* seção desafios */
+
+     .play-desafios a{
+        color: var(--roxo-destaque);
+        padding: 20px 60px 20px 60px;
+        font-size: 40px;
+    }
+
+    .desafios h2{
+        font-size:45px;
+     }
+    
+     .desafios h3{
+        font-size: 25px;
+     }
+    
+     .desafios p{
+        font-size: 20px;
+        font-weight: 300;
+     }
+
+     /* seção comunidades*/
+
+     .card-comunidade{
+        margin-left: 200px;
+        margin-right: 200px;
+    }
 }
