@@ -8,6 +8,10 @@
     --rosa: #EB4F80;
 }
 
+.container{
+    background-color: #481C63;
+}
+
 /* seção cabeçalho*/
 
 .titulo-cabecalho{
@@ -17,7 +21,7 @@
 }
 
 .imagem {
-    width: 100vw;
+    width: 100%;
     background-color: var(--roxo-destaque);
     margin-bottom: -10px;
 }
@@ -44,18 +48,22 @@
 .desafios h2{
     font-size: 35px;
 }
+
 .desafios{
     display: flex;
     flex-direction: column;
     padding: 80px;
     text-align: center;
     gap: 50px;
+    margin: 60px;
 }
+
 
 .cards-desafios{
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    gap: 20px;
+    justify-content: space-between;
 }
 
 .play-desafios{
@@ -74,25 +82,26 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 300px;
 }
 
 /* seção comunidade */
 
-.comunidades{
+.card-comunidade{
     display: flex;
     flex-direction: row;
     background-color:var(--rosa);
     text-align: start;
     justify-content: center;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 60px;
+    margin-right: 60px;
     padding: 100px 50px 100px 50px;
     border-radius: 20px;
     justify-content: space-between;
 }
 
 .comunidades img{
-    width: 90%;
+    width: 100%;
 }
 
 .conteudo-comunidades{
@@ -126,6 +135,7 @@
 .modalidades{
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: var(--roxo-claro);
     margin-top: 100px;
     padding-top: 50px;
@@ -186,3 +196,12 @@ gap: 50px;
 }
 
 
+/* Responsividade */
+
+@media (min-width: 1700px) {
+ /* seção desafios */
+ .cards-desafios{
+    min-width: 20px;
+}
+
+}

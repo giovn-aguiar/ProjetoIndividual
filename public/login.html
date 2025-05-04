@@ -5,43 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="./js/login.js"></script>
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
     <link rel="stylesheet" href="./css/menu.css">
 </head>
 <body>
-    <div class="container">
-        <div class="menu-container">
-            <nav>
-                <div class="menu">
-                    <div class="logo-cabecalho">
-                        <img src="img/cabecalho/logo.png" alt="">
-                    </div>
-    
-                    <div class="paginas">
-                        <a href="/assets/index.html">HOME</a>
-                        <a href="">COMUNIDADES</a>
-                        <a href="">MODALIDADES</a>
-                    </div>
+    <div class="menu-container">
+        <nav>
+            <div class="menu">
+                <div class="logo-cabecalho">
+                    <img src="img/cabecalho/logo.png" alt="">
                 </div>
-    
-                <div class="login">
-                    <a href="./cadastro.html">Não tem conta? Cadastre-se</a>
-                    <a class="btnLogin" href="./login.html">Login</a>
-                </div>
-                
-            </nav>
-        </div>
 
-        <div class="container-login">
+                <div class="paginas">
+                    <a href="./index.html">HOME</a>
+                    <a href="./index.html">COMUNIDADES</a>
+                    <a href="./index.html">MODALIDADES</a>
+                </div>
+            </div>
+
+            <div class="login">
+                <a href="./cadastro.html">Não tem conta? Cadastre-se</a>
+                <a class="btnLogin" href="./login.html">Login</a>
+            </div>
             
-            <div>
+        </nav>
+    </div>
+    <div class="container">
+
+        <div class="container-inputs">
+            
+            <div class="titulo-cadastro">
                 <h2>Login</h2>
             </div>
 
-            <div>
-                Email: <input id="inputEmail" type="text"><br>
-                Senha: <input id="inputSenha" type="password"><br>
-                <button onclick="entrar()">Entrar!</button>
+            <div class="campos-preencher">
+                Email: <input class="input-preencher" id="inputEmail" type="text"><br>
+                Senha: <input class="input-preencher" id="inputSenha" type="password"><br>
+                <button class="btn-confirmar" onclick="entrar()">Entrar!</button>
             </div>
 
         </div>

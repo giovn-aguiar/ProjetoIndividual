@@ -1,3 +1,52 @@
+:root{
+  --roxo-destaque: #26043A;
+  --roxo-claro: #9161AF;
+  --roxo-fundo: #481C63;
+  --amarelo: #FFDF90;
+  --rosa: #EB4F80;
+}
+
+.container{
+  padding-top: 50px;
+  width: 100vw;
+  height: calc(100vh - 15vh);
+  background-color: #481C63;
+}
+
+.container-inputs{
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin: 0 auto;
+  width: 500px;
+  align-items: center;
+  padding: 50px;
+  border-radius: 50px;
+  background-color: #9161AF;
+}
+
+.campos-preencher{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.input-preencher{
+border: none;
+padding: 10px;
+border-radius: 10px;
+color: #481C63;
+}
+
+.btn-confirmar{
+  background-color: #481C63;
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
+}
+/*Cards de erro dinâmicos.*/
+
 .card_erro {
     display: none;
     background-color: #fff;
