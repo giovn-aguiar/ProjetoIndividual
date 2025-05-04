@@ -11,11 +11,14 @@
 html {
   scrollbar-color: #ff69b4 #ffe4f0; /* polegar / trilho */
   scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
 .container{
     background-color: #481C63;
-}
+}  
+
+
 
 /* seção cabeçalho*/
 
@@ -46,6 +49,8 @@ html {
     font-size: 45px;
     font-weight: 700;
 }
+
+  
 
 /* seção desafios */
 
@@ -133,6 +138,13 @@ html {
     text-align: start;
 }
 
+.card-comunidades-individual:hover{
+    color: #ffe4f0;
+    background-color: var(--roxo-fundo);
+    transform: scale(1.03);
+    transition: 0.7s;
+}  
+  
 /* seção modalidades*/
 
 .modalidades{

@@ -35,8 +35,8 @@
     <div class="container">
 
         <div class="cabecalho">
-            <div class="titulo-cabecalho">
-                <h1>Treine agilidade de digitação aprendendo sobre a história da patinação!</h1>
+            <div class="titulo-cabecalho typing">
+                <h1 id="typewriter"></h1>
             </div>
 
             <div>
@@ -156,3 +156,20 @@
     
 </body>
 </html>
+
+<script>
+    const texto = "UNDERLINE GAME: Treine digitação enquanto aprende a história da patinação";
+    const titulo = document.getElementById("typewriter");
+    let i = 0;
+  
+    function digitar() {
+      if (i < texto.length) {
+        titulo.innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(digitar, 30);
+      }
+    }
+  
+    digitar();
+  </script>
+  

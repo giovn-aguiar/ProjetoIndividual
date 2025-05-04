@@ -11,6 +11,10 @@ a {
     text-decoration: none;
 }
 
+a:hover{
+    color: #ff69b4;
+}
+
 .menu-container {
     font-weight: 600;
     height: 15vh;
