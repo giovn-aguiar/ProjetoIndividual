@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's play</title>
+    <script src="./js/jogo.js"></script>
+</head>
+<body>
+    <h1>Hora do jogo!</h1>
+    <div>
+
+    <img width='200px' src="./img/cabecalho/logo.png" alt="">
+    <img width="300" src="./img/jogo/chegada.png" alt="">
+
+    </div>
+
+    <div id="divFrase"></div>
+
+    <input type="text" id="inputEntrada">
+    <button onclick="play()">Comparar</button>
+
+    <div id="divMensagem"></div>
+</body>
+</html>
+
+<script>
+
+    i = 0
+
+    var frases = [
+      "patins de ossos",
+      "patins sem curvas",
+      "patinar te traz o flow",
+      "patine bastante, gostoso demais"
+    ];
+
+    palavra = obterPalavra(frases[0], 0)
+
+    divFrase.innerHTML = `${palavra}`
+
+
+    document.addEventListener('keydown', function(evento) {
+        if (evento.code === 'Space') {
+            play()
+        }
+    });
+
+    function obterPalavra(frase, indice) {
+        const palavras = frase.split(" "); 
+        return palavras[indice]; 
+    }
+
+    function play(){
+    entrada = inputEntrada.value
+
+    if (entrada == palavra){
+        i++
+        palavra = obterPalavra(frases[0], i)
+        divFrase.innerHTML = `${palavra}`
+        inputEntrada.value = ''
+        inputEntrada.focus();
+    }
+    else{
+        erros +=1
+    }
+
+    }
+
+</script>
