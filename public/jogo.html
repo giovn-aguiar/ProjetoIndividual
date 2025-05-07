@@ -33,7 +33,7 @@
       "patins de ossos",
       "patins sem curvas",
       "patinar te traz o flow",
-      "patine bastante, gostoso demais"
+      "patine bastante, bom demais"
     ];
 
     palavra = obterPalavra(frases[0], 0)
@@ -41,7 +41,7 @@
     divFrase.innerHTML = `${palavra}`
 
 
-    document.addEventListener('keydown', function(evento) {
+    inputEntrada.addEventListener('keydown', function(evento) {
         if (evento.code === 'Space') {
             play()
         }
@@ -59,8 +59,10 @@
         i++
         palavra = obterPalavra(frases[0], i)
         divFrase.innerHTML = `${palavra}`
-        inputEntrada.value = ''
-        inputEntrada.focus();
+        
+        setTimeout(function () {
+            inputEntrada.value = ''
+        }, 10)
     }
     else{
         erros +=1
