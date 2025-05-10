@@ -5,30 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's play</title>
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/jogo.css">
+
     <script src="./js/jogo.js"></script>
 </head>
 <body>
+  <div class="menu-container">
+    <nav>
+        <div class="menu">
+            <div class="logo-cabecalho">
+                <img src="img/cabecalho/logo.png" alt="">
+            </div>
+
+            <div class="paginas">
+                <a href="./index.html">HOME</a> 
+                <a href="./index.html">COMUNIDADES</a>
+                <a href="./index.html">MODALIDADES</a>
+            </div>
+        </div>
+
+        <div class="login">
+            <a href="./cadastro.html">Não tem conta? Cadastre-se</a>
+            <a class="btnLogin" href="./login.html">Login</a>
+        </div>
+        
+    </nav>
+</div>
+
     <h1>Hora do jogo!</h1>
-    <div>
-
-    <img width='200px' src="./img/cabecalho/logo.png" alt="">
-    <img width="300" src="./img/jogo/chegada.png" alt="">
-
+    <div id="game">
+        <img class="ball" id="patins" src="https://static.vecteezy.com/system/resources/previews/044/938/837/non_2x/roller-skate-chalk-drawing-png.png" alt="">
+        <img class="ball" id="chegada" src="./img/jogo/chegada.png" alt="">
     </div>
 
-    <div id="divFrase"></div>
+    <div id="divFrase">Quando estiver preparado, aperte qualquer tecla!</div>
 
     <input type="text" id="inputEntrada">
-    <button onclick="play()">Comparar</button>
-
+    
     <div id="divMensagem"></div>
+    <div id="timer">Tempo: 0.0s</div>
+
+    
+
 </body>
 </html>
 
 <script>
-
+  
     i = 0
-
+    iniciou = false;
+    nivel = 1;
+    var palavras;
+    var erros = 0;
+    var posicaoAtual = 0
+    var imgPatins = document.getElementById("patins");
+    patins.style.position = "absolute"
     var frases = [
       "patins de ossos",
       "patins sem curvas",
@@ -36,14 +68,26 @@
       "patine bastante, bom demais"
     ];
 
-    palavra = obterPalavra(frases[0], 0)
 
-    divFrase.innerHTML = `${palavra}`
 
+    function zerarEntrada(){
+      setTimeout(function () {
+            inputEntrada.value = ''
+        }, 10)
+    }
 
     inputEntrada.addEventListener('keydown', function(evento) {
         if (evento.code === 'Space') {
-            play()
+          if(iniciou == false)
+          {
+            zerarEntrada()
+            inicio()
+          }
+            else
+            {
+              zerarEntrada()
+              play() 
+            } 
         }
     });
 
@@ -52,22 +96,39 @@
         return palavras[indice]; 
     }
 
-    function play(){
+    function inicio(){
+      posicaoAtual = 0
+      iniciou = true
+      palavra = obterPalavra(frases[nivel], 0)                  
+      divFrase.innerHTML = `${palavra}`   
+    }
+
+    palavras = frases[0].split(" ")
+    quantidade = palavras.length
+
+    function play(){                                      
     entrada = inputEntrada.value
 
     if (entrada == palavra){
         i++
-        palavra = obterPalavra(frases[0], i)
+        palavra = obterPalavra(frases[nivel], i)
         divFrase.innerHTML = `${palavra}`
-        
-        setTimeout(function () {
-            inputEntrada.value = ''
-        }, 10)
+        posicaoAtual += (1370/quantidade);
+        patins.style.left = posicaoAtual + "px";
     }
     else{
         erros +=1
     }
 
+
+    if(i == quantidade
+    )
+    {
+        divFrase.innerHTML = `Nivel 1 finalizado! Quantidade de erros: ${erros}`
+        iniciou = false
+        nivel+=1
+    }
+    
     }
 
 </script>

@@ -1,0 +1,70 @@
+
+*{color: #8b046e;}
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #894dae;
+}
+
+h1{
+    padding: 70px;
+    font-size: 80px;
+    color: #ccc;
+}
+
+#game {
+  margin: 50px auto;
+  width: 80%;
+  position: relative;
+  height: 150px;
+  background: rgb(255, 195, 249);
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.ball {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#patins {
+  left: 0;
+}
+
+#chegada {
+  right: 0;
+  background-color: transparent;
+}
+
+
+#divFrase{
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 18px;
+  width: 300px;
+}
+
+#timer {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.wrong {
+  color: red;
+}
+
+#divFrase, #divMensagem, #timer{
+  color: #26043A;
+}

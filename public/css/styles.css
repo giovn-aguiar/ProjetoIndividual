@@ -9,7 +9,7 @@
 }
 
 html {
-  scrollbar-color: #ff69b4 #ffe4f0; /* polegar / trilho */
+  scrollbar-color: #ff69b4 #ffe4f0;
   scrollbar-width: thin;
   scroll-behavior: smooth;
 }
