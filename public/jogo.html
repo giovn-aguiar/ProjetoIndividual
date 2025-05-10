@@ -73,6 +73,7 @@
     var posicaoAtual = 0
     var acertosSeguidosRcd = 0;
     var acertosSeguidos = 0;
+    var nivel = 0
     var imgPatins = document.getElementById("patins");
     patins.style.position = "absolute" 
 
@@ -113,12 +114,14 @@
     function inicio(){
       posicaoAtual = 0
       iniciou = true
+      patins.style.left = "0px"; 
       palavra = obterPalavra(frases[nivel], 0)                  
       divFrase.innerHTML = `${palavra}`   
+      palavras = frases[nivel].split(" ");
+        quantidade = palavras.length;
+        palavra = obterPalavra(frases[nivel], 0);
+        divFrase.innerHTML = `${palavra}`;
     }
-
-    palavras = frases[0].split(" ")
-    quantidade = palavras.length
 
     function play(){                                      
     entrada = inputEntrada.value
