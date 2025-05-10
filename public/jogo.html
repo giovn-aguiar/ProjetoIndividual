@@ -34,19 +34,32 @@
 </div>
 
     <h1>Hora do jogo!</h1>
+
+
     <div id="game">
         <img class="ball" id="patins" src="https://static.vecteezy.com/system/resources/previews/044/938/837/non_2x/roller-skate-chalk-drawing-png.png" alt="">
         <img class="ball" id="chegada" src="./img/jogo/chegada.png" alt="">
     </div>
 
-    <div id="divFrase">Quando estiver preparado, aperte qualquer tecla!</div>
+    <div class="jogo">
 
-    <input type="text" id="inputEntrada">
-    
-    <div id="divMensagem"></div>
-    <div id="timer">Tempo: 0.0s</div>
+        <div>
+        </div>
+        
+        <div class="jogoEntradas">
 
-    
+            <div id="divFrase">Quando estiver preparado, aperte qualquer tecla!</div>
+            <input type="text" id="inputEntrada">
+            
+            <div id="divMensagem"></div>
+            <div id="timer">Tempo: 0.0s</div>
+        </div>
+
+        <div class="botoesJogo">
+            <button>Ir para próxima fase!</button>
+            <button>Visitar minhas métricas</button>
+        </div>
+    </div>
 
 </body>
 </html>
@@ -55,19 +68,21 @@
   
     i = 0
     iniciou = false;
-    nivel = 1;
+    nivel = 0;
     var palavras;
     var erros = 0;
     var posicaoAtual = 0
+    var acertosSeguidosRcd = 0;
+    var acertosSeguidos = 0;
     var imgPatins = document.getElementById("patins");
-    patins.style.position = "absolute"
+    patins.style.position = "absolute" 
+
     var frases = [
       "patins de ossos",
       "patins sem curvas",
       "patinar te traz o flow",
       "patine bastante, bom demais"
     ];
-
 
 
     function zerarEntrada(){
@@ -111,6 +126,7 @@
 
     if (entrada == palavra){
         i++
+        acertosSeguidos++
         palavra = obterPalavra(frases[nivel], i)
         divFrase.innerHTML = `${palavra}`
         posicaoAtual += (1370/quantidade);
@@ -118,13 +134,23 @@
     }
     else{
         erros +=1
+        acertosSeguidos = 0
+    }
+
+    if(acertosSeguidos>acertosSeguidosRcd){
+        acertosSeguidosRcd = acertosSeguidos
     }
 
 
     if(i == quantidade
     )
     {
-        divFrase.innerHTML = `Nivel 1 finalizado! Quantidade de erros: ${erros}`
+        divFrase.innerHTML = `Nivel 1 finalizado!<br> 
+        Quantidade de erros: ${erros} <br>
+        PPM: <br>
+        Tempo total: <br>
+        Quantidade de acertos seguidos: ${acertosSeguidosRcd}<br>
+        `
         iniciou = false
         nivel+=1
     }
