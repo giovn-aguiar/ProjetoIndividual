@@ -69,19 +69,6 @@ input[type="text"] {
   color: #26043A;
 }
 
-.jogo{
-  display: flex;
-  flex-direction: row;
-justify-content: space-between;
-  padding-left: 150px;
-  margin-right: 190px
- }
-
-.botoesJogo{
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-}
 
 .botoesJogo button{
   width: 300px;
@@ -90,4 +77,5 @@ justify-content: space-between;
   text-decoration: none;
   font-size: 20px;
   border-style: none;
+  margin: 10px;
 }

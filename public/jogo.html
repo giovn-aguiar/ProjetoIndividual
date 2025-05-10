@@ -22,6 +22,7 @@
                 <a href="./index.html">HOME</a> 
                 <a href="./index.html">COMUNIDADES</a>
                 <a href="./index.html">MODALIDADES</a>
+                <a href="./jogo.html">PLAY</a>
             </div>
         </div>
 
@@ -41,23 +42,19 @@
         <img class="ball" id="chegada" src="./img/jogo/chegada.png" alt="">
     </div>
 
-    <div class="jogo">
-
         <div>
         </div>
-        
-        <div class="jogoEntradas">
+
 
             <div id="divFrase">Quando estiver preparado, aperte qualquer tecla!</div>
-            <input type="text" id="inputEntrada">
+            <input type="text" id="inputEntrada" >
             
             <div id="divMensagem"></div>
             <div id="timer">Tempo: 0.0s</div>
-        </div>
 
-        <div class="botoesJogo">
-            <button>Ir para próxima fase!</button>
-            <button>Visitar minhas métricas</button>
+        <div class="botoesJogo" id="botoesJogo" hidden>
+            <button onclick="proximaFase()">Ir para próxima fase!</button>
+            <button onclick="visitarMetricas()"> Visitar minhas métricas</button>
         </div>
     </div>
 
@@ -65,7 +62,9 @@
 </html>
 
 <script>
-  
+      const botoes = document.getElementById("botoesJogo"); 
+      const inputEntrada = document.getElementById("inputEntrada"); 
+
     i = 0
     iniciou = false;
     nivel = 0;
@@ -142,8 +141,7 @@
     }
 
 
-    if(i == quantidade
-    )
+    if(i == quantidade)
     {
         divFrase.innerHTML = `Nivel 1 finalizado!<br> 
         Quantidade de erros: ${erros} <br>
@@ -153,8 +151,14 @@
         `
         iniciou = false
         nivel+=1
+        botoesJogo.hidden = false;
+        inputEntrada.hidden = true;
     }
-    
     }
 
+    function proximaFase(){
+        botoesJogo.hidden = true;
+        inputEntrada.hidden = false;
+        i=0
+    }
 </script>
