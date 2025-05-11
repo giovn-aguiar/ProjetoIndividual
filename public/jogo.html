@@ -55,7 +55,7 @@
         <div class="botoesJogo" id="botoesJogo" hidden>
             <button onclick="proximaFase()">Ir para próxima fase!</button>
             <button onclick="visitarMetricas()"> Visitar minhas métricas</button>
-            <button id="btnNovamente" onclick="inicio()" hidden> Visitar minhas métricas</button>
+            <button id="btnNovamente" onclick="inicio()" hidden> Tentar novamente</button>
         </div>
     </div>
 
@@ -76,7 +76,10 @@
     var acertosSeguidosRcd = 0;
     var acertosSeguidos = 0;
     var nivel = 0
-    var tempo = 40
+    var tempoRestante = 10
+    var cronometro;
+    var ppm = 0;
+    var acertos = 0;
     var imgPatins = document.getElementById("patins");
     patins.style.position = "absolute" 
 
@@ -125,7 +128,7 @@
       palavra = obterPalavra(frases[nivel], 0);
       divFrase.innerHTML = `${palavra}`;
 
-      setInterval(cronometrar, 1000)
+      cronometro = setInterval(cronometrar, 1000)
     }
 
     function play(){                                      
@@ -134,6 +137,7 @@
     if (entrada == palavra){
         i++
         acertosSeguidos++
+        acertos++
         palavra = obterPalavra(frases[nivel], i)
         divFrase.innerHTML = `${palavra}`
         posicaoAtual += (1370/quantidade);
@@ -151,19 +155,27 @@
 
     if(i == quantidade)
     {
+        calcularPpm()
+
         divFrase.innerHTML = `Nivel ${nivel+1} finalizado!<br> 
         Quantidade de erros: ${erros} <br>
-        PPM: <br>
-        Tempo da fase : <br>
-        Quantidade de acertos seguidos: ${acertosSeguidosRcd}<br>
+        PPM: ${ppm} <br>
+        Tempo: ${40 - tempoRestante} segundos <br>
+        Máximo de acertos seguidos: ${acertosSeguidosRcd}<br>
         `
         iniciou = false
         nivel+=1
         botoesJogo.hidden = false;
         inputEntrada.hidden = true;
 
-        clearInterval(cronometrar)
+        clearInterval(cronometro)
     }
+    }
+
+    function calcularPpm(){
+        tempo = 40 - tempoRestante
+        ppm = (acertos * 60)/ tempo
+
     }
 
     function proximaFase(){
@@ -171,13 +183,15 @@
         inputEntrada.hidden = false;
         divFrase.innerHTML = `Digite barra de espaço para iniciar a fase ${nivel+1}
         `
+        acertos = 0
         i=0
+        tempoRestante = 10
     }
 
     function cronometrar(){
-        if(tempo > 0){
-            tempo--
-            timer.innerHTML = `tempo: 0:${tempo}`
+        if(tempoRestante > 0){
+            tempoRestante--
+            timer.innerHTML = `Restam ${tempoRestante} segundos`
         }
         else{
             timer.innerHTML = "TEMPO ESGOTADO!"
