@@ -6,7 +6,7 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
-  background-color: #894dae;
+  background-color: #481C63;
 }
 
 h1{
@@ -66,7 +66,7 @@ input[type="text"] {
 }
 
 #divFrase, #divMensagem, #timer{
-  color: #26043A;
+  color: #a58db3;
 }
 
 

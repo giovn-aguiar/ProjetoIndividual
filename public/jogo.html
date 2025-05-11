@@ -35,8 +35,9 @@
 </div>
 
     <h1>Hora do jogo!</h1>
-
-
+    
+    
+    <div id="timer"></div>
     <div id="game">
         <img class="ball" id="patins" src="https://static.vecteezy.com/system/resources/previews/044/938/837/non_2x/roller-skate-chalk-drawing-png.png" alt="">
         <img class="ball" id="chegada" src="./img/jogo/chegada.png" alt="">
@@ -50,11 +51,11 @@
             <input type="text" id="inputEntrada" >
             
             <div id="divMensagem"></div>
-            <div id="timer">Tempo: 0.0s</div>
 
         <div class="botoesJogo" id="botoesJogo" hidden>
             <button onclick="proximaFase()">Ir para próxima fase!</button>
             <button onclick="visitarMetricas()"> Visitar minhas métricas</button>
+            <button id="btnNovamente" onclick="inicio()" hidden> Visitar minhas métricas</button>
         </div>
     </div>
 
@@ -63,7 +64,8 @@
 
 <script>
       const botoes = document.getElementById("botoesJogo"); 
-      const inputEntrada = document.getElementById("inputEntrada"); 
+      const inputEntrada = document.getElementById("inputEntrada");
+      const btnNOvamente = document.getElementById("btnNovamente"); 
 
     i = 0
     iniciou = false;
@@ -74,6 +76,7 @@
     var acertosSeguidosRcd = 0;
     var acertosSeguidos = 0;
     var nivel = 0
+    var tempo = 40
     var imgPatins = document.getElementById("patins");
     patins.style.position = "absolute" 
 
@@ -118,9 +121,11 @@
       palavra = obterPalavra(frases[nivel], 0)                  
       divFrase.innerHTML = `${palavra}`   
       palavras = frases[nivel].split(" ");
-        quantidade = palavras.length;
-        palavra = obterPalavra(frases[nivel], 0);
-        divFrase.innerHTML = `${palavra}`;
+      quantidade = palavras.length;
+      palavra = obterPalavra(frases[nivel], 0);
+      divFrase.innerHTML = `${palavra}`;
+
+      setInterval(cronometrar, 1000)
     }
 
     function play(){                                      
@@ -146,22 +151,40 @@
 
     if(i == quantidade)
     {
-        divFrase.innerHTML = `Nivel 1 finalizado!<br> 
+        divFrase.innerHTML = `Nivel ${nivel+1} finalizado!<br> 
         Quantidade de erros: ${erros} <br>
         PPM: <br>
-        Tempo total: <br>
+        Tempo da fase : <br>
         Quantidade de acertos seguidos: ${acertosSeguidosRcd}<br>
         `
         iniciou = false
         nivel+=1
         botoesJogo.hidden = false;
         inputEntrada.hidden = true;
+
+        clearInterval(cronometrar)
     }
     }
 
     function proximaFase(){
         botoesJogo.hidden = true;
         inputEntrada.hidden = false;
+        divFrase.innerHTML = `Digite barra de espaço para iniciar a fase ${nivel+1}
+        `
         i=0
     }
+
+    function cronometrar(){
+        if(tempo > 0){
+            tempo--
+            timer.innerHTML = `tempo: 0:${tempo}`
+        }
+        else{
+            timer.innerHTML = "TEMPO ESGOTADO!"
+            btnNovamente.hidden = false;
+            inputEntrada.hidden = true;
+        }
+    }
+
+
 </script>
