@@ -18,7 +18,7 @@ CREATE TABLE metricasFase(
     fkFase INT, 
     dataJogo DATETIME DEFAULT NOW(), 
     tempo iNT, 
-    ppm DECIMAL(2,1),
+    ppm DECIMAL(3,1),
     erros INT, 
     acertos INT,
     CONSTRAINT fkFase FOREIGN KEY (fkfase) REFERENCES fase(idFase),
@@ -32,17 +32,15 @@ CREATE TABLE log(
     CONSTRAINT logUser FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 )
 
-CREATE TABLE fase(
-    idFase INT PRIMARY KEY AUTO_INCREMENT,
-    fkFrase INT UNIQUE, 
-    tempoLimite: INT DEFAULT 20,
-    CONSTRAINT fkFrase FOREIGN KEY (fkFrase) REFERENCES frases(idFrase)
-)
-
 CREATE TABLE frases(
     idFrase INT PRIMARY KEY AUTO_INCREMENT,
     frase VARCHAR(300)
 )
-
-
+ 
+CREATE TABLE fase(
+    idFase INT PRIMARY KEY AUTO_INCREMENT,
+    fkFrase INT UNIQUE, 
+    tempoLimite INT DEFAULT 20,
+    CONSTRAINT fkFrase FOREIGN KEY (fkFrase) REFERENCES frases(idFrase)
+)
 
