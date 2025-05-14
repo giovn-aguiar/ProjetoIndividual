@@ -4,8 +4,8 @@ var mysql = require("mysql2");
 var mySqlConfig = {
     host: "127.0.0.1", //inserir host
     database: "underline", //inserir banco
-    user: "padrao", // inserir usuario 
-    password: "", // inserir senha 
+    user: "giovanna", // inserir usuario 
+    password: "giovanna", // inserir senha 
     port: 3306
 };
 

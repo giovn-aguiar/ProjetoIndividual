@@ -6,16 +6,6 @@ function entrar() {
     var emailVar = inputEmail.value;
     var senhaVar = inputSenha.value;
 
-    if (emailVar == "" || senhaVar == "") {
-        cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        finalizarAguardar();
-        return false;
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
-
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
 
@@ -35,15 +25,13 @@ function entrar() {
             console.log(resposta);
 
             resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
+                console.log("resposta da API:", json);
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.ID_USUARIO = json.id;
-                sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                 setTimeout(function () {
-                    window.location = "./index.html";
+                    window.location = "../dashboard/cards.html"
                 }, 1000); // apenas para exibir o loading
 
             });
@@ -63,8 +51,4 @@ function entrar() {
     })
 
     return false;
-}
-
-function sumirMensagem() {
-    cardErro.style.display = "none"
 }
