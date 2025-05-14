@@ -2,11 +2,11 @@ var mysql = require("mysql2");
 
 // CONEXÃO DO BANCO MYSQL SERVER
 var mySqlConfig = {
-    host: "127.0.0.1", //inserir host
-    database: "underline", //inserir banco
-    user: "giovanna", // inserir usuario 
-    password: "giovanna", // inserir senha 
-    port: 3306
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT
 };
 
 function executar(instrucao) {

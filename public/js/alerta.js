@@ -101,7 +101,7 @@ function exibirCards() {
         alerta.innerHTML += transformarEmDiv(mensagem);
     }
 }
-/*
+
 function transformarEmDiv({ idAquario, temp, grauDeAviso, grauDeAvisoCor }) {
 
     var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
@@ -122,4 +122,4 @@ function atualizacaoPeriodica() {
         obterdados(item.id)
     });
     setTimeout(atualizacaoPeriodica, 5000);
-}*/
+}
