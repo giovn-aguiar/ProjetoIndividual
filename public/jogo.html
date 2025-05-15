@@ -54,7 +54,7 @@
             <div id="divMensagem"></div>
 
         <div class="botoesJogo" id="botoesJogo" hidden>
-            <button onclick="proximaFase()">Ir para próxima fase!</button>
+            <button onclick="recomecar()">Quero jogar mais!</button>
             <button onclick="visitarMetricas()"> Visitar minhas métricas</button>
             <button id="btnNovamente" onclick="inicio()" hidden> Tentar novamente</button>
         </div>
@@ -70,7 +70,6 @@
 
     i = 0
     iniciou = false;
-    nivel = 0;
     var palavras;
     var erros = 0;
     var posicaoAtual = 0
@@ -90,6 +89,8 @@
       "patinar te traz o flow",
       "patine bastante, bom demais"
     ];
+
+    var randomIndex;
 
 
     function zerarEntrada(){
@@ -119,14 +120,15 @@
     }
 
     function inicio(){
+        randomIndex = Math.floor(Math.random() * frases.length);
       posicaoAtual = 0
       iniciou = true
       patins.style.left = "0px"; 
-      palavra = obterPalavra(frases[nivel], 0)                  
+      palavra = obterPalavra(frases[randomIndex], 0)                  
       divFrase.innerHTML = `${palavra}`   
-      palavras = frases[nivel].split(" ");
+      palavras = frases[randomIndex].split(" ");
       quantidade = palavras.length;
-      palavra = obterPalavra(frases[nivel], 0);
+      palavra = obterPalavra(frases[randomIndex], 0);
       divFrase.innerHTML = `${palavra}`;
 
       cronometro = setInterval(cronometrar, 1000)
@@ -139,7 +141,7 @@
         i++
         acertosSeguidos++
         acertos++
-        palavra = obterPalavra(frases[nivel], i)
+        palavra = obterPalavra(frases[randomIndex], i)
         divFrase.innerHTML = `${palavra}`
         posicaoAtual += (1370/quantidade);
         patins.style.left = posicaoAtual + "px";
@@ -158,7 +160,7 @@
     {
         calcularPpm()
 
-        divFrase.innerHTML = `Nivel ${nivel+1} finalizado!<br> 
+        divFrase.innerHTML = `Você venceu!<br> 
         Quantidade de erros: ${erros} <br>
         PPM: ${ppm} <br>
         Tempo: ${40 - tempoRestante} segundos <br>
@@ -179,10 +181,10 @@
 
     }
 
-    function proximaFase(){
+    function recomecar(){
         botoesJogo.hidden = true;
         inputEntrada.hidden = false;
-        divFrase.innerHTML = `Digite barra de espaço para iniciar a fase ${nivel+1}
+        divFrase.innerHTML = `Digite barra de espaço para recomeçar!
         `
         acertos = 0
         i=0
