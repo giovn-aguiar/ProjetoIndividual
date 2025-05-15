@@ -1,10 +1,17 @@
 var database = require("../database/config");
 
+// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function registrarResultado(idUsuario, palavras, acertos, erros, tempo) {
+    console.log("ACESSEI O RESULTADO MODEL \n\n function registrarResultado():", idUsuario, palavras, acertos, erros, tempo);
+
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO resultado_jogo (palavras_digitadas, acertos, erros, tempo_segundos, fk_usuario)
-        VALUES (${palavras}, ${acertos}, ${erros}, ${tempo}, ${idUsuario});
+        INSERT INTO resultados (id_usuario, palavras, acertos, erros, tempo)
+        VALUES ('${idUsuario}', '${palavras}', ${acertos}, ${erros}, ${tempo});
     `;
+    
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 

@@ -7,6 +7,6 @@ router.get("/", function (req, res) {
     res.render("index");
 });
 
-router.post("/jogo/registrar", resultadoController.registrar);
+router.post("/jogo/registrar", resultadoController.registrarResultado);
 
 module.exports = router;

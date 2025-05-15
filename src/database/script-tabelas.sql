@@ -6,9 +6,9 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE underline;
 
-USE aquatech;
+USE underline;
 
 CREATE TABLE empresa (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -56,19 +56,19 @@ create table medida (
 	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
 );
 
-CREATE TABLE metrica_jogo (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    acertos INT,
-    erros INT,
-    ppm DECIMAL(5,2),
-    tempo INT,
-    acertos_seguidos INT,
-    data_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
-    fk_usuario INT,
-    FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
-);
-
 insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
 insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
 insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
 insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+
+CREATE TABLE resultados (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT,
+    palavras INT,
+    acertos INT,
+    erros INT,
+    tempo INT,
+    data_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+);
+

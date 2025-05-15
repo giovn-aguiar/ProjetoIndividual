@@ -1,16 +1,41 @@
 var resultadoModel = require("../models/resultadoModel");
 
-function registrar(req, res) {
-    var { idUsuario, palavras, acertos, erros, tempo } = req.body;
+function registrarResultado(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo jogo.html
+    var idUsuario = req.body.idUsuario;
+    var palavras = req.body.palavras;
+    var acertos = req.body.acertos;
+    var erros = req.body.erros;
+    var tempo = req.body.tempo;
 
-    resultadoModel.registrarResultado(idUsuario, palavras, acertos, erros, tempo)
-        .then(() => res.status(200).send("Resultado registrado com sucesso!"))
-        .catch(erro => {
-            console.error("Erro ao registrar resultado: ", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-        });
+    // Faça as validações dos valores
+    if (idUsuario == undefined) {
+        res.status(400).send("O id do usuário está undefined!");
+    } else if (palavras == undefined) {
+        res.status(400).send("O total de palavras está undefined!");
+    } else if (acertos == undefined) {
+        res.status(400).send("O número de acertos está undefined!");
+    } else if (erros == undefined) {
+        res.status(400).send("O número de erros está undefined!");
+    } else if (tempo == undefined) {
+        res.status(400).send("O tempo está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        resultadoModel.registrarResultado(idUsuario, palavras, acertos, erros, tempo)
+            .then(
+                function (resultado) {
+                    res.status(200).send("Resultado registrado com sucesso!");
+                }
+            ).catch(
+                function (erro) {
+                    console.log("\nHouve um erro ao registrar o resultado! Erro: ", erro.sqlMessage || erro);
+                    res.status(500).json(erro.sqlMessage || erro);
+                }
+            );
+    }
 }
 
 module.exports = {
-    registrar
+    registrarResultado
 };
