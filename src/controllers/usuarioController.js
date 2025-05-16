@@ -51,6 +51,30 @@ function autenticar(req, res) {
 
 }
 
+function registrarLog(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo jogo.html
+    var idUsuario = req.body.idUsuario;
+
+    // Faça as validações dos valores
+    if (idUsuario == undefined) {
+        res.status(400).send("O id do usuário está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.registrarLog(idUsuario)
+            .then(
+                function (resultado) {
+                    res.status(200).send("Resultado registrado com sucesso!");
+                }
+            ).catch(
+                function (erro) {
+                    console.log("\nHouve um erro ao registrar o resultado! Erro: ", erro.sqlMessage || erro);
+                    res.status(500).json(erro.sqlMessage || erro);
+                }
+            );
+    }
+}
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -90,5 +114,6 @@ function cadastrar(req, res) {
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    registrarLog
 }

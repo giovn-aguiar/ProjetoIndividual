@@ -22,7 +22,18 @@ function cadastrar(nome, email, senha, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function registrarLog(idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL - registrarLog \nParâmetro idUsuario:", idUsuario);
+    var instrucaoSql = `
+        INSERT INTO logUsuario (fkUsuario) VALUES ('${idUsuario}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar, 
+    registrarLog 
 };

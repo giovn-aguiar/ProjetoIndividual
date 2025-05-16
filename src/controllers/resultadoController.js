@@ -7,6 +7,7 @@ function registrarResultado(req, res) {
     var acertos = req.body.acertos;
     var erros = req.body.erros;
     var tempo = req.body.tempo;
+    var ppm = req.body.ppm;
 
     // Faça as validações dos valores
     if (idUsuario == undefined) {
@@ -19,10 +20,13 @@ function registrarResultado(req, res) {
         res.status(400).send("O número de erros está undefined!");
     } else if (tempo == undefined) {
         res.status(400).send("O tempo está undefined!");
-    } else {
+    }
+    else if (ppm == undefined) {
+        res.status(400).send("O ppm está undefined!");
+    }  else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        resultadoModel.registrarResultado(idUsuario, palavras, acertos, erros, tempo)
+        resultadoModel.registrarResultado(idUsuario, palavras, acertos, erros, tempo, ppm)
             .then(
                 function (resultado) {
                     res.status(200).send("Resultado registrado com sucesso!");

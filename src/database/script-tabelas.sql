@@ -59,7 +59,7 @@ create table medida (
 insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
 insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
 insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+insert into aquario (descricao, fkn_empresa) values ('Aquário de Peixe-dourado', 2);
 
 CREATE TABLE resultados (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -68,6 +68,7 @@ CREATE TABLE resultados (
     acertos INT,
     erros INT,
     tempo INT,
+	ppm INT,
     data_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id)
 );

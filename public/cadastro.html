@@ -202,6 +202,40 @@
       });
   }
 
+  function registrarLog() {
+    // aguardar();
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/registrarLog", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar registrar log!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
