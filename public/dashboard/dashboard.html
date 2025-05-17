@@ -10,6 +10,8 @@
 </head>
 <body onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho(); buscarTempo()" > <!-- Chamando a função buscarPpm ao carregar a página -->
   
+
+  
   <div class="janela">
 
     <div class="header-left dash-header">
@@ -43,18 +45,19 @@
         </div>
     </div>
 
+<div class="dash-right">
+  <!-- Título para o gráfico de linhas -->
+  Gráfico de linhas
+  <div>
+    <!-- Elemento canvas onde o gráfico de linha será desenhado -->
+    <canvas id="linha"></canvas>
+    <!-- Elemento canvas onde o gráfico de barra será desenhado -->
+    <canvas id="barra"></canvas>
 
-<!-- Título para o gráfico de linhas -->
-Gráfico de linhas
-<div>
-  <!-- Elemento canvas onde o gráfico de linha será desenhado -->
-  <canvas id="linha"></canvas>
-  <!-- Elemento canvas onde o gráfico de barra será desenhado -->
-  <canvas id="barra"></canvas>
+    <canvas id="pizza"></canvas>
 
-  <canvas id="pizza"></canvas>
-
-  <canvas id="barraDesempenho"></canvas>
+    <canvas id="barraDesempenho"></canvas>
+  </div>
 </div>
 
 </body>
