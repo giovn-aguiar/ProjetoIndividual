@@ -15,4 +15,9 @@ router.get("/buscarDesempenho/:idUsuario", function (req, res) {
     metricasController.buscarDesempenho(req, res);
 });
 
+router.get("/buscarTempo/:idUsuario", function (req, res) {
+    metricasController.buscarTempo(req, res);
+});
+
+
 module.exports = router;

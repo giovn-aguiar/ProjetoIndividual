@@ -7,7 +7,7 @@
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho()" > <!-- Chamando a função buscarPpm ao carregar a página -->
+<body onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho(); buscarTempo()" > <!-- Chamando a função buscarPpm ao carregar a página -->
   
 <!-- Título para o gráfico de linhas -->
 Gráfico de linhas
@@ -41,6 +41,23 @@ fetch(`http://localhost:3333/metricas/buscarPpm/${idUsuario}`)
   })
   .then(function(data){
     plotarGraficoLinha(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+
+}
+
+function buscarTempo(){
+  // Aqui seria a função que obteria os dados do banco de dados
+  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+ 
+fetch(`http://localhost:3333/metricas/buscarTempo/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
     plotarGraficoBarra(data);
   })
   .catch(function(err){
@@ -154,12 +171,12 @@ function plotarGraficoLinha(dados){
 // Função para plotar o gráfico de barra
 function plotarGraficoBarra(dados){
 
-  var ppm = [];
+  var tempo = [];
   var momento = [];
 
   // Preenchendo os arrays com os dados
   for(var i = 0; i < dados.length; i++){
-    ppm.push(dados[i].ppm);
+    tempo.push(dados[i].tempo);
     momento.push(dados[i].momento);
   }
 
@@ -171,8 +188,8 @@ function plotarGraficoBarra(dados){
       data: { // Dados para o gráfico
           labels: momento, // Rótulos no eixo X
           datasets: [{
-              label: 'ppm', // Nome do conjunto de dados
-              data: ppm, // Dados dos ppm
+              label: 'tempo', // Nome do conjunto de dados
+              data: tempo, // Dados dos ppm
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
               ],
