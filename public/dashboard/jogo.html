@@ -5,34 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's play</title>
-    <link rel="stylesheet" href="./css/menu.css">
-    <link rel="stylesheet" href="./css/jogo.css">
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <link rel="stylesheet" href="../css/jogo.css">
 
     <script src="./js/jogo.js"></script>
     <script src="./dashboard/dashboard.html"></script>
 </head>
-<body>
-  <div class="menu-container">
-    <nav>
-        <div class="menu">
-            <div class="logo-cabecalho">
-                <img src="img/cabecalho/logo.png" alt="">
+<body>  
+
+    <div class="janela">
+
+        <div class="header-left dash-header">
+
+            <h1>Underline</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="paginas">
-                <a href="./index.html">HOME</a> 
-                <a href="./index.html">COMUNIDADES</a>
-                <a href="./index.html">MODALIDADES</a>
+            <div class="btn-nav">
+                <a href="../jogo.html"></a>
+                <h3>Play!</h3>
             </div>
-        </div>
 
-        <div class="login">
-            <a href="./cadastro.html">Não tem conta? Cadastre-se</a>
-            <a class="btnLogin" href="./login.html">Login</a>
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Gráficos</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="../public/jogo.html">
+                    <h3>Gráficos</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Eventos</h3>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
         </div>
-        
-    </nav>
-</div>
 
     <h1>Hora do jogo!</h1>
     
@@ -40,7 +58,7 @@
     <div id="timer"></div>
     <div id="game">
         <img class="ball" id="patins" src="https://static.vecteezy.com/system/resources/previews/044/938/837/non_2x/roller-skate-chalk-drawing-png.png" alt="">
-        <img class="ball" id="chegada" src="./img/jogo/chegada.png" alt="">
+        <img class="ball" id="chegada" src="../img/jogo/chegada.png" alt="">
     </div>
 
         <div>
