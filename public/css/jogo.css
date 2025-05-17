@@ -1,4 +1,5 @@
 
+*{color: #8b046e;}
 
 body {
   font-family: Arial, sans-serif;
@@ -8,6 +9,11 @@ body {
   background-color: #481C63;
 }
 
+h1{
+    padding: 70px;
+    font-size: 80px;
+    color: #ccc;
+}
 
 #game {
   margin: 50px auto;

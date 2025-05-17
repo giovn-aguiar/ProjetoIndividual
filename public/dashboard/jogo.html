@@ -5,61 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's play</title>
-    <link rel="stylesheet" href="../css/dashboards.css">
     <link rel="stylesheet" href="../css/jogo.css">
 
     <script src="./js/jogo.js"></script>
     <script src="./dashboard/dashboard.html"></script>
 </head>
-<body>  
-    <div class="janela">
-
-        <div class="header-left dash-header">
-
-            <h1>Underline</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+<body>
+  <div class="menu-container">
+    <nav>
+        <div class="menu">
+            <div class="logo-cabecalho">
+                <img src="img/cabecalho/logo.png" alt="">
             </div>
 
-            <div class="btn-nav">
-                <a href="../jogo.html"></a>
-                <h3>Play!</h3>
+            <div class="paginas">
+                <a href="./index.html">Voltar para minha conta</a> 
             </div>
-
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Eventos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
         </div>
-
+    </nav>
+</div>
 
     <h1>Hora do jogo!</h1>
-
     
-        <div id="timer"></div>
-        <div id="game">
-            <img class="ball" id="patins" src="https://static.vecteezy.com/system/resources/previews/044/938/837/non_2x/roller-skate-chalk-drawing-png.png" alt="">
-            <img class="ball" id="chegada" src="../img/jogo/chegada.png" alt="">
-        </div>
+    
+    <div id="timer"></div>
+    <div id="game">
+        <img class="ball" id="patins" src="https://static.vecteezy.com/system/resources/previews/044/938/837/non_2x/roller-skate-chalk-drawing-png.png" alt="">
+        <img class="ball" id="chegada" src="./img/jogo/chegada.png" alt="">
+    </div>
 
         <div>
         </div>
 
 
-            <div id="divFrase">Quando estiver preparado, aperte qualquer tecla!</div><br>
+            <div id="divFrase">Quando estiver preparado, aperte qualquer tecla!</div>
             <input type="text" id="inputEntrada" >
             
             <div id="divMensagem"></div>
@@ -94,8 +73,6 @@
     var acertos = 0;
     var imgPatins = document.getElementById("patins");
     patins.style.position = "absolute" 
-    var errouAntes = false;
-    var desempenho = 0;
 
     var tempoSegundos = 0;
     var totalPalavras = 0;
@@ -140,7 +117,7 @@
     }
 
     function inicio(){
-      randomIndex = Math.floor(Math.random() * frases.length);
+        randomIndex = Math.floor(Math.random() * frases.length);
       posicaoAtual = 0
       iniciou = true
       patins.style.left = "0px"; 
@@ -160,18 +137,15 @@
     if (entrada == palavra){
         i++
         acertosSeguidos++
-        if (!errouAntes) acertos++;
+        acertos++
         palavra = obterPalavra(frases[randomIndex], i)
         divFrase.innerHTML = `${palavra}`
         posicaoAtual += (1370/quantidade);
         patins.style.left = posicaoAtual + "px";
-
-        errouAntes = false
     }
     else{
         erros +=1
         acertosSeguidos = 0
-        errouAntes = true
     }
 
     if(acertosSeguidos>acertosSeguidosRcd){
@@ -182,7 +156,6 @@
     if(i == quantidade)
     {
         calcularPpm()
-        calcularDesempenho()
 
         divFrase.innerHTML = `Você venceu!<br> 
         Quantidade de erros: ${erros} <br>
@@ -200,16 +173,13 @@
     }
     }
 
-    function calcularDesempenho() {
-        desempenho = (acertos / (totalPalavras)) * 100
-    }
-
-  function calcularPpm(){
+    function calcularPpm(){
         tempo = 10 - tempoRestante
         totalPalavras = palavras.length;
         totalAcertos = acertos;
         totalErros = erros;
         ppm = (acertos * 60)/ tempo
+
     }
 
     function recomecar(){
@@ -225,7 +195,6 @@
         totalPalavras = 0;
         totalAcertos = 0;
         totalErros = 0;
-        desempenho = 0;
 
         botoesJogo.hidden = true;
         inputEntrada.hidden = false;
@@ -264,9 +233,7 @@
             palavras: totalPalavras,
             acertos: totalAcertos,
             erros: totalErros,
-            tempo: tempo,
-            ppm: ppm,
-            desempenho: desempenho.toFixed(2)
+            tempo: tempo 
         })
     }).then(function (resposta) {
         if (resposta.ok) {
