@@ -7,7 +7,7 @@
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body onload="buscarPpm(); buscarErrosAcertos()" > <!-- Chamando a função buscarPpm ao carregar a página -->
+<body onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho()" > <!-- Chamando a função buscarPpm ao carregar a página -->
   
 <!-- Título para o gráfico de linhas -->
 Gráfico de linhas
@@ -18,6 +18,8 @@ Gráfico de linhas
   <canvas id="barra"></canvas>
 
   <canvas id="pizza"></canvas>
+
+  <canvas id="barraDesempenho"></canvas>
 </div>
 
 </body>
@@ -40,6 +42,24 @@ fetch(`http://localhost:3333/metricas/buscarPpm/${idUsuario}`)
   .then(function(data){
     plotarGraficoLinha(data);
     plotarGraficoBarra(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+
+}
+
+function buscarDesempenho(){
+  // Aqui seria a função que obteria os dados do banco de dados
+  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+ 
+fetch(`http://localhost:3333/metricas/buscarDesempenho/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    plotarGraficoBarraDesempenho(data);
   })
   .catch(function(err){
     console.log(err);
@@ -163,5 +183,38 @@ function plotarGraficoBarra(dados){
           }]
       },
   });
+}
+
+function plotarGraficoBarraDesempenho(dados){
+
+var desempenho = [];
+var momento = [];
+
+// Preenchendo os arrays com os dados
+for(var i = 0; i < dados.length; i++){
+  desempenho.push(dados[i].desempenho);
+  momento.push(dados[i].momento);
+}
+
+// Capturando o elemento canvas pelo id 
+var ctx = document.getElementById('barraDesempenho').getContext('2d');
+// Criando o gráfico de barra usando o Chart.js
+var myChart = new Chart(ctx, {
+    type: 'bar', // Tipo de gráfico: barra
+    data: { // Dados para o gráfico
+        labels: momento, // Rótulos no eixo X
+        datasets: [{
+            label: 'desempenho', // Nome do conjunto de dados
+            data: desempenho, // Dados dos ppm
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)', // Cor da borda das barras
+            ],
+            borderWidth: 1 // Largura da borda das barras
+        }]
+    },
+});
 }
 </script>

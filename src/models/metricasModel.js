@@ -23,6 +23,20 @@ function buscarErrosAcertos(idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function buscarDesempenho(idUsuario) {
+
+    var instrucaoSql = `SELECT 
+        desempenho, momento
+                    FROM resultados
+                    WHERE id_usuario = ${idUsuario}
+                    ORDER BY id DESC LIMIT 5`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
-    buscarPpm, buscarErrosAcertos
+    buscarPpm, buscarErrosAcertos, buscarDesempenho
 }

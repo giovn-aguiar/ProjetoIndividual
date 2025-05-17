@@ -11,5 +11,8 @@ router.get("/buscarErrosAcertos/:idUsuario", function (req, res) {
     metricasController.buscarErrosAcertos(req, res);
 });
 
+router.get("/buscarDesempenho/:idUsuario", function (req, res) {
+    metricasController.buscarDesempenho(req, res);
+});
 
 module.exports = router;

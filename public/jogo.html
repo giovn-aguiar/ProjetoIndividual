@@ -83,6 +83,7 @@
     var imgPatins = document.getElementById("patins");
     patins.style.position = "absolute" 
     var errouAntes = false;
+    var desempenho = 0;
 
     var tempoSegundos = 0;
     var totalPalavras = 0;
@@ -169,6 +170,7 @@
     if(i == quantidade)
     {
         calcularPpm()
+        calcularDesempenho()
 
         divFrase.innerHTML = `Você venceu!<br> 
         Quantidade de erros: ${erros} <br>
@@ -186,7 +188,11 @@
     }
     }
 
-    function calcularPpm(){
+    function calcularDesempenho() {
+        desempenho = (acertos / (totalPalavras)) * 100
+    }
+
+  function calcularPpm(){
         tempo = 10 - tempoRestante
         totalPalavras = palavras.length;
         totalAcertos = acertos;
@@ -207,6 +213,7 @@
         totalPalavras = 0;
         totalAcertos = 0;
         totalErros = 0;
+        desempenho = 0;
 
         botoesJogo.hidden = true;
         inputEntrada.hidden = false;
@@ -246,7 +253,8 @@
             acertos: totalAcertos,
             erros: totalErros,
             tempo: tempo,
-            ppm: ppm
+            ppm: ppm,
+            desempenho: desempenho.toFixed(2)
         })
     }).then(function (resposta) {
         if (resposta.ok) {
