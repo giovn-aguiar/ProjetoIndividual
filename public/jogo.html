@@ -82,6 +82,7 @@
     var acertos = 0;
     var imgPatins = document.getElementById("patins");
     patins.style.position = "absolute" 
+    var errouAntes = false;
 
     var tempoSegundos = 0;
     var totalPalavras = 0;
@@ -146,15 +147,18 @@
     if (entrada == palavra){
         i++
         acertosSeguidos++
-        acertos++
+        if (!errouAntes) acertos++;
         palavra = obterPalavra(frases[randomIndex], i)
         divFrase.innerHTML = `${palavra}`
         posicaoAtual += (1370/quantidade);
         patins.style.left = posicaoAtual + "px";
+
+        errouAntes = false
     }
     else{
         erros +=1
         acertosSeguidos = 0
+        errouAntes = true
     }
 
     if(acertosSeguidos>acertosSeguidosRcd){
@@ -188,7 +192,6 @@
         totalAcertos = acertos;
         totalErros = erros;
         ppm = (acertos * 60)/ tempo
-
     }
 
     function recomecar(){

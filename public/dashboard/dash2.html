@@ -7,7 +7,7 @@
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body onload="buscarPpm()"> <!-- Chamando a função buscarPpm ao carregar a página -->
+<body onload="buscarPpm(); buscarErrosAcertos()" > <!-- Chamando a função buscarPpm ao carregar a página -->
   
 <!-- Título para o gráfico de linhas -->
 Gráfico de linhas
@@ -16,6 +16,8 @@ Gráfico de linhas
   <canvas id="linha"></canvas>
   <!-- Elemento canvas onde o gráfico de barra será desenhado -->
   <canvas id="barra"></canvas>
+
+  <canvas id="pizza"></canvas>
 </div>
 
 </body>
@@ -30,7 +32,7 @@ function buscarPpm(){
   // Aqui seria a função que obteria os dados do banco de dados
   // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
  
-  fetch(`http://localhost:3333/metricas/buscarPpm/${idUsuario}`)
+fetch(`http://localhost:3333/metricas/buscarPpm/${idUsuario}`)
 
   .then(function(response){
     return response.json();
@@ -43,11 +45,56 @@ function buscarPpm(){
     console.log(err);
   })
 
-  // Chamando a função para plotar o gráfico de linha com os dados
-  plotarGraficoLinha(dados);
-  // Chamando a função para plotar o gráfico de barra com os dados
-  plotarGraficoBarra(dados)
 }
+
+// Função chamada ao carregar a página para obter e processar os dados
+function buscarErrosAcertos(){
+  // Aqui seria a função que obteria os dados do banco de dados
+  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
+ 
+fetch(`http://localhost:3333/metricas/buscarErrosAcertos/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    plotarGraficoPizza(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+
+}
+
+// Função para plotar o gráfico de linha
+function plotarGraficoPizza(dados){
+
+    var totalErros = dados[0].erros;
+    var totalAcertos = dados[0].acertos;
+
+  // Capturando o elemento canvas pelo id 
+  var ctx = document.getElementById('pizza').getContext('2d');
+  // Criando o gráfico de linha usando o Chart.js
+  var myChart = new Chart(ctx, {
+      type: 'pie', // Tipo de gráfico: linha
+      data: {
+        labels: ['Erros', 'Acertos'],
+        datasets: [{
+            data: [totalErros, totalAcertos],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)', 
+                  'rgba(75, 192, 192, 0.5)'  // Cor de fundo das linhas
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(75, 192, 192, 0.5)'  // Cor da borda das linhas
+              ],
+              borderWidth: 1 // Largura da borda das linhas
+          }]
+      },
+  });
+} 
+
 
 // Função para plotar o gráfico de linha
 function plotarGraficoLinha(dados){

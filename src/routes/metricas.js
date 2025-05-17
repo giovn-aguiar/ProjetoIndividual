@@ -8,7 +8,7 @@ router.get("/buscarPpm/:idUsuario", function (req, res) {
 });
 
 router.get("/buscarErrosAcertos/:idUsuario", function (req, res) {
-    metricasController.buscarPpm(req, res);
+    metricasController.buscarErrosAcertos(req, res);
 });
 
 

@@ -16,14 +16,13 @@ function buscarPpm(idUsuario) {
 function buscarErrosAcertos(idUsuario) {
 
     var instrucaoSql = `SELECT 
-        erros, acertos
+        sum(erros) as erros, sum(acertos) as acertos
                     FROM resultados
-                    WHERE id_usuario = ${idUsuario}
-                    ORDER BY id DESC LIMIT 5`;
+                    WHERE id_usuario = ${idUsuario}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 module.exports = {
-    buscarPpm
+    buscarPpm, buscarErrosAcertos
 }
