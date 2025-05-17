@@ -9,6 +9,15 @@ body {
   background-color: #481C63;
 }
 
+.btnDash{
+  background-color: #8b046e;
+  text-decoration: none;
+  color: aliceblue;
+  padding: 40px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
 h1{
     padding: 70px;
     font-size: 80px;

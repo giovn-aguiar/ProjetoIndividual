@@ -5,25 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's play</title>
+
     <link rel="stylesheet" href="../css/jogo.css">
 
     <script src="./js/jogo.js"></script>
     <script src="./dashboard/dashboard.html"></script>
 </head>
-<body>
-  <div class="menu-container">
-    <nav>
-        <div class="menu">
-            <div class="logo-cabecalho">
-                <img src="img/cabecalho/logo.png" alt="">
-            </div>
+<body>  
 
-            <div class="paginas">
-                <a href="./index.html">Voltar para minha conta</a> 
-            </div>
-        </div>
-    </nav>
-</div>
+    <a href="./dashboard.html" class="btnDash">ir para dashboard</a>
 
     <h1>Hora do jogo!</h1>
     
@@ -31,7 +21,7 @@
     <div id="timer"></div>
     <div id="game">
         <img class="ball" id="patins" src="https://static.vecteezy.com/system/resources/previews/044/938/837/non_2x/roller-skate-chalk-drawing-png.png" alt="">
-        <img class="ball" id="chegada" src="./img/jogo/chegada.png" alt="">
+        <img class="ball" id="chegada" src="../img/jogo/chegada.png" alt="">
     </div>
 
         <div>
@@ -73,6 +63,8 @@
     var acertos = 0;
     var imgPatins = document.getElementById("patins");
     patins.style.position = "absolute" 
+    var errouAntes = false;
+    var desempenho = 0;
 
     var tempoSegundos = 0;
     var totalPalavras = 0;
@@ -117,7 +109,7 @@
     }
 
     function inicio(){
-        randomIndex = Math.floor(Math.random() * frases.length);
+      randomIndex = Math.floor(Math.random() * frases.length);
       posicaoAtual = 0
       iniciou = true
       patins.style.left = "0px"; 
@@ -137,15 +129,18 @@
     if (entrada == palavra){
         i++
         acertosSeguidos++
-        acertos++
+        if (!errouAntes) acertos++;
         palavra = obterPalavra(frases[randomIndex], i)
         divFrase.innerHTML = `${palavra}`
         posicaoAtual += (1370/quantidade);
         patins.style.left = posicaoAtual + "px";
+
+        errouAntes = false
     }
     else{
         erros +=1
         acertosSeguidos = 0
+        errouAntes = true
     }
 
     if(acertosSeguidos>acertosSeguidosRcd){
@@ -156,6 +151,7 @@
     if(i == quantidade)
     {
         calcularPpm()
+        calcularDesempenho()
 
         divFrase.innerHTML = `Você venceu!<br> 
         Quantidade de erros: ${erros} <br>
@@ -173,13 +169,16 @@
     }
     }
 
-    function calcularPpm(){
+    function calcularDesempenho() {
+        desempenho = (acertos / (totalPalavras)) * 100
+    }
+
+  function calcularPpm(){
         tempo = 10 - tempoRestante
         totalPalavras = palavras.length;
         totalAcertos = acertos;
         totalErros = erros;
         ppm = (acertos * 60)/ tempo
-
     }
 
     function recomecar(){
@@ -195,6 +194,7 @@
         totalPalavras = 0;
         totalAcertos = 0;
         totalErros = 0;
+        desempenho = 0;
 
         botoesJogo.hidden = true;
         inputEntrada.hidden = false;
@@ -233,7 +233,9 @@
             palavras: totalPalavras,
             acertos: totalAcertos,
             erros: totalErros,
-            tempo: tempo 
+            tempo: tempo,
+            ppm: ppm,
+            desempenho: desempenho.toFixed(2)
         })
     }).then(function (resposta) {
         if (resposta.ok) {
