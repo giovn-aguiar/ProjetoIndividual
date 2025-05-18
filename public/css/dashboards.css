@@ -8,31 +8,31 @@
     font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  .dash-right .avisos {
+    .avisos {
     width: 100%;
     color: rgb(216, 216, 216);
     font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  .dash-right .avisos .container {
+  .avisos .container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .dash-right .avisos .container .div-form {
+  .avisos .container .div-form {
     width: 95%;
   }
 
-  .dash-right .avisos .container .div-form #form_postagem {
+  .avisos .container .div-form #form_postagem {
     width: 95%;
   }
 
-  .dash-right .avisos .div-form label {
+   .avisos .div-form label {
     width: 95%;
   }
 
-  .dash-right .avisos .div-form textarea {
+   .avisos .div-form textarea {
     width: 95%;
     border: 3px solid #e6005a;
     background-color: white;
@@ -285,12 +285,6 @@
   }
 
   /* PAGINA DOS GRÁFICOS 2023 */
-
-  .janela {
-    display: flex;
-    /* width: 100vw; */
-  }
-
   .header-left a {
     text-decoration: none;
     color: white;
@@ -319,3 +313,72 @@
     left: 25%;
     height: 100vh;
   }
+
+  /* dash */
+  
+  
+/* Estilo geral para a área de gráficos */
+.graficos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  
+}
+
+/* Primeira linha de gráficos */
+.graficos1, .graficos2 {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  margin-left: -70px;
+  margin-right: 10px;
+}
+
+/* Estilização individual de cada gráfico */
+.grafPpm canvas {
+  width: 700px !important;
+  height: 350px !important;
+  background-color: rgb(255, 248, 248);
+  padding: 20px;
+}
+
+.grafTempo canvas {
+  width: 630px !important;
+  height: 350px !important;
+  background-color: rgb(255, 248, 248);
+  padding: 20px;
+}
+
+.grafErros canvas {
+  width: 400px !important;
+  height: 380px !important;
+  background-color: rgb(255, 248, 248);
+  padding: 10px;
+}
+
+.grafDesempenho canvas {
+  width: 800px !important;
+  height: 350px !important;
+  background-color: rgb(255, 248, 248);
+  padding: 20px;  
+}
+
+/* kpi */
+
+.kpi{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 20px;
+  margin-left: 23rem;
+  margin-right: 3rem;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.kpiBox{
+  background-color: #5c6bc0;
+  padding: 5px 30px 5px 30px;
+  border-radius: 5PX;
+}
+
+

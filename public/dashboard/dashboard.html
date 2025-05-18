@@ -45,18 +45,61 @@
         </div>
     </div>
 
+
+  <div class="kpi">
+
+    <div class="kpiBox">
+      <h2>PPM RECORDE</h2>
+      <p>36</p>
+    </div>
+
+    <div class="kpiBox">
+      <h2>TEMPO RECORDE</h2>
+      <p>36</p>
+    </div>
+
+    <div class="kpiBox">
+      <h2>DESEMPENHO RECORDE</h2>
+      <p>36</p>
+    </div>
+
+    <div class="kpiBox">
+      <h2>JOGATINAS</h2>
+      <p>36</p>
+    </div>
+  </div>  
+
 <div class="dash-right">
   <!-- Título para o gráfico de linhas -->
-  Gráfico de linhas
-  <div>
-    <!-- Elemento canvas onde o gráfico de linha será desenhado -->
-    <canvas id="linha"></canvas>
-    <!-- Elemento canvas onde o gráfico de barra será desenhado -->
-    <canvas id="barra"></canvas>
 
-    <canvas id="pizza"></canvas>
+  <div class="graficos">
+    <div class="graficos1">
+      <!-- Elemento canvas onde o gráfico de linha será desenhado -->
+       <div class="grafPpm">
+      <canvas id="linha" class="graficoPpm"></canvas>
+    </div>
 
-    <canvas id="barraDesempenho"></canvas>
+    <div class="grafTempo">
+      <!-- Elemento canvas onde o gráfico de barra será desenhado -->
+      <canvas id="barra"></canvas>
+    </div>
+  
+    </div>
+
+    <div class="graficos2">
+
+      <div class="grafErros">
+      <canvas id="pizza" class="graficoPizza"></canvas>
+      </div>
+
+
+      <div class="grafDesempenho">
+      <canvas id="barraDesempenho"></canvas>
+      </div>
+
+    </div>
+
+  </div>
 </div>
 
 </body>
