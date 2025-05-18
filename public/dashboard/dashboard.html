@@ -8,7 +8,7 @@
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho(); buscarTempo()" > <!-- Chamando a função buscarPpm ao carregar a página -->
+<body style="background-color: rgb(75, 75, 75); overflow: hidden;" onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho(); buscarTempo()" > <!-- Chamando a função buscarPpm ao carregar a página -->
   
 
   
@@ -16,7 +16,7 @@
 
     <div class="header-left dash-header">
 
-        <h1>Underline</h1>
+        <h1 >Underline</h1>
 
         <div class="hello">
             <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
@@ -45,6 +45,8 @@
         </div>
     </div>
 
+    <h1 class="tituloDash">MÉTRICAS DE EVOLUCÃO NO JOGO</h1>
+
 
   <div class="kpi">
 
@@ -60,14 +62,27 @@
 
     <div class="kpiBox">
       <h2>DESEMPENHO RECORDE</h2>
-      <p>36</p>
+      <p>90%</p>
     </div>
 
     <div class="kpiBox">
-      <h2>JOGATINAS</h2>
+      <h2>PPM MÉDIO</h2>
+      <p>60</p>
+    </div>
+
+    <div class="kpiBox">
+      <h2>DESEMPENHO MÉDIO</h2>
+      <p>48%</p>
+    </div>
+
+    <div class="kpiBox">
+      <h2>TEMPO MÉDIO</h2>
       <p>36</p>
     </div>
+
   </div>  
+
+  
 
 <div class="dash-right">
   <!-- Título para o gráfico de linhas -->
