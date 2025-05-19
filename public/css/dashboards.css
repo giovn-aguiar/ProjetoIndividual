@@ -7,6 +7,11 @@
     padding: 0;
     font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+
+  .hello h3{
+    color:lightpink;
+    font-size: 40px;
+  }
   
     .avisos {
     width: 100%;
@@ -102,10 +107,10 @@
   /* pagina graficos */
 
   .dash-header {
-    background-color: #212124;
+    background-color: #613e4d;
   }
 
-  .dash {
+  .dash { 
     width: 80%;
     position: relative;
     top: 0;
@@ -302,7 +307,7 @@
     justify-content: space-evenly;
     align-items: center;
     border-right: 3px solid #32b9cd;
-    background-color: #212124;
+
   }
 
   .dash-right {
@@ -344,9 +349,15 @@
 .grafPpm canvas {
   width: 600px !important;
   height: 350px !important;
-  background-color: rgb(42, 41, 41);
   padding: 20px;
   border-radius: 10px;
+}
+
+.grafPpm{
+  font-size: 20px;
+  color: aliceblue;
+  background-color: rgb(42, 41, 41);
+  text-align: center;
 }
 
 .grafTempo canvas {
@@ -357,12 +368,25 @@
   border-radius: 10px;
 }
 
+.grafTempo{
+  font-size: 20px;
+  color: aliceblue;
+  background-color: rgb(42, 41, 41);
+  text-align: center;
+}
+
 .grafErros canvas {
   width: 330px !important;
   height: 320px !important;
-  background-color: rgb(42, 41, 41);
   padding: 10px;
   border-radius: 10px;
+}
+.grafErros{
+  font-size: 20px;
+  color: aliceblue;
+  background-color: rgb(42, 41, 41);
+  text-align: center;
+
 }
 
 .grafDesempenho canvas {
@@ -371,6 +395,13 @@
   background-color: rgb(42, 41, 41);
   padding: 20px;  
   border-radius: 10px;
+}
+
+.grafDesempenho{
+  font-size: 20px;
+  color: aliceblue;
+  background-color: rgb(42, 41, 41);
+  text-align: center;
 }
 
 /* kpi */

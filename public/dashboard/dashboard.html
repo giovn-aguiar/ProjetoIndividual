@@ -16,7 +16,6 @@
 
     <div class="header-left dash-header">
 
-        <h1 >Underline</h1>
 
         <div class="hello">
             <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
@@ -30,7 +29,7 @@
 
         <div class="btn-nav-white">
             <a href="./dashboard.html">
-                <h3>Gráficos</h3>
+                <h3 style="color:darksalmon;">GRÁFICOS</h3>
             </a>
         </div>
 
@@ -40,8 +39,9 @@
             </a>
         </div>
 
-        <div class="btn-logout" onclick="limparSessao()">
-            <h3>Sair</h3>
+        <div class="btn-logout" onclick="sair()">
+          <a href="../index.html">
+            <h3>Sair</h3></a>
         </div>
     </div>
 
@@ -91,10 +91,12 @@
     <div class="graficos1">
       <!-- Elemento canvas onde o gráfico de linha será desenhado -->
        <div class="grafPpm">
+        <h3>Evoluçāo de PPM por jogo</h3>
       <canvas id="linha" class="graficoPpm"></canvas>
     </div>
 
     <div class="grafTempo">
+      <h3>Tempo de jogo</h3>
       <!-- Elemento canvas onde o gráfico de barra será desenhado -->
       <canvas id="barra"></canvas>
     </div>
@@ -102,13 +104,14 @@
     </div>
 
     <div class="graficos2">
-
       <div class="grafErros">
+        <h3>Proporçāo entre erros e acertos</h3>
       <canvas id="pizza" class="graficoPizza"></canvas>
       </div>
 
 
       <div class="grafDesempenho">
+        <h3>Desempenho nos últimos 5 jogos</h3>
       <canvas id="barraDesempenho"></canvas>
       </div>
 
@@ -215,12 +218,12 @@ function plotarGraficoPizza(dados){
         datasets: [{
             data: [totalErros, totalAcertos],
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)', 
-                  'rgba(75, 192, 192, 0.5)'  // Cor de fundo das linhas
+                  'rgba(178,34,34)', 
+                  'rgba(0,139,139)'  // Cor de fundo das linhas
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(75, 192, 192, 0.5)'  // Cor da borda das linhas
+                  'rgba(178,34,34)',
+                  'rgba(0,139,139)'  // Cor da borda das linhas
               ],
               borderWidth: 1 // Largura da borda das linhas
           }]
@@ -253,10 +256,10 @@ function plotarGraficoLinha(dados){
               label: 'ppm', // Nome do conjunto de dados
               data: ppm, // Dados dos ppm
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)', // Cor de fundo das linhas
+                  'rgba(173,216,230)', // Cor de fundo das linhas
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)', // Cor da borda das linhas
+                  'rgba(173,216,230)', // Cor da borda das linhas
               ],
               borderWidth: 1 // Largura da borda das linhas
           }]
@@ -287,10 +290,10 @@ function plotarGraficoBarra(dados){
               label: 'tempo', // Nome do conjunto de dados
               data: tempo, // Dados dos ppm
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
+                  'rgba(205,133,63)', // Cor de fundo das barras
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)', // Cor da borda das barras
+                  'rgba(205,133,63)', // Cor da borda das barras
               ],
               borderWidth: 1 // Largura da borda das barras
           }]
@@ -320,10 +323,10 @@ var myChart = new Chart(ctx, {
             label: 'desempenho', // Nome do conjunto de dados
             data: desempenho, // Dados dos ppm
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)', // Cor de fundo das barras
+                'rgba(205,92,92)', // Cor de fundo das barras
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)', // Cor da borda das barras
+                'rgba(205,92,92)', // Cor da borda das barras
             ],
             borderWidth: 1 // Largura da borda das barras
         }]
