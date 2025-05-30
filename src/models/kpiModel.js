@@ -1,5 +1,6 @@
 var database = require("../database/config");
 
+//Todas as KPI's estão sendo conectadas através de views.
 
 function buscarPpmRecorde(idUsuario) {
 
@@ -38,9 +39,7 @@ function buscarPpmMedio(idUsuario) {
 
 function buscarDesempenhoMedio(idUsuario) {
 
-    var instrucaoSql = `SELECT ROUND(AVG(r.desempenho),0) as media
-    FROM resultados r
-    WHERE id_usuario = ${idUsuario};`;
+    var instrucaoSql = `SELECT media FROM desempenhoMedio WHERE id_usuario = ${idUsuario};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
