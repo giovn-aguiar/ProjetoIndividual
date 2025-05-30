@@ -43,5 +43,41 @@ CREATE TABLE resultados (
     FOREIGN KEY (id_usuario) REFERENCES usuario(id)
 );
 
+-- View de PPM recorde
+CREATE VIEW maiorPpm AS
+SELECT r.ppm, id_usuario
+FROM resultados r
+ORDER BY r.ppm DESC
+LIMIT 1;
 
+-- View de PPM medio
+CREATE VIEW ppmMedio AS
+SELECT round(avg(r.ppm),0) as media, id_usuario
+FROM resultados r
+GROUP BY id_usuario;
+
+-- Desempenho recorde
+CREATE VIEW desempenhoRecorde AS
+SELECT id_usuario, ROUND(MAX(r.desempenho),0) as desempenhoRecorde
+FROM resultados r
+GROUP BY id_usuario;
+
+-- Desempenho médio
+CREATE VIEW desempenhoMedio AS
+SELECT ROUND(AVG(r.desempenho),0) as media, id_usuario
+FROM resultados r
+GROUP BY id_usuario;
+
+-- Tempo recorde
+CREATE VIEW tempoRecorde AS
+SELECT id_usuario, ROUND(tempo,2) as tempo
+FROM resultados
+ORDER BY tempo ASC
+LIMIT 1;
+
+-- Selecionando o tempo médio
+CREATE VIEW tempoMedio AS 
+SELECT ROUND(avg(r.tempo),2) as media, id_usuario
+FROM resultados r
+GROUP BY id_usuario;
 
