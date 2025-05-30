@@ -8,7 +8,7 @@
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body style="background-color: rgb(75, 75, 75); overflow: hidden;" onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho(); buscarTempo()" > <!-- Chamando a função buscarPpm ao carregar a página -->
+<body style="background-color: rgb(75, 75, 75); overflow: hidden;" onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho(); buscarTempo(); buscarTempoRecorde(); buscarPpmRecorde(); buscarDesempenhoRecorde(); buscarPpmMedio(); buscarDesempenhoMedio(); buscarTempoMedio();" > <!-- Chamando a função buscarPpm ao carregar a página -->
   
 
   
@@ -52,32 +52,32 @@
 
     <div class="kpiBox">
       <h2>PPM RECORDE</h2>
-      <p>36</p>
-    </div>
+      <p id="inpPPMRecorde"></p>
+    </div> <!-- CONECTADO-->
 
     <div class="kpiBox">
       <h2>TEMPO RECORDE</h2>
-      <p>36</p>
-    </div>
+      <p id="inpTempoRecorde">36</p>
+    </div> <!-- CONECTADO-->
 
     <div class="kpiBox">
       <h2>DESEMPENHO RECORDE</h2>
-      <p>90%</p>
-    </div>
+      <p id="inpDesempenhoRecorde">90%</p>
+    </div> 
 
     <div class="kpiBox">
       <h2>PPM MÉDIO</h2>
-      <p>60</p>
+      <p  id="inpPpmMedio"></p>
     </div>
 
     <div class="kpiBox">
       <h2>DESEMPENHO MÉDIO</h2>
-      <p>48%</p>
+      <p  id="inpDesempenhoMedio">30</p>
     </div>
 
     <div class="kpiBox">
       <h2>TEMPO MÉDIO</h2>
-      <p>36</p>
+      <p id="inpTempoMedio" >36</p>
     </div>
 
   </div>  
@@ -125,8 +125,153 @@
 <script>
 
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
 var idUsuario = sessionStorage.ID_USUARIO;
+
+// KPI: ppm recorde - ja foi
+function buscarPpmRecorde(){
+fetch(`http://localhost:3333/kpi/buscarPpmRecorde/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    inserirPpmRecorde(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+}
+
+function inserirPpmRecorde(dados)
+{
+  var ppmRecorde = dados[0].ppm;
+
+  console.log('encontrei a ppm recorde!')
+  inpPPMRecorde.innerHTML = ppmRecorde
+}
+
+// KPI: tempo recorde - ja foi
+
+function buscarTempoRecorde(){
+fetch(`http://localhost:3333/kpi/buscarTempoRecorde/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    inserirTempoRecorde(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+
+}
+
+function inserirTempoRecorde(dados)
+{
+  var tempo = dados[0].tempo;
+
+  console.log('encontrei o tempo!')
+  inpTempoRecorde.innerHTML = tempo
+}
+
+// KPI: Desempenho Recorde - ja foi
+
+function buscarDesempenhoRecorde(){
+fetch(`http://localhost:3333/kpi/buscarDesempenhoRecorde/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    inserirDesempenhoRecorde(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+
+}
+
+function inserirDesempenhoRecorde(dados)
+{
+  var desempenhoRecorde = dados[0].desempenhoRecorde;
+
+  console.log(`Encontrei o desempenho Medio! `)
+  inpDesempenhoRecorde.innerHTML = desempenhoRecorde
+}
+
+// KPI: ppm medio - Ja foi
+function buscarPpmMedio(){
+fetch(`http://localhost:3333/kpi/buscarPpmMedio/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    inserirPpmMedio(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+}
+
+function inserirPpmMedio(dados)
+{
+  var ppmMedio = dados[0].media;
+
+  console.log('encontrei a ppm recorde!')
+  inpPpmMedio.innerHTML = ppmMedio
+}
+
+// KPI: Desempenho medio
+
+function buscarDesempenhoMedio(){
+fetch(`http://localhost:3333/kpi/buscarDesempenhoMedio/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    inserirDesempenhoMedio(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+}
+
+function inserirDesempenhoMedio(dados)
+{
+  var desempenhoMedio = dados[0].media;
+
+  console.log(`Encontrei o desempenho Medio! `)
+  inpDesempenhoMedio.innerHTML = desempenhoMedio
+}
+
+// KPI: tempo medio
+
+function buscarTempoMedio(){
+fetch(`http://localhost:3333/kpi/buscarTempoMedio/${idUsuario}`)
+
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    inserirTempoMedio(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  })
+}
+
+function inserirTempoMedio(dados)
+{
+  var tempoMedio = dados[0].media;
+
+  console.log('Encontrei o tempo médio!')
+  inpTempoMedio.innerHTML = tempoMedio
+}
+
+// Gráficos:
 
 // Função chamada ao carregar a página para obter e processar os dados
 function buscarPpm(){
