@@ -30,9 +30,7 @@ function buscarDesempenhoRecorde(idUsuario) {
 
 function buscarPpmMedio(idUsuario) {
 
-    var instrucaoSql = `SELECT round(avg(r.ppm),0) as media
-    FROM resultados r
-    WHERE id_usuario = ${idUsuario};`;
+    var instrucaoSql = `SELECT media FROM ppmMedio WHERE id_usuario = ${idUsuario};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
