@@ -44,33 +44,43 @@
 </html>
 
 <script>
-      const botoes = document.getElementById("botoesJogo"); 
-      const inputEntrada = document.getElementById("inputEntrada");
-      const btnNOvamente = document.getElementById("btnNovamente"); 
+    const botoes = document.getElementById("botoesJogo"); 
+    const inputEntrada = document.getElementById("inputEntrada");
+    const btnNovamente = document.getElementById("btnNovamente"); 
+    const imgPatins = document.getElementById("patins");
 
     i = 0
     iniciou = false;
-    var tempo = 0;
-    var palavras;
-    var erros = 0;
-    var posicaoAtual = 0
-    var acertosSeguidosRcd = 0;
-    var acertosSeguidos = 0;
-    var nivel = 0
-    var tempoRestante = 10
-    var cronometro;
-    var ppm = 0;
-    var acertos = 0;
-    var imgPatins = document.getElementById("patins");
-    patins.style.position = "absolute" 
-    var errouAntes = false;
-    var desempenho = 0;
 
-    var tempoSegundos = 0;
+    //Escolher e rodar frase:
+    var random;
+    var palavras;
+
+    //Calcular desempenho e PPM:
     var totalPalavras = 0;
+
+    // Devolutivas finais:
     var totalAcertos = 0;
     var totalErros = 0;
+    var ppm = 0;
+    var erros = 0;
+    var tempo = 0;
+    var nivel = 0;
+    var acertos = 0;
+    var desempenho = 0;
 
+    //Calcular acertos seguidos:
+    var acertosSeguidosRcd = 0;
+    var acertosSeguidos = 0;
+    var errouAntes = false;
+
+    //Criar o timer:
+    var tempoRestante = 10
+    var cronometro;
+
+    // Mover o patins:
+    patins.style.position = "absolute" 
+    var posicaoAtual = 0
 
     var frases = [
       "patins de ossos",
@@ -78,9 +88,6 @@
       "patinar te traz o flow",
       "patine bastante, bom demais"
     ];
-
-    var randomIndex;
-
 
     function zerarEntrada(){
       setTimeout(function () {
@@ -109,15 +116,17 @@
     }
 
     function inicio(){
-      randomIndex = Math.floor(Math.random() * frases.length);
-      posicaoAtual = 0
-      iniciou = true
       patins.style.left = "0px"; 
-      palavra = obterPalavra(frases[randomIndex], 0)                  
+      posicaoAtual = 0
+      
+      random = Math.floor(Math.random() * frases.length);
+      iniciou = true
+
+      palavra = obterPalavra(frases[random], 0)                  
       divFrase.innerHTML = `${palavra}`   
-      palavras = frases[randomIndex].split(" ");
+      palavras = frases[random].split(" ");
       quantidade = palavras.length;
-      palavra = obterPalavra(frases[randomIndex], 0);
+      palavra = obterPalavra(frases[random], 0);
       divFrase.innerHTML = `${palavra}`;
 
       cronometro = setInterval(cronometrar, 1000)
@@ -129,8 +138,10 @@
     if (entrada == palavra){
         i++
         acertosSeguidos++
-        if (!errouAntes) acertos++;
-        palavra = obterPalavra(frases[randomIndex], i)
+    
+        if (!errouAntes) acertos++; // Só conta como acerto se o jogador NÃO errou antes. Palavras reescritas não são acertos.
+
+        palavra = obterPalavra(frases[random], i)
         divFrase.innerHTML = `${palavra}`
         posicaoAtual += (1370/quantidade);
         patins.style.left = posicaoAtual + "px";
@@ -182,7 +193,6 @@
     }
 
     function recomecar(){
-        
         i = 0;
         acertos = 0;
         erros = 0;
@@ -190,7 +200,6 @@
         acertosSeguidosRcd = 0;
         tempoRestante = 10;
         ppm = 0;
-        tempoSegundos = 0;
         totalPalavras = 0;
         totalAcertos = 0;
         totalErros = 0;
@@ -200,9 +209,6 @@
         inputEntrada.hidden = false;
         divFrase.innerHTML = `Digite barra de espaço para recomeçar!
         `
-        acertos = 0
-        i=0
-        tempoRestante = 10
     }
 
     function cronometrar(){
@@ -211,7 +217,7 @@
             timer.innerHTML = `Restam ${tempoRestante} segundos`
         }
         else{
-            timer.innerHTML = "TEMPO ESGOTADO!"
+            timer.innerHTML = "Poxa :( Seu tempo se esgotou!)"
             btnNovamente.hidden = false;
             inputEntrada.hidden = true;
         }
