@@ -53,12 +53,12 @@
     <div class="kpiBox">
       <h2>PPM RECORDE</h2>
       <p id="inpPPMRecorde"></p>
-    </div> <!-- CONECTADO-->
+    </div> 
 
     <div class="kpiBox">
       <h2>TEMPO RECORDE</h2>
       <p id="inpTempoRecorde">36</p>
-    </div> <!-- CONECTADO-->
+    </div> 
 
     <div class="kpiBox">
       <h2>DESEMPENHO RECORDE</h2>
@@ -85,11 +85,8 @@
   
 
 <div class="dash-right">
-  <!-- Título para o gráfico de linhas -->
-
   <div class="graficos">
     <div class="graficos1">
-      <!-- Elemento canvas onde o gráfico de linha será desenhado -->
        <div class="grafPpm">
         <h3>Evoluçāo de PPM por jogo</h3>
       <canvas id="linha" class="graficoPpm"></canvas>
@@ -97,7 +94,6 @@
 
     <div class="grafTempo">
       <h3>Tempo de jogo</h3>
-      <!-- Elemento canvas onde o gráfico de barra será desenhado -->
       <canvas id="barra"></canvas>
     </div>
   
@@ -127,7 +123,7 @@
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 var idUsuario = sessionStorage.ID_USUARIO;
 
-// KPI: ppm recorde - ja foi
+// KPI: ppm recorde
 function buscarPpmRecorde(){
 fetch(`http://localhost:3333/kpi/buscarPpmRecorde/${idUsuario}`)
 
@@ -150,7 +146,7 @@ function inserirPpmRecorde(dados)
   inpPPMRecorde.innerHTML = ppmRecorde
 }
 
-// KPI: tempo recorde - ja foi
+// KPI: tempo recorde
 
 function buscarTempoRecorde(){
 fetch(`http://localhost:3333/kpi/buscarTempoRecorde/${idUsuario}`)
@@ -175,8 +171,7 @@ function inserirTempoRecorde(dados)
   inpTempoRecorde.innerHTML = tempo
 }
 
-// KPI: Desempenho Recorde - ja foi
-
+// KPI: Desempenho Recorde 
 function buscarDesempenhoRecorde(){
 fetch(`http://localhost:3333/kpi/buscarDesempenhoRecorde/${idUsuario}`)
 
@@ -200,7 +195,7 @@ function inserirDesempenhoRecorde(dados)
   inpDesempenhoRecorde.innerHTML = desempenhoRecorde
 }
 
-// KPI: ppm medio - Ja foi
+// KPI: Ppm Médio
 function buscarPpmMedio(){
 fetch(`http://localhost:3333/kpi/buscarPpmMedio/${idUsuario}`)
 
@@ -223,8 +218,7 @@ function inserirPpmMedio(dados)
   inpPpmMedio.innerHTML = ppmMedio
 }
 
-// KPI: Desempenho medio
-
+// KPI: Desempenho Médio
 function buscarDesempenhoMedio(){
 fetch(`http://localhost:3333/kpi/buscarDesempenhoMedio/${idUsuario}`)
 
@@ -247,8 +241,7 @@ function inserirDesempenhoMedio(dados)
   inpDesempenhoMedio.innerHTML = desempenhoMedio
 }
 
-// KPI: tempo medio
-
+// KPI: Tempo Médio
 function buscarTempoMedio(){
 fetch(`http://localhost:3333/kpi/buscarTempoMedio/${idUsuario}`)
 
@@ -273,11 +266,7 @@ function inserirTempoMedio(dados)
 
 // Gráficos:
 
-// Função chamada ao carregar a página para obter e processar os dados
 function buscarPpm(){
-  // Aqui seria a função que obteria os dados do banco de dados
-  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
- 
 fetch(`http://localhost:3333/metricas/buscarPpm/${idUsuario}`)
 
   .then(function(response){
@@ -293,9 +282,7 @@ fetch(`http://localhost:3333/metricas/buscarPpm/${idUsuario}`)
 }
 
 function buscarTempo(){
-  // Aqui seria a função que obteria os dados do banco de dados
-  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
- 
+
 fetch(`http://localhost:3333/metricas/buscarTempo/${idUsuario}`)
 
   .then(function(response){
@@ -311,9 +298,6 @@ fetch(`http://localhost:3333/metricas/buscarTempo/${idUsuario}`)
 }
 
 function buscarDesempenho(){
-  // Aqui seria a função que obteria os dados do banco de dados
-  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
- 
 fetch(`http://localhost:3333/metricas/buscarDesempenho/${idUsuario}`)
 
   .then(function(response){
@@ -328,11 +312,7 @@ fetch(`http://localhost:3333/metricas/buscarDesempenho/${idUsuario}`)
 
 }
 
-// Função chamada ao carregar a página para obter e processar os dados
 function buscarErrosAcertos(){
-  // Aqui seria a função que obteria os dados do banco de dados
-  // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoLinha nessa função. Exemplo:
- 
 fetch(`http://localhost:3333/metricas/buscarErrosAcertos/${idUsuario}`)
 
   .then(function(response){
@@ -347,17 +327,18 @@ fetch(`http://localhost:3333/metricas/buscarErrosAcertos/${idUsuario}`)
 
 }
 
-// Função para plotar o gráfico de linha
+// PLOTAGEM:
+
 function plotarGraficoPizza(dados){
 
     var totalErros = dados[0].erros;
     var totalAcertos = dados[0].acertos;
 
-  // Capturando o elemento canvas pelo id 
+
   var ctx = document.getElementById('pizza').getContext('2d');
-  // Criando o gráfico de linha usando o Chart.js
+
   var myChart = new Chart(ctx, {
-      type: 'pie', // Tipo de gráfico: linha
+      type: 'pie', // tipo de gráfico: pizza
       data: {
         labels: ['Erros', 'Acertos'],
         datasets: [{
@@ -377,29 +358,25 @@ function plotarGraficoPizza(dados){
 } 
 
 
-// Função para plotar o gráfico de linha
 function plotarGraficoLinha(dados){
   
-  // Separando os rótulos (labels) e os dados dos ppm
   var ppm = [];
   var momento = [];
 
-  // Preenchendo os arrays com os dados
   for(var i = 0; i < dados.length; i++){
     ppm.push(dados[i].ppm);
     momento.push(dados[i].momento);
   }
 
-  // Capturando o elemento canvas pelo id 
   var ctx = document.getElementById('linha').getContext('2d');
-  // Criando o gráfico de linha usando o Chart.js
+
   var myChart = new Chart(ctx, {
       type: 'line', // Tipo de gráfico: linha
-      data: { // Dados para o gráfico
-          labels: momento, // Rótulos no eixo X
+      data: { 
+          labels: momento, // Eixo X
           datasets: [{ 
               label: 'ppm', // Nome do conjunto de dados
-              data: ppm, // Dados dos ppm
+              data: ppm, // Eixo Y
               backgroundColor: [
                   'rgba(173,216,230)', // Cor de fundo das linhas
               ],
@@ -412,28 +389,26 @@ function plotarGraficoLinha(dados){
   });
 } 
 
-// Função para plotar o gráfico de barra
+
 function plotarGraficoBarra(dados){
 
   var tempo = [];
   var momento = [];
 
-  // Preenchendo os arrays com os dados
   for(var i = 0; i < dados.length; i++){
     tempo.push(dados[i].tempo);
     momento.push(dados[i].momento);
   }
 
-  // Capturando o elemento canvas pelo id 
   var ctx = document.getElementById('barra').getContext('2d');
-  // Criando o gráfico de barra usando o Chart.js
+
   var myChart = new Chart(ctx, {
       type: 'bar', // Tipo de gráfico: barra
-      data: { // Dados para o gráfico
-          labels: momento, // Rótulos no eixo X
+      data: { 
+          labels: momento, // Eixo X
           datasets: [{
-              label: 'tempo', // Nome do conjunto de dados
-              data: tempo, // Dados dos ppm
+              label: 'tempo', 
+              data: tempo, // Eixo Y
               backgroundColor: [
                   'rgba(205,133,63)', // Cor de fundo das barras
               ],
@@ -451,22 +426,21 @@ function plotarGraficoBarraDesempenho(dados){
 var desempenho = [];
 var momento = [];
 
-// Preenchendo os arrays com os dados
+
 for(var i = 0; i < dados.length; i++){
   desempenho.push(dados[i].desempenho);
   momento.push(dados[i].momento);
 }
 
-// Capturando o elemento canvas pelo id 
 var ctx = document.getElementById('barraDesempenho').getContext('2d');
-// Criando o gráfico de barra usando o Chart.js
+
 var myChart = new Chart(ctx, {
     type: 'bar', // Tipo de gráfico: barra
-    data: { // Dados para o gráfico
-        labels: momento, // Rótulos no eixo X
+    data: { 
+        labels: momento, // X
         datasets: [{
-            label: 'desempenho', // Nome do conjunto de dados
-            data: desempenho, // Dados dos ppm
+            label: 'desempenho', 
+            data: desempenho, // Y
             backgroundColor: [
                 'rgba(205,92,92)', // Cor de fundo das barras
             ],
