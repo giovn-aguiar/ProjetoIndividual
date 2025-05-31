@@ -64,20 +64,37 @@ function publicar(req, res) {
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
     var idUsuario = req.params.idUsuario;
-
+    var dataEvento = req.body.dataEvento;
+    var horario = req.body.horario;
+    var encontro= req.body.encontro;
+    
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
     } else if (descricao == undefined) {
         res.status(400).send("A descrição está indefinido!");
     } else if (idUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
-    } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            )
+    } 
+    else if (dataEvento == undefined) {
+        res.status(403).send("A data do evento está indefinida!");
+    }
+    else if (horario == undefined) {
+        res.status(403).send("O horário está indefinido!");
+    }
+    else if (encontro== undefined) {
+        res.status(403).send("O local do encontro está indefinido!");
+    }else {
+        avisoModel.publicar(titulo, descricao, idUsuario, dataEvento, horario, encontro)
+        .then(
+            function (resultado) {
+                console.log("Resultado do INSERT:", resultado);
+                res.status(201).json({
+                    mensagem: "Aviso publicado com sucesso!",
+                    dados: resultado
+                });
+            }
+        )
+        
             .catch(
                 function (erro) {
                     console.log(erro);

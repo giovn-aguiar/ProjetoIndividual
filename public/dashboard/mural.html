@@ -70,9 +70,26 @@
                                 <input name="titulo" id="titulo" maxlength="100" type="text">
                             </label>
                             <br>
+                            <label>
+                            <label>
+                                Data:
+                                <br>
+                                <input name="data" id="data" maxlength="100" type="date">
+                            </label>
                             <br>
                             <label>
-                                Descrição (com data e horário):
+                                Horário:
+                                <br>
+                                <input name="horario" id="inputHorario" maxlength="100" type="time">
+                            </label>
+                            <br>
+                            <label>
+                                Ponto de encontro:
+                                <br>
+                                <input name="encontro" id="encontro" maxlength="100" type="text">
+                            </label>
+                            <br><br>
+                                Descrição:
                                 <br>
                                 <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
                             </label>
@@ -90,10 +107,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 </body>
 
 </html>
@@ -111,7 +124,10 @@
 
         var corpo = {
             titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
+            descricao: form_postagem.descricao.value,
+            dataEvento: form_postagem.data.value,
+            encontro: form_postagem.encontro.value,
+            horario: form_postagem.horario.value
         }
 
         fetch(`/avisos/publicar/${idUsuario}`, {
