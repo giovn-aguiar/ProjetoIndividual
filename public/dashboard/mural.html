@@ -1,293 +1,323 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+    <!DOCTYPE html>
+    <html lang="pt-br">
 
-<head>
-    <link rel="shortcut icon" href="../assets/cabecalho/logo.png" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos</title>
+    <head>
+        <link rel="shortcut icon" href="../assets/cabecalho/logo.png" type="image/x-icon">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eventos</title>
 
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
+        <link rel="stylesheet" href="./../css/dashboards.css">
+        <link rel="stylesheet" href="./../css/estilo.css" />
+        <script src="../js/sessao.js"></script>
+        <script src="./../js/alerta.js"></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-</head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+    </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #6a3c6e;">
+    <body onload="validarSessao(), atualizarFeed()" style="background-color: #6a3c6e;">
 
-    <div class="janela">
+        <div class="janela">
 
-        <div class="header-left dash-header">
-    
-    
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-    
-            <div class="btn-nav-white">
-              <a href="./jogo.html">
-                  <h3>Play</h3>
-              </a>
-          </div>
-    
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-    
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3 style="color:darksalmon;">EVENTOS</h3>
-                </a>
-            </div>
-    
-            <div class="btn-logout" onclick="sair()">
-              <a href="../index.html">
-                <h3>Sair</h3></a>
-            </div>
-        </div>
-
-        <div class="dash-right">
-
-
-            <div class="avisos">
-                <div id="alerta">
+            <div class="header-left dash-header">
+        
+        
+                <div class="hello">
+                    <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
                 </div>
-                <div class="container">
-                    <h1>Divulgar seu evento de patins</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
-                            <br>
-                            <label>
-                            <label>
-                                Data:
-                                <br>
-                                <input name="data" id="data" maxlength="100" type="date">
-                            </label>
-                            <br>
-                            <label>
-                                Horário:
-                                <br>
-                                <input name="horario" id="inputHorario" maxlength="100" type="time">
-                            </label>
-                            <br>
-                            <label>
-                                Ponto de encontro:
-                                <br>
-                                <input name="encontro" id="encontro" maxlength="100" type="text">
-                            </label>
-                            <br><br>
-                                Descrição:
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <br>
-                            <button>Enviar</button>
-                        </form>
+        
+                <div class="btn-nav-white">
+                <a href="./jogo.html">
+                    <h3>Play</h3>
+                </a>
+            </div>
+        
+                <div class="btn-nav-white">
+                    <a href="./dashboard.html">
+                        <h3>Gráficos</h3>
+                    </a>
+                </div>
+        
+                <div class="btn-nav-white">
+                    <a href="./mural.html">
+                        <h3 style="color:darksalmon;">EVENTOS</h3>
+                    </a>
+                </div>
+        
+                <div class="btn-logout" onclick="sair()">
+                <a href="../index.html">
+                    <h3>Sair</h3></a>
+                </div>
+            </div>
+
+            <div class="dash-right">
+
+
+                <div class="avisos">
+                    <div id="alerta">
                     </div>
-                    <h1>Eventos:</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
+                    <div class="container">
+                        <h1>Divulgar seu evento de patins</h1>
+                        <div class="div-form">
+                            <form id="form_postagem" method="post" onsubmit="return publicar()">
+                                <label>
+                                    Título:
+                                    <br>
+                                    <input name="titulo" id="titulo" maxlength="100" type="text">
+                                </label>
+                                <br>
+                                <label>
+                                <label>
+                                    Data:
+                                    <br>
+                                    <input name="data" id="data" maxlength="100" type="date">
+                                </label>
+                                <br>
+                                <label>
+                                    Horário:
+                                    <br>
+                                    <input name="horario" id="inputHorario" maxlength="100" type="time">
+                                </label>
+                                <br>
+                                <label>
+                                    Ponto de encontro:
+                                    <br>
+                                    <input name="encontro" id="encontro" maxlength="100" type="text">
+                                </label>
+                                <br><br>
+                                    Descrição:
+                                    <br>
+                                    <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                                </label>
+                                <br>
+                                <br>
+                                <button>Enviar</button>
+                            </form>
+                        </div>
+                        <h1>Eventos:</h1>
+                        <div class="div-results">
+                            <div id="feed_container" class="feed-container">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 
-</html>
+    </html>
 
-<script>
-    
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    <script>
+        
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
-    }
-
-    function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-
-        var corpo = {
-            titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value,
-            dataEvento: form_postagem.data.value,
-            encontro: form_postagem.encontro.value,
-            horario: form_postagem.horario.value
+        function limparFormulario() {
+            document.getElementById("form_postagem").reset();
         }
 
-        fetch(`/eventos/publicar/${idUsuario}`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
+        function confirmar(idEvento){
+            var idUsuario = sessionStorage.ID_USUARIO;
 
-            console.log("resposta: ", resposta);
+            fetch(`/eventos/confirmar/${idEvento}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            }).then(function (resposta) {
 
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
-                limparFormulario();
-                finalizarAguardar();
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
+                console.log("resposta: ", resposta);
 
-        return false;
-
-    }
-
-    function editar(id_evento) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = id_evento;
-        console.log("cliquei em editar - " + id_evento);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + id_evento);
-        window.location = "/dashboard/edicao-aviso.html"
-
-    }
-
-    function deletar(id_evento) {
-        console.log("Criar função de apagar post escolhido - ID" + id_evento);
-        fetch(`/eventos/deletar/${id_evento}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
-
-    function atualizarFeed() {
-        fetch("/eventos/listar").then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(mensagem);
-                    throw "Nenhum resultado encontrado!!";
+                if (resposta.ok) {
+                    window.alert("Presença confirmada! Usuario: " + idUsuario + "!");
+                    window.location = "/dashboard/mural.html";
+                    
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar realizar A CONFIRMAÇÃO ! Código da resposta: " + resposta.status);
                 }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                
+            });
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+            return false;
+        }
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
+        function publicar() {
+            var idUsuario = sessionStorage.ID_USUARIO;
 
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divData = document.createElement("div");
-                        var divHorario = document.createElement("div");
-                        var divLocal = document.createElement("div");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
-                        var btnConfirmar = document.createElement("button");
+            var corpo = {
+                titulo: form_postagem.titulo.value,
+                descricao: form_postagem.descricao.value,
+                dataEvento: form_postagem.data.value,
+                encontro: form_postagem.encontro.value,
+                horario: form_postagem.horario.value
+            }
 
+            fetch(`/eventos/publicar/${idUsuario}`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(corpo)
+            }).then(function (resposta) {
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.id_evento + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Responsável: <b>" + publicacao.nome + "</b>";
-                        const dataFormatada = new Date(publicacao.dataEvento).toLocaleDateString('pt-BR');
-                        divData.innerHTML = "Data: <b>" + dataFormatada + "</b>"; // Funcao que utilizar para formatar o jeito que a data estava vindo do banco de dados.
-                        divHorario.innerHTML = "Horário: <b>" + (publicacao.horario ?? "Não informado") + "</b>";
-                        divLocal.innerHTML = "Ponto de encontro: <b>" + (publicacao.encontro ?? "Não informado") + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
-                        btnConfirmar.innerHTML = "Confirmar presença";
+                console.log("resposta: ", resposta);
 
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.id_evento;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
+                if (resposta.ok) {
+                    window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                    window.location = "/dashboard/mural.html";
+                    limparFormulario();
+                    finalizarAguardar();
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
 
-                        divButtons.className = "div-buttons"
+            return false;
 
-                        btnConfirmar.className = "publicacao-btn-confirmar"
-                        btnConfirmar.id = "btnConfirmar" + publicacao.id_evento;
-                        btnConfirmar.setAttribute("onclick", `confirmar(${publicacao.id_evento})`);
+        }
 
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.id_evento;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.id_evento})`);
+        function editar(id_evento) {
+            sessionStorage.ID_POSTAGEM_EDITANDO = id_evento;
+            console.log("cliquei em editar - " + id_evento);
+            window.alert("Você será redirecionado à página de edição do aviso de id número: " + id_evento);
+            window.location = "/dashboard/edicao-aviso.html"
 
-                        btnDeletar.className = "publicacao-btn-deletar"
-                        btnDeletar.id = "btnDeletar" + publicacao.id_evento;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.id_evento})`);
+        }
 
-                        // Disposição dos elementos dentro da div (ordem):
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divData);
-                        divPublicacao.appendChild(divHorario);
-                        divPublicacao.appendChild(divLocal);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
+        function deletar(id_evento) {
+            console.log("Criar função de apagar post escolhido - ID" + id_evento);
+            fetch(`/eventos/deletar/${id_evento}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(function (resposta) {
 
-                        var donoDaPublicacao = publicacao.fk_usuario == sessionStorage.ID_USUARIO;
-                        
-                        if (donoDaPublicacao) {
-                            divButtons.appendChild(btnEditar);
-                            divButtons.appendChild(btnDeletar);
-                            divPublicacao.appendChild(divButtons);
-                        }
-                        else{
-                            divButtons.appendChild(btnConfirmar);
-                        }
+                if (resposta.ok) {
+                    window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                    window.location = "/dashboard/mural.html"
+                } else if (resposta.status == 404) {
+                    window.alert("Deu 404!");
+                } else {
+                    throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
 
-                        feed.appendChild(divPublicacao); // Definindo permissão de deletar e editar.
+        function atualizarFeed() {
+            fetch("/eventos/listar").then(function (resposta) {
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        var feed = document.getElementById("feed_container");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhum resultado encontrado."
+                        feed.appendChild(mensagem);
+                        throw "Nenhum resultado encontrado!!";
                     }
 
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-    }
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-</script>
+                        var feed = document.getElementById("feed_container");
+                        feed.innerHTML = "";
+                        for (let i = 0; i < resposta.length; i++) {
+                            var publicacao = resposta[i];
+
+                            // criando e manipulando elementos do HTML via JavaScript
+                            var divPublicacao = document.createElement("div");
+                            var spanID = document.createElement("span");
+                            var spanTitulo = document.createElement("span");
+                            var spanNome = document.createElement("span");
+                            var divData = document.createElement("div");
+                            var divHorario = document.createElement("div");
+                            var divLocal = document.createElement("div");
+                            var divDescricao = document.createElement("div");
+                            var divButtons = document.createElement("div");
+                            var btnEditar = document.createElement("button");
+                            var btnDeletar = document.createElement("button");
+                            var btnConfirmar = document.createElement("button");
+
+
+                            spanID.innerHTML = "ID: <b>" + publicacao.id_evento + "</b>";
+                            spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                            spanNome.innerHTML = "Responsável: <b>" + publicacao.nome + "</b>";
+                            const dataFormatada = new Date(publicacao.dataEvento).toLocaleDateString('pt-BR');
+                            divData.innerHTML = "Data: <b>" + dataFormatada + "</b>"; // Funcao que utilizar para formatar o jeito que a data estava vindo do banco de dados.
+                            divHorario.innerHTML = "Horário: <b>" + (publicacao.horario ?? "Não informado") + "</b>";
+                            divLocal.innerHTML = "Ponto de encontro: <b>" + (publicacao.encontro ?? "Não informado") + "</b>";
+                            divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                            btnEditar.innerHTML = "Editar";
+                            btnDeletar.innerHTML = "Deletar";
+                            btnConfirmar.innerHTML = "Confirmar presença";
+
+                            divPublicacao.className = "publicacao";
+                            spanTitulo.id = "inputNumero" + publicacao.id_evento;
+                            spanNome.className = "publicacao-nome";
+                            spanTitulo.className = "publicacao-titulo";
+                            divDescricao.className = "publicacao-descricao";
+
+                            divButtons.className = "div-buttons"
+
+                            // criei um novo botão confirmar, com base no botão editar e no botão deletar. Ao clicar, chama a função confirmar e leva até ela o id.
+                            btnConfirmar.className = "publicacao-btn-confirmar"
+                            btnConfirmar.id = "btnConfirmar" + publicacao.id_evento;
+                            btnConfirmar.setAttribute("onclick", `confirmar(${publicacao.id_evento})`);
+
+                            btnEditar.className = "publicacao-btn-editar"
+                            btnEditar.id = "btnEditar" + publicacao.id_evento;
+                            btnEditar.setAttribute("onclick", `editar(${publicacao.id_evento})`);
+
+                            btnDeletar.className = "publicacao-btn-deletar"
+                            btnDeletar.id = "btnDeletar" + publicacao.id_evento;
+                            btnDeletar.setAttribute("onclick", `deletar(${publicacao.id_evento})`);
+
+                            // Disposição dos elementos dentro da div (ordem):
+                            divPublicacao.appendChild(spanID);
+                            divPublicacao.appendChild(spanNome);
+                            divPublicacao.appendChild(spanTitulo);
+                            divPublicacao.appendChild(divData);
+                            divPublicacao.appendChild(divHorario);
+                            divPublicacao.appendChild(divLocal);
+                            divPublicacao.appendChild(divDescricao);
+                            divPublicacao.appendChild(divButtons);
+
+                            var donoDaPublicacao = publicacao.fk_usuario == sessionStorage.ID_USUARIO;
+                            
+                            if (donoDaPublicacao) {
+                                divButtons.appendChild(btnEditar);
+                                divButtons.appendChild(btnDeletar);
+                                divPublicacao.appendChild(divButtons);
+                            }
+                            else{
+                                divButtons.appendChild(btnConfirmar);
+                            }
+
+                            feed.appendChild(divPublicacao); // Definindo permissão de deletar e editar.
+                        }
+
+                        finalizarAguardar();
+                    });
+                } else {
+                    throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+                finalizarAguardar();
+            });
+        }
+
+    </script>

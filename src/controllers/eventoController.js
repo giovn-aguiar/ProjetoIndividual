@@ -143,11 +143,31 @@ function deletar(req, res) {
         );
 }
 
+
+function confirmar(req, res) {
+    var idEvento = req.params.idEvento;
+
+    eventoModel.confirmar(idEvento)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao confirmar presenca: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
     editar,
-    deletar
+    deletar,
+    confirmar
 }

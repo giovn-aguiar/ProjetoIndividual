@@ -98,11 +98,20 @@ function deletar(idEvento) {
     return database.executar(instrucaoSql);
 }
 
+function confirmar(idEvento) {
+    console.log("ACESSEI O EVENTO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idEvento);
+    var instrucaoSql = `   
+    UPDATE eventos SET presencas = presencas + 1 WHERE id_evento = ${idEvento};`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
     editar,
-    deletar
+    deletar,
+    confirmar
 }

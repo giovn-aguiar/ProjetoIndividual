@@ -29,6 +29,10 @@ router.delete("/deletar/:idEvento", function (req, res) {
 
 // rotas para confirmar presença:
 
+router.put("/confirmar/:idEvento", function (req, res) {
+    eventoController.confirmar(req, res);
+});
+
 
 
 module.exports = router;
