@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+  <link rel="shortcut icon" href="../assets/cabecalho/logo.png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exemplo de como Plotar Gráficos</title>
+  <title>Dashboard</title>
   <link rel="stylesheet" href="./../css/dashboards.css">
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -43,7 +44,7 @@
         </div>
     </div>
 
-    <h1 class="tituloDash">MÉTRICAS DE EVOLUCÃO NO JOGO</h1>
+    <h1 class="tituloDash">MÉTRICAS DE EVOLUCÃO DO USUÁRIO </h1>
 
 
   <div class="kpi">
@@ -55,12 +56,12 @@
 
     <div class="kpiBox">
       <h2>TEMPO RECORDE</h2>
-      <p id="inpTempoRecorde">36</p>
+      <p id="inpTempoRecorde"></p>
     </div> 
 
     <div class="kpiBox">
       <h2>DESEMPENHO RECORDE</h2>
-      <p id="inpDesempenhoRecorde">90%</p>
+      <p id="inpDesempenhoRecorde"></p>
     </div> 
 
     <div class="kpiBox">
@@ -70,12 +71,12 @@
 
     <div class="kpiBox">
       <h2>DESEMPENHO MÉDIO</h2>
-      <p  id="inpDesempenhoMedio">30</p>
+      <p  id="inpDesempenhoMedio"></p>
     </div>
 
     <div class="kpiBox">
       <h2>TEMPO MÉDIO</h2>
-      <p id="inpTempoMedio" >36</p>
+      <p id="inpTempoMedio"></p>
     </div>
 
   </div>  
@@ -363,7 +364,7 @@ function plotarGraficoLinha(dados){
 
   for(var i = 0; i < dados.length; i++){
     ppm.push(dados[i].ppm);
-    momento.push(dados[i].momento);
+    momento.push(formatarMomento(dados[i].momento));
   }
 
   var ctx = document.getElementById('linha').getContext('2d');
@@ -395,7 +396,7 @@ function plotarGraficoBarra(dados){
 
   for(var i = 0; i < dados.length; i++){
     tempo.push(dados[i].tempo);
-    momento.push(dados[i].momento);
+    momento.push(formatarMomento(dados[i].momento));
   }
 
   var ctx = document.getElementById('barra').getContext('2d');
@@ -427,7 +428,7 @@ var momento = [];
 
 for(var i = 0; i < dados.length; i++){
   desempenho.push(dados[i].desempenho);
-  momento.push(dados[i].momento);
+  momento.push(formatarMomento(dados[i].momento));
 }
 
 var ctx = document.getElementById('barraDesempenho').getContext('2d');
@@ -450,4 +451,15 @@ var myChart = new Chart(ctx, {
     },
 });
 }
+
+function formatarMomento(dataBruta) {
+  const data = new Date(dataBruta);
+  const dia = String(data.getDate()).padStart(2, '0');
+  const mes = String(data.getMonth() + 1).padStart(2, '0');
+  const hora = String(data.getHours()).padStart(2, '0');
+  const minuto = String(data.getMinutes()).padStart(2, '0');
+
+  return `${dia}/${mes} ${hora}:${minuto}`;
+}
+
 </script>
