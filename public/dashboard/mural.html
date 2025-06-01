@@ -220,6 +220,7 @@
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
                         var btnDeletar = document.createElement("button");
+                        var btnConfirmar = document.createElement("button");
 
 
                         spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
@@ -232,6 +233,7 @@
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
+                        btnConfirmar.innerHTML = "Confirmar presença";
 
                         divPublicacao.className = "publicacao";
                         spanTitulo.id = "inputNumero" + publicacao.idAviso;
@@ -241,11 +243,15 @@
 
                         divButtons.className = "div-buttons"
 
+                        btnConfirmar.className = "publicacao-btn-confirmar"
+                        btnConfirmar.id = "btnConfirmar" + publicacao.idAviso;
+                        btnConfirmar.setAttribute("onclick", `confirmar(${publicacao.idAviso})`);
+
                         btnEditar.className = "publicacao-btn-editar"
                         btnEditar.id = "btnEditar" + publicacao.idAviso;
                         btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
 
-                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.className = "publicacao-btn-deletar"
                         btnDeletar.id = "btnDeletar" + publicacao.idAviso;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
 
@@ -257,13 +263,19 @@
                         divPublicacao.appendChild(divHorario);
                         divPublicacao.appendChild(divLocal);
                         divPublicacao.appendChild(divDescricao);
-                        var donoDaPublicacao = publicacao.fk_usuario == sessionStorage.ID_USUARIO;
+                        divPublicacao.appendChild(divButtons);
 
+                        var donoDaPublicacao = publicacao.fk_usuario == sessionStorage.ID_USUARIO;
+                        
                         if (donoDaPublicacao) {
                             divButtons.appendChild(btnEditar);
                             divButtons.appendChild(btnDeletar);
                             divPublicacao.appendChild(divButtons);
                         }
+                        else{
+                            divButtons.appendChild(btnConfirmar);
+                        }
+
                         feed.appendChild(divPublicacao); // Definindo permissão de deletar e editar.
                     }
 

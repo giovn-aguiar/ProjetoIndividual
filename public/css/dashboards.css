@@ -66,9 +66,36 @@
     font-size: 14px;
     padding: 5px 8px;
     color: white;
-    background-color: #e6005a;
+    background-color: #da73ff;
     width: 80px;
     border-radius: 10px;
+  }
+
+  .publicacao-btn-deletar {
+    cursor: pointer;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 8px;
+    color: white;
+    background-color: #ff0000;
+    width: 80px;
+    border-radius: 10px;
+  }
+
+  .publicacao-btn-confirmar {
+    cursor: pointer;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 8px;
+    color: rgb(13, 67, 4);
+    background-color: #d2ffb6;
+    width: 150px;
+    border-radius: 50px;
   }
 
   .publicacao {

@@ -55,7 +55,7 @@ html {
 /* seção desafios */
 
 .desafios h2{
-    font-size: 35px;
+    font-size: 24px;
 }
 
 .desafios{
@@ -64,7 +64,7 @@ html {
     padding: 80px;
     text-align: center;
     gap: 50px;
-    margin: 110px;
+    margin: 10px 115px 10px 115px;
 }
 
 
@@ -262,25 +262,29 @@ gap: 50px;
 
     /*cabecalho*/
     .cabecalho h1{
-        font-size: 6git 0px;
+        font-size: 30px;
     }
 
     /* seção introducao*/
 
     .introducao h2{
-        font-size: 70px;
+        font-size: 43px;
+
     }
 
     .introducao {
         padding-left: 400px;
         padding-right: 400px;
+        margin-top: -130px; /* sobrepondo o bem-vindo ao roller game na imagem. */
+    
+        
     }
      /* seção desafios */
 
-     .play-desafios a{
+     .play-desafios a {
         color: var(--roxo-destaque);
-        padding: 20px 60px 20px 60px;
-        font-size: 40px;
+        padding: 20px 40px 20px 40px;
+        font-size: 24px;
     }
 
     .desafios h2{
@@ -292,7 +296,7 @@ gap: 50px;
      }
     
      .desafios p{
-        font-size: 20px;
+        font-size: 15px;
         font-weight: 300;
      }
 
