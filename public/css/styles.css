@@ -136,6 +136,8 @@ html {
     padding: 20px;
     border-radius: 10px;
     text-align: start;
+    outline: none;
+    border: none;
 }
 
 .card-comunidades-individual:hover{
@@ -211,6 +213,48 @@ gap: 50px;
     text-align: center;
 }
 
+/*modal*/
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #titulo-eventos {
+    color: #ff81d3 ;
+  }
+  
+  .modal-content {
+    background-color: rgb(97, 2, 160);
+    padding: 2rem;
+    border-radius: 40px;
+    width: 500px; 
+    height: 400px; 
+    text-align: center;
+    position: relative;
+    overflow-y: auto; /* coloquei barra de rolagem por conta do modal estar com muitas infos */
+  }
+
+
+  .close {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: rgb(233, 6, 180);
+  }
+  
+  .hidden {
+    display: none;
+  }
 
 /* Responsividade */
 

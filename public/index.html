@@ -46,21 +46,21 @@
 
         <div class="introducao">
             <h2>BEM-VINDO AO ROLLER GAME</h2>
-            <p>Lorem ipsum dolor sit amet. Qui quae possimus vel distinctio officiis ea iusto consequatur. Id aperiam delectus ex dicta voluptatem ab totam sequi quo quos aspernatur ut labore sunt! Lorem ipsum dolor sit amet. Qui quae possimus vel distinctio officiis ea iusto consequatur. Id aperiam delectus ex dicta voluptatem ab totam sequi quo quos aspernatur ut labore sunt!Lorem ipsum dolor sit amet. Qui quae possimus vel distinctio officiis ea iusto consequatur. Id aperiam delectus ex dicta voluptatem ab totam sequi quo quos aspernatur ut labore sunt!Lorem ipsum dolor sit amet. Qui quae possimus vel distinctio officiis ea iusto consequatur. Id aperiam delectus ex dicta voluptatem ab totam sequi quo quos aspernatur ut labore sunt!</p>
+            <p>onde cada palavra digitada te leva mais longe sobre rodas. Aqui, você treina sua mente e seus dedos enquanto descobre os benefícios e a história da patinação. Patinar ajuda a aliviar o estresse, melhora o foco e ativa o estado de flow — inclusive, você sabe o que é o estado de flow?</p>
         </div>
 
         <div class="container-desafios">        
             <div class="desafios">
                 <div class="titulos-desafios">
                     <h2>Está preparado para o desafio?</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p>Você terá acesso a métricas personalizadas sobre o seu desempenho no jogo. Assim como na patinação, o desafio aqui será superar a si próprio!</p>
                 </div>
 
                 <div class="cards-desafios">
                     <div class="card-desafios-individual" id="card1-desafios">
                         <img src="img/desafio/agilidade.png" alt="">
                         <h3>Agilidade</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p>A digitação rápida e a patinação têm algo em comum: raciocínio ágil, corpo ativo e mente alerta.</p>
                     </div>
 
                     <div class="card-desafios-individual" id="card2-desafios">
@@ -91,18 +91,28 @@
                 <div class="conteudo-comunidades">
                     <div class="titulos-comunidades">
                         <h2>Entre para família!</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur</p>
+                        <p>Eventos semanais de patinação por todo o país:</p>
                     </div>
 
                     <div class="lista-comunidades">
-                            <a class="card-comunidades-individual" href="">Segunda</a>
-                            <a class="card-comunidades-individual" href="">Terça</a>
-                            <a class="card-comunidades-individual" href="">Quarta</a>
-                            <a class="card-comunidades-individual" href="">Quinta</a>
-                             <a class="card-comunidades-individual" href="">Sexta</a>
-                              <a class="card-comunidades-individual" href="">Sábado</a>
-                               <a class="card-comunidades-individual" href="">Domingo</a>
+                            <button id="segunda" onclick="mostrarId(this)" class="card-comunidades-individual" href="">Segunda</button>
+                            <button id="terca" onclick="mostrarId(this)" class="card-comunidades-individual" href="">Terça</button>
+                            <button id="quarta" onclick="mostrarId(this)" class="card-comunidades-individual" href="">Quarta</button>
+                            <button id="quinta" onclick="mostrarId(this)" class="card-comunidades-individual" href="">Quinta</button>
+                             <button id="sexta" onclick="mostrarId(this)" class="card-comunidades-individual" href="">Sexta</button>
+                              <button id="sabado" onclick="mostrarId(this)" class="card-comunidades-individual" href="">Sábado</button>
+                               <button id="domingo" onclick="mostrarId(this)" class="card-comunidades-individual" href="">Domingo</button>
                     </div>
+
+                    <!-- Modal (fica escondido por padrão) -->
+                    <div id="modal" class="modal hidden">
+                        <div class="modal-content">
+                        <span class="close">x</span>
+                        <h2 id="modal-dia-titulo">Dia da semana</h2>
+                        <p id="modal-dia-texto">Eventos do dia da semana</p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -127,7 +137,7 @@
                 <div class="card-individual-modalidades">
                     <img src="img/modalidades/hockey.png" alt="">
                     <div class="card-individual-modalidades-conteudo">
-                        <h3>Hóquei</h3>
+                     <h3>Hóquei</h3>
                         <p>O hóquei, em sua forma mais conhecida, é um esporte de equipe praticado sobre gelo, com o objetivo de marcar gols arremessando um disco de borracha com tacos. Duas equipes de seis jogadores, incluindo um goleiro, competem para colocar o disco na rede do adversário. 
                         </p>
                     </div>
@@ -161,18 +171,276 @@
 </html>
 
 <script>
-    const texto = "UNDERLINE GAME: Treine digitação enquanto aprende a história da patinação";
-    const titulo = document.getElementById("typewriter");
-    let i = 0;
-  
-    function digitar() {
-      if (i < texto.length) {
-        titulo.innerHTML += texto.charAt(i);
-        i++;
-        setTimeout(digitar, 30);
-      }
+    const modal = document.getElementById('modal');
+    const titulo = document.getElementById('modal-dia-titulo');
+    const texto = document.getElementById('modal-dia-texto');
+    const fechar = document.querySelector('.close');
+    let id;
+
+    function mostrarId(elemento) {
+    id = elemento.id;
+    abrirModal();
     }
-  
-    digitar();
-  </script>
-  
+
+    function abrirModal(){
+      if (id === 'segunda') {
+        titulo.textContent = `Segunda`;
+        texto.innerHTML = `<br><p><b  id="titulo-eventos">GRU ROLLERS - GUARULHOS</b><br>
+        <b>Local</b>: Av. Odair Santanelli, 800 (Cecap)<br>
+        <b>Horário</b>: 20h30 - 23h<br>
+        <b>Atividade</b>: Urban iniciante 14km Cecap x Bosque Maia.</p><br>
+
+        <p><b  id="titulo-eventos">URBANZINHO - CARRÃO</b><br>
+        <b>Local</b>: Rua Monte Serrat, 230 - Tatuapé (Parque Sampaio, Metro Carrão)<br>
+        <b>Horário</b>: 20h - 22h<br>
+        <b>Atividade</b>: Treino de patinação.</p><br>
+
+        <p><b  id="titulo-eventos">INDAIATUBA ROLLERS - INDAIATUBA</b><br>
+        <b>Local</b>: Av. Eng. Fábio Roberto Barnabé, 1400 - Jardim Esplanada (Skate Park)<br>
+        <b>Horário</b>: 18h - 21h<br>
+        <b>Atividade</b>: Skate park exclusivo para patins.</p>`;
+      } 
+      
+      else if (id === 'terca') {
+        titulo.textContent = `Terça`;
+        texto.innerHTML = `<p><b  id="titulo-eventos">FRIENDS INLINE - JUNDIAÍ</b><br>
+        <b>Local</b>: Rua Cica, 201 (Shopping Pátio Cica)<br>
+        <b>Horário</b>: 19h<br>
+        <b>Atividade</b>: Patinação para todas as idades.</p><br>
+
+        <p><b  id="titulo-eventos">FAMÍLIA ROLLER - SHOPPING PENHA</b><br>
+        <b>Local</b>: R. Dr João Ribeiro, 304 - Penha de França<br>
+        <b>Horário</b>: 19h - 22h<br>
+        <b>Atividade</b>: Venha patinar com a gente!</p><br>
+
+        <p><b  id="titulo-eventos">PATINANDO JUNDIAÍ - JUNDIAÍ</b><br>
+        <b>Local</b>: Rua Uva Niágara, 951 - Morada das vinhas (Emeb Adelino Brandão)<br>
+        <b>Horário</b>: 19h - 21h30<br>
+        <b>Atividade</b>: Encontro para incentivar a patinação.</p><br>
+
+        <p><b  id="titulo-eventos">LOBOS DO HOCKEY - ÁGUA BRANCA</b><br>
+        <b>Local</b>: Rua Dona Ana Pimentel, 41 - Barra Funda<br>
+        <b>Horário</b>: 21h30 - 23h30<br>
+        <b>Atividade</b>: Hockey inline aberto ao público.</p><br>
+
+        <p><b  id="titulo-eventos">AULA DE PATINS COM VITÓRIA ALBANESE - CENTRO</b><br>
+        <b>Local</b>: Vale do Anhangabau<br>
+        <b>Horário</b>: 19h - 22h<br>
+        <b>Atividade</b>: Aula de patins e roller dance.</p><br>
+
+        <p><b  id="titulo-eventos">GRU PATINS - GUARULHOS</b><br>
+        <b>Local</b>: Geraldo Alves Celestino, 101 (Club Parque Cecap)<br>
+        <b>Horário</b>: 19h - 22h<br>
+        <b>Atividade</b>: Urban iniciante e treino de patinação.</p><br>
+
+        <p><b  id="titulo-eventos">TÔ SEM FREIO - SBC</b><br>
+        <b>Local</b>: Av. Lucas Nogueira Gárez, 790 (Pavilhão Vera Cruz)<br>
+        <b>Horário</b>: 18h - 22h<br>
+        <b>Atividade</b>: Treino de patinação para todas as idades.</p><br>`;
+      } 
+      
+      else if (id === 'quarta') {
+        titulo.textContent = `Quarta`;
+        texto.innerHTML = `<p><b  id="titulo-eventos">FRIENDS INLINE - JUNDIAÍ</b><br>
+        <b>Local</b>: Viaduto Francisco de Assis Cechelli Oliva (Viaduto das valquírias)<br>
+        <b>Horário</b>: 19h<br>
+        <b>Atividade</b>: Venha patinar com a gente!</p><br>
+
+        <p><b  id="titulo-eventos">TREINO DE PATINAÇÃO EM GRUPO - BRAVO INLINE</b><br>
+        <b>Local</b>: Vale do Anhangabau<br>
+        <b>Horário</b>: 19h30 - 20h30<br>
+        <b>Valor</b>: R$45,00<br>
+        <b>Atividade</b>: Para iniciantes e intermediários.</p><br>
+
+        <p><b  id="titulo-eventos">INDAIATUBA ROLLERS - INDAIATUBA</b><br>
+        <b>Local</b>: Av. Eng. Fábio Roberto Barnabé (Parque Pet)<br>
+        <b>Horário</b>: 19h<br>
+        <b>Atividade</b>: Urban no parque para todos os níveis.</p><br>
+
+        <p><b  id="titulo-eventos">CARACAS CITY PATINS - BARUERI</b><br>
+        <b>Local</b>: Ginásio Poliesportivo José Correia (estacionamento)<br>
+        <b>Horário</b>: 19h30<br>
+        <b>Atividade</b>: Venha fazer parte dessa galera!</p><br>
+
+        <p><b  id="titulo-eventos">PATINS ITAQUERA - ITAQUERA</b><br>
+        <b>Local</b>: Rua Ana Perena, 110 (Centro Olímpico José Bonifácio)<br>
+        <b>Horário</b>: 20h - 22h<br>
+        <b>Atividade</b>: Venha patinar!</p><br>
+
+        <p><b  id="titulo-eventos">PATINANDO JARINU - JARINU</b><br>
+        <b>Local</b>: Rua José Eduardo, S/N (Quadra do Maracanã)<br>
+        <b>Horário</b>: 19h30<br>
+        <b>Atividade</b>: Noite de patinação.</p><br>
+
+        <p><b  id="titulo-eventos">ROLLERBLADERS PG - PRAIA GRANDE</b><br>
+        <b>Local</b>: Rua Iporanga (em frente ao 86) - Boqueirão<br>
+        <b>Horário</b>: 19h<br>
+        <b>Atividade</b>: Para todos os níveis!</p><br>`;
+      } 
+      
+      else if (id === 'quinta') {
+        titulo.textContent = `Quinta`;
+        texto.innerHTML = `<p><b  id="titulo-eventos">CARACAS CITY PATINS - BARUERI</b><br>
+        <b>Local</b>: Ginásio Poliesportivo José Correia (estacionamento)<br>
+        <b>Horário</b>: 20h<br>
+        <b>Atividade</b>: Urban pela cidade (necessário controle).</p><br>
+
+        <p><b  id="titulo-eventos">PATINS PIRACICABA - PIRACICABA</b><br>
+        <b>Local</b>: Esporte Clube Resende (R. Justo Moretti, 251)<br>
+        <b>Horário</b>: 19h - 21h<br>
+        <b>Atividade</b>: Venha patinar conosco.</p><br>
+
+        <p><b  id="titulo-eventos">PATINS PIRACICABA - PIRACICABA</b><br>
+        <b>Local</b>: Varejão da Paulista (Av. Dr. Paulo de Moraes, 2010)<br>
+        <b>Horário</b>: 19h - 21h45<br>
+        <b>Atividade</b>: Venha patinar conosco.</p><br>
+
+        <p><b  id="titulo-eventos">ROLLER'S ABC - ABC</b><br>
+        <b>Local</b>: Paço Municipal de São Bernardo do Campo<br>
+        <b>Horário</b>: 19h30<br>
+        <b>Atividade</b>: Encontro para treinos e diversão.</p><br>
+
+        <p><b  id="titulo-eventos">GOLDEN SQUARE SHOPPING - SBC</b><br>
+        <b>Local</b>: Av. Kennedy, 700 - Jardim do Mar (Piso G5)<br>
+        <b>Horário</b>: 19h - 22h<br>
+        <b>Atividade</b>: Hockey inline aberto.</p><br>
+
+        <p><b  id="titulo-eventos">GRU PATINS - GUARULHOS</b><br>
+        <b>Local</b>: Geraldo Alves Celestino, 101 (Club Parque Cecap)<br>
+        <b>Horário</b>: 19h - 22h<br>
+        <b>Atividade</b>: Treino de patinação.</p><br>
+
+        <p><b  id="titulo-eventos">FAMÍLIA IN-LINE - POÁ</b><br>
+        <b>Local</b>: Av. Vital Brasil, 762 - Jardim Áurea<br>
+        <b>Horário</b>: 18h - 22h<br>
+        <b>Atividade</b>: Noite para diversão e treino!</p><br>
+
+        <p><b  id="titulo-eventos">UNIROLLERS - CAMPINAS</b><br>
+        <b>Local</b>: Praça Arautos da Paz - Vila Nogueira<br>
+        <b>Horário</b>: 20h<br>
+        <b>Atividade</b>: Vem patinar com a gente!</p><br>`;
+      } 
+      
+      else if (id === 'sexta') {
+        titulo.textContent = `Sexta`;
+        texto.innerHTML = `<p><b  id="titulo-eventos">IBIRA HOCKEY - ÁGUA BRANCA</b><br>
+        <b>Local</b>: Rua Dona Ana Pimentel, 41 - Barra Funda<br>
+        <b>Horário</b>: 20h - 23h<br>
+        <b>Atividade</b>: Hockey inline aberto.</p><br>
+
+        <p><b  id="titulo-eventos">PATINANDO JUNDIAÍ - JUNDIAÍ</b><br>
+        <b>Local</b>: Rua Cica, 201 - Vila Arens (Pátio Cica Shopping)<br>
+        <b>Horário</b>: 19h - 21h<br>
+        <b>Atividade</b>: Encontro para patinação.</p><br>
+
+        <p><b  id="titulo-eventos">INDAIATUBA ROLLERS - INDAIATUBA</b><br>
+        <b>Local</b>: Park Meraki, 9 de julho, s/n (Praça)<br>
+        <b>Horário</b>: 19h30<br>
+        <b>Atividade</b>: Urban (nível intermediário/avançado).</p><br>
+
+        <p><b  id="titulo-eventos">FRIENDS INLINE - JUNDIAÍ</b><br>
+        <b>Local</b>: Viaduto Francisco de Assis Cechelli Oliva<br>
+        <b>Horário</b>: 19h<br>
+        <b>Atividade</b>: Venha patinar com a gente!</p><br>
+
+        <p><b  id="titulo-eventos">FAMÍLIA ROLLER - ITAQUERA</b><br>
+        <b>Local</b>: R. Dr Aureliano Barreiros (Quadra do Xisto)<br>
+        <b>Horário</b>: 20h - 22h<br>
+        <b>Atividade</b>: Venha patinar com a gente!</p><br>
+
+        <p><b  id="titulo-eventos">PATINANDO JARINU - JARINU</b><br>
+        <b>Local</b>: Av. José Mauro Soranz, S/N (Quadra Centro)<br>
+        <b>Horário</b>: 19h30<br>
+        <b>Atividade</b>: Urban iniciante e treino.</p><br>
+
+        <p><b  id="titulo-eventos">ROLLERBLADERS PG - PRAIA GRANDE</b><br>
+        <b>Local</b>: Rua Iporanga (em frente ao 86) - Boqueirão<br>
+        <b>Horário</b>: 19h<br>
+        <b>Atividade</b>: Venha conhecer!</p><br>`;
+      } 
+      
+      else if (id === 'sabado') {
+        titulo.textContent = `Sábado`;
+        texto.innerHTML = `<p><b  id="titulo-eventos">AULA EM GRUPO COM BRAVO INLINE</b><br>
+        <b>Local</b>: Novo Anhangabau<br>
+        <b>Horário</b>: 18h e 11h<br>
+        <b>Valor</b>: R$45,00</p><br>
+
+        <p><b  id="titulo-eventos">INDAIATUBA ROLLERS - INDAIATUBA</b><br>
+        <b>Local</b>: Av. Eng. Fábio Roberto Barnabé, 1400 (Ginásio Primavera)<br>
+        <b>Horário</b>: 18h - 21h<br>
+        <b>Atividade</b>: Barra de jump, slalom, rampa e slide.</p><br>
+
+        <p><b  id="titulo-eventos">PRAÇA DO LEÃO - PARQUE IBIRAPUERA</b><br>
+        <b>Local</b>: Parque Ibirapuera, Praça do Leão<br>
+        <b>Horário</b>: Dia inteiro<br>
+        <b>Atividade</b>: Encontro de patinadores.</p><br>
+
+        <p><b  id="titulo-eventos">JD DAS ORQUIDEAS - SBC</b><br>
+        <b>Local</b>: Estrada do Poney Club, 90 (Centro esportivo Eder Simões Barbosa)<br>
+        <b>Horário</b>: 19h - 22h<br>
+        <b>Atividade</b>: Venha Patinar com a gente!</p><br>
+
+        <p><b  id="titulo-eventos">ASSOCIAÇÃO DE PATINADORES - GRU</b><br>
+        <b>Local</b>: Av. Odair Santanelli, 101 (Clube Parque Cecap)<br>
+        <b>Horário</b>: 18h - 22h<br>
+        <b>Valor</b>: R$15,00<br>
+        <b>Atividade</b>: Piso de madeira!</p><br>`;
+      } 
+      
+      else if (id === 'domingo') {
+        titulo.textContent = `Domingo`;
+        texto.innerHTML = `
+        <p><b  id="titulo-eventos">SAMPA ROLLERS - PARQUE VILA LOBOS</b><br>
+        <b>Local</b>: Parque Vila Lobos (atrás da biblioteca)<br>
+        <b>Horário</b>: 08h - 14h<br>
+        <b>Atividade</b>: Suporte para iniciantes.</p><br>
+
+        <p><b  id="titulo-eventos">LOBOS HOCKEY - ÁGUA BRANCA</b><br>
+        <b>Local</b>: Rua Dona Ana Pimentel, 41 - Barra Funda<br>
+        <b>Horário</b>: 08h - 10h<br>
+        <b>Atividade</b>: Hockey inline aberto.</p><br>
+
+        <p><b  id="titulo-eventos">PATINANDO DEPOIS DOS 30 - INDAIATUBA</b><br>
+        <b>Local</b>: Complexo Esportivo Carlos Aldrovandi<br>
+        <b>Horário</b>: 09h - 12h</p><br>
+
+        <p><b  id="titulo-eventos">PATINANDO JUNDIAÍ - MAXI SHOPPING</b><br>
+        <b>Local</b>: Av. Antônio Frederico Ozanam, 6000 (Maxi Shopping Jundiaí)<br>
+        <b>Horário</b>: 10h - 13h<br>
+        <b>Atividade</b>: Venha patinar conosco.</p><br>
+
+        <p><b  id="titulo-eventos">FAMÍLIA ROLLER - SHOPPING BOULEVARD TATUAPÉ</b><br>
+        <b>Local</b>: R. Gonçalves Crespo, 78 - Tatuapé<br>
+        <b>Horário</b>: 09h - 12h<br>
+        <b>Atividade</b>: Venha patinar com a gente!</p><br>
+
+        <p><b  id="titulo-eventos">GOLDEN SQUARE SHOPPING - SBC</b><br>
+        <b>Local</b>: Av. Kennedy, 700 - Jardim do Mar (Piso G5)<br>
+        <b>Horário</b>: 09h - 14h<br>
+        <b>Atividade</b>: Hockey inline aberto.</p><br>
+
+        <p><b  id="titulo-eventos">ATRIUM SHOPPING - SANTO ANDRÉ</b><br>
+        <b>Local</b>: Rua Giovanni Battista Pirelli, 155<br>
+        <b>Horário</b>: 08h - 12h<br>
+        <b>Atividade</b>: Patinação em família.</p><br>
+
+        <p><b  id="titulo-eventos">PRACA DO LEÃO - PARQUE IBIRAPUERA</b><br>
+        <b>Local</b>: Parque Ibirapuera, Praça do Leão<br>
+        <b>Horário</b>: Dia inteiro<br>`;
+      } 
+
+
+      modal.classList.remove('hidden');
+    }
+
+    fechar.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+</script>
