@@ -19,7 +19,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #585858;">
+<body onload="validarSessao(), atualizarFeed()" style="background-color: #6a3c6e;">
 
     <div class="janela">
 
@@ -213,6 +213,9 @@
                         var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
                         var spanNome = document.createElement("span");
+                        var divData = document.createElement("div");
+                        var divHorario = document.createElement("div");
+                        var divLocal = document.createElement("div");
                         var divDescricao = document.createElement("div");
                         var divButtons = document.createElement("div");
                         var btnEditar = document.createElement("button");
@@ -221,7 +224,11 @@
 
                         spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        spanNome.innerHTML = "Responsável: <b>" + publicacao.nome + "</b>";
+                        const dataFormatada = new Date(publicacao.dataEvento).toLocaleDateString('pt-BR');
+                        divData.innerHTML = "Data: <b>" + dataFormatada + "</b>"; // Funcao que utilizar para formatar o jeito que a data estava vindo do banco de dados.
+                        divHorario.innerHTML = "Horário: <b>" + (publicacao.horario ?? "Não informado") + "</b>";
+                        divLocal.innerHTML = "Ponto de encontro: <b>" + (publicacao.encontro ?? "Não informado") + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
                         btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
@@ -242,13 +249,22 @@
                         btnDeletar.id = "btnDeletar" + publicacao.idAviso;
                         btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
 
+                        // Disposição dos elementos dentro da div (ordem):
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(divData);
+                        divPublicacao.appendChild(divHorario);
+                        divPublicacao.appendChild(divLocal);
                         divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
+                        var idUsuarioLogado = sessionStorage.ID_USUARIO;
+                        var donoDaPublicacao = publicacao.fk_usuario == idUsuarioLogado;
+
+                        if (donoDaPublicacao) {
+                            divButtons.appendChild(btnEditar);
+                            divButtons.appendChild(btnDeletar);
+                            divPublicacao.appendChild(divButtons);
+                        }
                         feed.appendChild(divPublicacao);
                     }
 

@@ -68,6 +68,7 @@
     color: white;
     background-color: #e6005a;
     width: 80px;
+    border-radius: 10px;
   }
 
   .publicacao {
@@ -78,7 +79,10 @@
     justify-content: center;
     align-items: stretch;
     border-bottom: 3px solid #e6005a;
+    background-color: #44265c;
     padding: 20px;
+    border-radius: 50px;
+    margin: 20px;
   }
 
   .publicacao>*:not(:last-child) {
@@ -90,7 +94,7 @@
   }
 
   .div-results .feed-container {
-    background-color: #212124;
+    background-color: #6a3d6e;
     border-radius: 5px;
     margin-bottom: 80px;
   }
@@ -107,7 +111,7 @@
   /* pagina graficos */
 
   .dash-header {
-    background-color: #613e4d;
+    background-color: #44265c;
   }
 
   .dash { 
@@ -306,7 +310,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    border-right: 3px solid #32b9cd;
+    border-right: 3px solid #e6005a
 
   }
 
