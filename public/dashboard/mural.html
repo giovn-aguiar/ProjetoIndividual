@@ -130,7 +130,7 @@
             horario: form_postagem.horario.value
         }
 
-        fetch(`/avisos/publicar/${idUsuario}`, {
+        fetch(`/eventos/publicar/${idUsuario}`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -159,17 +159,17 @@
 
     }
 
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
+    function editar(id_evento) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = id_evento;
+        console.log("cliquei em editar - " + id_evento);
+        window.alert("Você será redirecionado à página de edição do aviso de id número: " + id_evento);
         window.location = "/dashboard/edicao-aviso.html"
 
     }
 
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
+    function deletar(id_evento) {
+        console.log("Criar função de apagar post escolhido - ID" + id_evento);
+        fetch(`/eventos/deletar/${id_evento}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -190,7 +190,7 @@
     }
 
     function atualizarFeed() {
-        fetch("/avisos/listar").then(function (resposta) {
+        fetch("/eventos/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
@@ -223,7 +223,7 @@
                         var btnConfirmar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        spanID.innerHTML = "ID: <b>" + publicacao.id_evento + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Responsável: <b>" + publicacao.nome + "</b>";
                         const dataFormatada = new Date(publicacao.dataEvento).toLocaleDateString('pt-BR');
@@ -236,7 +236,7 @@
                         btnConfirmar.innerHTML = "Confirmar presença";
 
                         divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanTitulo.id = "inputNumero" + publicacao.id_evento;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
                         divDescricao.className = "publicacao-descricao";
@@ -244,16 +244,16 @@
                         divButtons.className = "div-buttons"
 
                         btnConfirmar.className = "publicacao-btn-confirmar"
-                        btnConfirmar.id = "btnConfirmar" + publicacao.idAviso;
-                        btnConfirmar.setAttribute("onclick", `confirmar(${publicacao.idAviso})`);
+                        btnConfirmar.id = "btnConfirmar" + publicacao.id_evento;
+                        btnConfirmar.setAttribute("onclick", `confirmar(${publicacao.id_evento})`);
 
                         btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+                        btnEditar.id = "btnEditar" + publicacao.id_evento;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.id_evento})`);
 
                         btnDeletar.className = "publicacao-btn-deletar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+                        btnDeletar.id = "btnDeletar" + publicacao.id_evento;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.id_evento})`);
 
                         // Disposição dos elementos dentro da div (ordem):
                         divPublicacao.appendChild(spanID);

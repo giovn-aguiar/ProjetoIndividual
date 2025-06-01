@@ -1,7 +1,7 @@
-var avisoModel = require("../models/avisoModel");
+var eventoModel = require("../models/eventosModel");
 
 function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+    eventoModel.listar().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -17,7 +17,7 @@ function listar(req, res) {
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    eventoModel.listarPorUsuario(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -42,7 +42,7 @@ function listarPorUsuario(req, res) {
 function pesquisarDescricao(req, res) {
     var descricao = req.params.descricao;
 
-    avisoModel.pesquisarDescricao(descricao)
+    eventoModel.pesquisarDescricao(descricao)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -84,7 +84,7 @@ function publicar(req, res) {
     else if (encontro== undefined) {
         res.status(403).send("O local do encontro está indefinido!");
     }else {
-        avisoModel.publicar(titulo, descricao, idUsuario, dataEvento, horario, encontro)
+        eventoModel.publicar(titulo, descricao, idUsuario, dataEvento, horario, encontro)
         .then(
             function (resultado) {
                 console.log("Resultado do INSERT:", resultado);
@@ -107,9 +107,9 @@ function publicar(req, res) {
 
 function editar(req, res) {
     var novaDescricao = req.body.descricao;
-    var idAviso = req.params.idAviso;
+    var idEvento = req.params.idEvento;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    eventoModel.editar(novaDescricao, idEvento)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -126,9 +126,9 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idAviso;
+    var idEvento = req.params.idEvento;
 
-    avisoModel.deletar(idAviso)
+    eventoModel.deletar(idEvento)
         .then(
             function (resultado) {
                 res.json(resultado);

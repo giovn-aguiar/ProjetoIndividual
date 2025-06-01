@@ -9,12 +9,24 @@ CREATE TABLE usuario (
     pontuacao INT
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE eventos (
+	id_evento INT PRIMARY KEY AUTO_INCREMENT,
 	titulo VARCHAR(100),
 	descricao VARCHAR(150),
 	fk_usuario INT,
+    dataEvento DATE, 
+    horario VARCHAR(5),
+    encontro VARCHAR(100),
 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);
+
+CREATE TABLE usuarioEvento(
+	id_usuario_evento INT AUTO_INCREMENT,
+	fk_usuario INT,
+	fk_evento INT,
+	CONSTRAINT pk_usuario_evento PRIMARY KEY (id_usuario_evento, fk_usuario, fk_evento),
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(id),
+    FOREIGN KEY (fk_evento) REFERENCES eventos(id_evento)
 );
 
 CREATE TABLE frases (
@@ -45,10 +57,11 @@ CREATE TABLE resultados (
 
 -- View de PPM recorde
 CREATE VIEW maiorPpm AS
-SELECT r.ppm, id_usuario
-FROM resultados r
-ORDER BY r.ppm DESC
-LIMIT 1;
+SELECT id_usuario, MAX(ppm) AS ppm
+FROM resultados
+GROUP BY id_usuario;
+
+select maior_ppm from maiorPpm WHERE id_usuario = 1;
 
 -- View de PPM medio
 CREATE VIEW ppmMedio AS
