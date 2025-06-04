@@ -98,13 +98,48 @@ function deletar(idEvento) {
     return database.executar(instrucaoSql);
 }
 
-function confirmar(idEvento) {
+function confirmar(idEvento, idUsuario) {
     console.log("ACESSEI O EVENTO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idEvento);
     var instrucaoSql = `   
-    UPDATE eventos SET presencas = presencas + 1 WHERE id_evento = ${idEvento};`;
+    INSERT INTO usuarioEvento (fk_evento, fk_usuario) VALUES (${idEvento}, ${idUsuario})`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function mostrarConfirmadas(idEvento) {
+    console.log("ACESSEI O EVENTO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idEvento);
+    var instrucaoSql = `   
+        SELECT IFNULL(COUNT(fk_evento), 0) AS presencas
+        FROM usuarioEvento 
+        WHERE fk_evento = ${idEvento}
+        GROUP BY fk_evento;
+        `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarEventosComConfirmacao(idUsuario) {
+    const instrucao = `
+        SELECT 
+            e.id_evento,
+            e.titulo,
+            e.descricao,
+            e.dataEvento,
+            e.horario,
+            e.encontro,
+            e.presencas,
+            CASE
+                WHEN ue.fk_usuario IS NOT NULL THEN true
+                ELSE false
+            END AS confirmado
+        FROM eventos e
+        LEFT JOIN usuarioEvento ue 
+            ON ue.fk_evento = e.id_evento AND ue.fk_usuario = ${idUsuario};
+    `;
+    return database.executar(instrucao);
+}
+
+
 
 module.exports = {
     listar,
@@ -113,5 +148,7 @@ module.exports = {
     publicar,
     editar,
     deletar,
-    confirmar
+    confirmar,
+    mostrarConfirmadas,
+    listarEventosComConfirmacao
 }

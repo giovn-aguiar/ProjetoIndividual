@@ -32,14 +32,14 @@ function registrarResultado(req, res) {
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         resultadoModel.registrarResultado(idUsuario, palavras, acertos, erros, tempo, ppm, desempenho)
             .then(
-                function (resultado) {
-                    res.status(200).send("Resultado registrado com sucesso!");
-                }
+            function (resultado) {
+                res.status(200).json({ message: "Resultado registrado com sucesso!" });
+            }
             ).catch(
-                function (erro) {
-                    console.log("\nHouve um erro ao registrar o resultado! Erro: ", erro.sqlMessage || erro);
-                    res.status(500).json(erro.sqlMessage || erro);
-                }
+            function (erro) {
+                console.log("\nHouve um erro ao registrar o resultado! Erro: ", erro.sqlMessage || erro);
+                res.status(500).json(erro.sqlMessage || erro);
+            }
             );
     }
 }

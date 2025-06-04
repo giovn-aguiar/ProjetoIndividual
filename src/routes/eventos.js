@@ -29,8 +29,16 @@ router.delete("/deletar/:idEvento", function (req, res) {
 
 // rotas para confirmar presença:
 
-router.put("/confirmar/:idEvento", function (req, res) {
+router.post("/confirmar/:idEvento/:idUsuario", function (req, res) {
     eventoController.confirmar(req, res);
+});
+
+router.get("/mostrarConfirmadas/:idEvento", function (req, res) {
+    eventoController.mostrarConfirmadas(req, res);
+});
+
+router.get("/listarEventosComConfirmacao/:idUsuario", function(req, res) {
+    eventoController.listarEventosComConfirmacao(req, res);
 });
 
 

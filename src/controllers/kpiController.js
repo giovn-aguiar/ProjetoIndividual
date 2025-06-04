@@ -6,7 +6,8 @@ function buscarPpmRecorde(req, res) {
 
     var idUsuario = req.params.idUsuario;
 
-    console.log(`Recuperando as ultimas medidas`);
+    console.log(`cheguei aqui:`);
+    console.log(idUsuario);
 
     kpiModel.buscarPpmRecorde(idUsuario).then(function (resultado) {
         if (resultado.length > 0) {

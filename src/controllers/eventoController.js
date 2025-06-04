@@ -146,8 +146,9 @@ function deletar(req, res) {
 
 function confirmar(req, res) {
     var idEvento = req.params.idEvento;
+    var idUsuario = req.params.idUsuario;
 
-    eventoModel.confirmar(idEvento)
+    eventoModel.confirmar(idEvento, idUsuario)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -162,6 +163,39 @@ function confirmar(req, res) {
         );
 }
 
+//Criei essa função para mostrar no card dos eventos quantas presenças há:
+function mostrarConfirmadas(req, res) {
+    var idEvento = req.params.idEvento;
+
+    eventoModel.mostrarConfirmadas(idEvento)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao confirmar presenca: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function listarEventosComConfirmacao(req, res) {
+    const idUsuario = req.params.idUsuario;
+
+    eventoModel.listarEventosComConfirmacao(idUsuario)
+        .then(resultados => {
+            res.status(200).json(resultados);
+        })
+        .catch(erro => {
+            console.error("Erro ao listar eventos: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+
 module.exports = {
     listar,
     listarPorUsuario,
@@ -169,5 +203,7 @@ module.exports = {
     publicar,
     editar,
     deletar,
-    confirmar
+    confirmar,
+    mostrarConfirmadas,
+    listarEventosComConfirmacao
 }
