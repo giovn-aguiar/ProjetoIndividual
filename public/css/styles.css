@@ -8,6 +8,7 @@
     --rosa: #EB4F80;
 }
 
+
 html {
   scrollbar-color: #ff69b4 #ffe4f0;
   scrollbar-width: thin;
@@ -90,12 +91,27 @@ html {
     font-size: 25px;
 }
 
-.card-desafios-individual{
+.card-desafios-individual:hover {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-desafios-individual {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 300px;
+    background: rgba(129, 101, 207, 0.1);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
 }
+
 
 /* seção comunidade */
 
