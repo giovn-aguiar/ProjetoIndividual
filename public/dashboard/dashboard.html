@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="./../css/dashboards.css">
+  <link rel="stylesheet" href="./../css/estilo.css">
   <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body style="background-color: rgba(54, 54, 54, 0.972);" onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho(); buscarTempo(); buscarTempoRecorde(); buscarPpmRecorde(); buscarDesempenhoRecorde(); buscarPpmMedio(); buscarDesempenhoMedio(); buscarTempoMedio();" > <!-- Chamando a função buscarPpm ao carregar a página -->
+<body style="background-color: rgba(106, 71, 117, 0.972); overflow: hidden;"onload="buscarPpm(); buscarErrosAcertos(); buscarDesempenho(); buscarTempo(); buscarTempoRecorde(); buscarPpmRecorde(); buscarDesempenhoRecorde(); buscarPpmMedio(); buscarDesempenhoMedio(); buscarTempoMedio();" > <!-- Chamando a função buscarPpm ao carregar a página -->
   
   <div class="janela">
 
@@ -50,17 +51,17 @@
   <div class="kpi">
 
     <div class="kpiBox recorde">
-      <h2>PPM RECORDE</h2>
+      <h2>MELHOR PPM</h2>
       <p id="inpPPMRecorde"></p>
     </div> 
 
     <div class="kpiBox recorde">
-      <h2>TEMPO RECORDE</h2>
+      <h2>MELHOR TEMPO</h2>
       <p id="inpTempoRecorde"></p>
     </div> 
 
     <div class="kpiBox recorde">
-      <h2>DESEMPENHO RECORDE</h2>
+      <h2>MAIOR DESEMPENHO</h2>
       <p id="inpDesempenhoRecorde"></p>
     </div> 
 
@@ -101,7 +102,9 @@
     <div class="graficos2">
       <div class="grafErros">
         <h3>Proporçāo entre erros e acertos</h3>
+        <div class="graficoPizzaIndividual">
       <canvas id="pizza" class="graficoPizza"></canvas>
+    </div>
       </div>
 
 

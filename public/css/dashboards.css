@@ -378,8 +378,8 @@
 
 /* Estilização individual de cada gráfico */
 .grafPpm canvas {
-  width: 600px !important;
-  height: 350px !important;
+  width: 535px !important;
+  height: 257px !important;
   padding: 20px;
   border-radius: 10px;
 }
@@ -387,14 +387,14 @@
 .grafPpm{
   font-size: 20px;
   color: aliceblue;
-  background-color: rgb(42, 41, 41);
+  background-color: rgb(50 6 67);
   text-align: center;
 }
 
 .grafTempo canvas {
   width: 600px !important;
-  height: 350px !important;
-  background-color: rgb(42, 41, 41);
+  height: 256px !important;
+  background-color: rgb(50 6 67);
   padding: 20px;
   border-radius: 10px;
 }
@@ -402,36 +402,47 @@
 .grafTempo{
   font-size: 20px;
   color: aliceblue;
-  background-color: rgb(42, 41, 41);
+  background-color: rgb(50 6 67);
   text-align: center;
 }
 
 .grafErros canvas {
-  width: 330px !important;
-  height: 320px !important;
+  width: 259px !important;
+  height: 259px !important;
   padding: 10px;
   border-radius: 10px;
 }
+
+
 .grafErros{
+  padding-left: 40px;
+  padding-right: 40px;
   font-size: 20px;
   color: aliceblue;
-  background-color: rgb(42, 41, 41);
+  background-color: rgb(50 6 67);
   text-align: center;
 
 }
 
+.graficoPizzaIndividual{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .grafDesempenho canvas {
-  width: 870px !important;
-  height: 320px !important;
-  background-color: rgb(42, 41, 41);
-  padding: 20px;  
+  width: 674px !important;
+  height: 265px !important;
+  background-color: rgb(50 6 67);
+  padding: 20px;
   border-radius: 10px;
 }
 
 .grafDesempenho{
   font-size: 20px;
   color: aliceblue;
-  background-color: rgb(42, 41, 41);
+  background-color: rgb(50 6 67);
   text-align: center;
 }
 
