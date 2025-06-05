@@ -6,6 +6,7 @@
     font-family: "Poppins", sans-serif;
 }
 
+
 body{
   background-color: #6a3c6e;
 }
@@ -84,17 +85,17 @@ body{
 }
 
 .card {
-  margin-top: 100px;
-  width: 50%;
-  background-color: #f1d5f5;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  color: palevioletred;
-  flex-direction: column;
-  height: fit-content;
-  padding: 20px 0;
+    margin-top: 100px;
+    width: 50%;
+    background-color: #fdedffba;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #c15f7f70;
+    flex-direction: column;
+    height: fit-content;
+    padding: 20px 0;
 }
 
 .card h2 {
@@ -118,10 +119,10 @@ body{
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
+    border: none;
+    text-align: center;
+    border-radius: 10px;
+    margin: 0;
 }
 
 .formulario select {
@@ -141,19 +142,24 @@ body{
   padding: 5px 0;
 }
 
+.botao:hover{
+  background-color: #d389c0;
+  transition: 0.5s;
+}
+
 .botao {
-  cursor: pointer;
-  font-family: "Barlow", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  color: #fff;
-  background-color: #ED145B;
-  width: 120px;
-  height: 30px;
-  align-self: center;
-  margin-top: 20px;
+    cursor: pointer;
+    font-family: "Barlow", sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #fff;
+    background-color: #683b9b;
+    width: 120px;
+    height: 30px;
+    align-self: center;
+    margin-top: 20px;
 }
 
 .loading-div {
@@ -282,4 +288,32 @@ input {
   50%  {transform: rotate(25deg)}
   75%  {transform: rotate(-25deg)}
   100% {transform: rotate(25deg)}
+}
+
+/*ACABAMENTO*/
+
+#videoFundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.10; 
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-gif {
+  animation: girar 1.2s linear infinite;
+  width: 50px; 
+  height: 50px;
 }

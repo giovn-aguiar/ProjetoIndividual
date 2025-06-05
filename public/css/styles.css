@@ -18,7 +18,10 @@ html {
     background-color: #481C63;
 }  
 
-
+.card-individual-modalidades:hover{
+  background-color: #700d60;
+  transition: 1s;
+}
 
 /* seção cabeçalho*/
 
