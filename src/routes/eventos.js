@@ -41,6 +41,12 @@ router.get("/listarEventosComConfirmacao/:idUsuario", function(req, res) {
     eventoController.listarEventosComConfirmacao(req, res);
 });
 
+// rota para cancelar a presença:
+
+router.delete("/cancelar/:idEvento/:idUsuario", function(req, res) {
+    eventoController.cancelar(req, res);
+});
+
 
 
 module.exports = router;

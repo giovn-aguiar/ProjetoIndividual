@@ -71,6 +71,20 @@
     border-radius: 10px;
   }
 
+  .publicacao-btn-cancelar {
+    cursor: pointer;
+    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 8px;
+    color: white;
+    background-color: #f5726d;
+    width: 150px;
+    border-radius: 20px;
+  }
+
   .publicacao-btn-deletar {
     cursor: pointer;
     font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

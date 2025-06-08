@@ -195,6 +195,24 @@ function listarEventosComConfirmacao(req, res) {
         });
 }
 
+function cancelar(req, res) {
+    var idEvento = req.params.idEvento;
+    var idUsuario = req.params.idUsuario;
+
+    eventoModel.cancelar(idEvento, idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao cancelar a presenca: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 module.exports = {
     listar,
@@ -205,5 +223,6 @@ module.exports = {
     deletar,
     confirmar,
     mostrarConfirmadas,
-    listarEventosComConfirmacao
+    listarEventosComConfirmacao,
+    cancelar
 }

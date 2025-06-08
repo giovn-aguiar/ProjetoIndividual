@@ -120,23 +120,20 @@ function mostrarConfirmadas(idEvento) {
 
 function listarEventosComConfirmacao(idUsuario) {
     const instrucao = `
-        SELECT 
-            e.id_evento,
-            e.titulo,
-            e.descricao,
-            e.dataEvento,
-            e.horario,
-            e.encontro,
-            e.presencas,
-            CASE
-                WHEN ue.fk_usuario IS NOT NULL THEN true
-                ELSE false
-            END AS confirmado
-        FROM eventos e
-        LEFT JOIN usuarioEvento ue 
-            ON ue.fk_evento = e.id_evento AND ue.fk_usuario = ${idUsuario};
+        SELECT fk_evento as id_evento
+        FROM usuarioEvento
+        WHERE fk_usuario = ${idUsuario};
     `;
     return database.executar(instrucao);
+}
+
+function cancelar(idEvento, idUsuario) {
+    console.log("ACESSEI O EVENTO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idEvento);
+    var instrucaoSql = `
+        DELETE FROM usuarioEvento WHERE fk_evento = ${idEvento} AND fk_usuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
 
@@ -150,5 +147,6 @@ module.exports = {
     deletar,
     confirmar,
     mostrarConfirmadas,
-    listarEventosComConfirmacao
+    listarEventosComConfirmacao,
+    cancelar
 }

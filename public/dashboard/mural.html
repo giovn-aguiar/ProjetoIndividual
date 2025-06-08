@@ -19,7 +19,7 @@
             rel="stylesheet">
     </head>
 
-    <body onload="validarSessao(), atualizarFeed()" style="background-color: #6a3c6e;">
+    <body onload="validarSessao(), buscarEventosConfirmados(), atualizarFeed()" style="background-color: #6a3c6e;">
 
         <div class="janela">
 
@@ -112,7 +112,7 @@
     </html>
 
     <script>
-        
+        var idUsuario = sessionStorage.ID_USUARIO;
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
         function limparFormulario() {
@@ -120,7 +120,6 @@
         }
 
         function confirmar(idEvento, idUsuario){
-            var idUsuario = sessionStorage.ID_USUARIO;
 
             fetch(`/eventos/confirmar/${idEvento}/${idUsuario}`, {
                 method: "POST",
@@ -146,6 +145,34 @@
             });
 
             return false;
+        }
+
+        function cancelar(idEvento, idUsuario){
+
+        fetch(`/eventos/cancelar/${idEvento}/${idUsuario}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Sua presença nesse evento foi cancelada =( ) Usuario: " + idUsuario + "!");
+                window.location = "/dashboard/mural.html";
+                
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar A CONFIRMAÇÃO ! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            
+        });
+
+        return false;
         }
 
         function publicar() {
@@ -218,8 +245,34 @@
             });
         }
 
+        function buscarEventosConfirmados(){
+            fetch(`/eventos/listarEventosComConfirmacao/${idUsuario}`)
+
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                criarListaConfirmados(data);
+            })
+            .catch(function(err){
+                console.log(err);
+            })
+        }
+
+        const confirmados = []
+
+        function criarListaConfirmados(dados){
+            confirmados.length = 0; 
+            
+            for(let i=0; i < dados.length; i++){
+                confirmados.push(dados[i].id_evento)
+            };
+        }
+
 
         function atualizarFeed() {
+            idUsuario = sessionStorage.ID_USUARIO;
+
             fetch("/eventos/listar").then(function (resposta) {
                 if (resposta.ok) {
                     if (resposta.status == 204) {
@@ -252,6 +305,7 @@
                             var btnEditar = document.createElement("button");
                             var btnDeletar = document.createElement("button");
                             var btnConfirmar = document.createElement("button");
+                            var btnCancelar = document.createElement("button");
 
 
                             spanID.innerHTML = "ID: <b>" + publicacao.id_evento + "</b>";
@@ -262,10 +316,11 @@
                             divHorario.innerHTML = "Horário: <b>" + (publicacao.horario ?? "Não informado") + "</b>";
                             divLocal.innerHTML = "Ponto de encontro: <b>" + (publicacao.encontro ?? "Não informado") + "</b>";
                             divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-
                             btnEditar.innerHTML = "Editar";
                             btnDeletar.innerHTML = "Deletar";
-                            btnConfirmar.innerHTML = "Confirmar presença";
+                            btnCancelar.innerHTML = "Cancelar Presença";
+                            btnConfirmar.innerHTML = "Confirmar Presença!";
+
 
                             divPublicacao.className = "publicacao";
                             spanTitulo.id = "inputNumero" + publicacao.id_evento;
@@ -278,7 +333,7 @@
                             // criei um novo botão confirmar, com base no botão editar e no botão deletar. Ao clicar, chama a função confirmar e leva até ela o id.
                             btnConfirmar.className = "publicacao-btn-confirmar"
                             btnConfirmar.id = "btnConfirmar" + publicacao.id_evento;
-                            btnConfirmar.setAttribute("onclick", `confirmar(${publicacao.id_evento})`);
+                            btnConfirmar.setAttribute("onclick", `confirmar(${publicacao.id_evento}, ${idUsuario})`);
 
                             btnEditar.className = "publicacao-btn-editar"
                             btnEditar.id = "btnEditar" + publicacao.id_evento;
@@ -287,6 +342,10 @@
                             btnDeletar.className = "publicacao-btn-deletar"
                             btnDeletar.id = "btnDeletar" + publicacao.id_evento;
                             btnDeletar.setAttribute("onclick", `deletar(${publicacao.id_evento})`);
+
+                            btnCancelar.className = "publicacao-btn-cancelar"
+                            btnCancelar.id = "btnCancelar" + publicacao.id_evento;
+                            btnCancelar.setAttribute("onclick", `cancelar(${publicacao.id_evento}, ${idUsuario})`);
 
                             // Disposição dos elementos dentro da div (ordem):
                             divPublicacao.appendChild(spanID);
@@ -307,7 +366,12 @@
                                 divPublicacao.appendChild(divButtons);
                             }
                             else{
+                                if(confirmados.includes(publicacao.id_evento)){
+                                    divButtons.appendChild(btnCancelar);
+                            }
+                            else{
                                 divButtons.appendChild(btnConfirmar);
+                            }
                             }
 
                             feed.appendChild(divPublicacao); // Definindo permissão de deletar e editar.
