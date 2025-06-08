@@ -292,12 +292,12 @@
         })
     }).then(function (resposta) {
         if (resposta.ok) {
-            alert("Métricas registradas");
+            console.log("Métricas registradas");
         } else {
-            alert("Erro ao registrar métricas");
+            console.log("Erro ao registrar métricas");
         }
     }).catch(function (erro) {
-        alert("erro ao se comunicar com servidor.");
+        console.log("erro ao se comunicar com servidor.");
         console.log("erro no fetch:", erro);
     });
 }

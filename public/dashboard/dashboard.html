@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <h1 class="tituloDash">MÉTRICAS DE EVOLUCÃO DO USUÁRIO </h1>
+    <h1 class="tituloDash">MÉTRICAS DE EVOLUCÃO DO JOGADOR </h1>
 
 
   <div class="kpi">
@@ -170,7 +170,7 @@ function inserirTempoRecorde(dados)
   var tempo = dados[0].tempo;
 
   console.log('encontrei o tempo!')
-  inpTempoRecorde.innerHTML = tempo
+  inpTempoRecorde.innerHTML = `${tempo}<span style= "font-size:30px">s</span>`
 }
 
 // KPI: Desempenho Recorde 
@@ -194,7 +194,7 @@ function inserirDesempenhoRecorde(dados)
   var desempenhoRecorde = dados[0].desempenhoRecorde;
 
   console.log(`Encontrei o desempenho Medio! `)
-  inpDesempenhoRecorde.innerHTML = desempenhoRecorde
+  inpDesempenhoRecorde.innerHTML = `${desempenhoRecorde}%`
 }
 
 // KPI: Ppm Médio
@@ -240,7 +240,7 @@ function inserirDesempenhoMedio(dados)
   var desempenhoMedio = dados[0].media;
 
   console.log(`Encontrei o desempenho Medio! `)
-  inpDesempenhoMedio.innerHTML = desempenhoMedio
+  inpDesempenhoMedio.innerHTML = ` ${desempenhoMedio}%`
 }
 
 // KPI: Tempo Médio
@@ -263,7 +263,7 @@ function inserirTempoMedio(dados)
   var tempoMedio = dados[0].media;
 
   console.log('Encontrei o tempo médio!')
-  inpTempoMedio.innerHTML = tempoMedio
+  inpTempoMedio.innerHTML = `${tempoMedio}<span style= "font-size:30px">s</span>`
 }
 
 // Gráficos:
