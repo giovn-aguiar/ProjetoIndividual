@@ -136,6 +136,17 @@ function cancelar(idEvento, idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function mostrarInfos(idEvento){
+    var instrucaoSql = `
+       SELECT e.titulo, u.nome 
+        FROM eventos e 
+        JOIN usuario u 
+        ON u.id = e.fk_usuario 
+        WHERE id_evento = ${idEvento};
+    `;
+    return database.executar(instrucaoSql);
+}
+
 
 
 module.exports = {
@@ -148,5 +159,6 @@ module.exports = {
     confirmar,
     mostrarConfirmadas,
     listarEventosComConfirmacao,
-    cancelar
+    cancelar,
+    mostrarInfos
 }

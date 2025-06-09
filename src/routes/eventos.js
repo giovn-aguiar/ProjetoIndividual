@@ -47,6 +47,12 @@ router.delete("/cancelar/:idEvento/:idUsuario", function(req, res) {
     eventoController.cancelar(req, res);
 });
 
+// rota para mostrar o titulo do evento no editar:
+router.get("/mostrarInfos/:idEvento", function(req, res) {
+    eventoController.mostrarInfos(req, res);
+});
+
+
 
 
 module.exports = router;

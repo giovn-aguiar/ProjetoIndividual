@@ -67,6 +67,7 @@
     i = 0
     iniciou = false;
 
+    function atribuirValor(){}
     //Escolher e rodar frase:
     var random;
     var palavras;
@@ -264,12 +265,14 @@
             timer.innerHTML = `Restam ${tempoRestante} segundos`
         }
         else{
-            timer.innerHTML = "Poxa :( Seu tempo se esgotou!)"
+            timer.innerHTML = "Poxa :( Seu tempo se esgotou! Vamos tentar novamente?"
+            botoesJogo.hidden = false;
             btnNovamente.hidden = false;
             inputEntrada.hidden = true;
         }
     }
 
+    // Essa função faz o post para enviar os resultados da partida
     function enviarResultado() {
     if (!sessionStorage.ID_USUARIO) {
         alert("Você precisa estar logado para registrar suas métricas.");

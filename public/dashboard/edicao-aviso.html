@@ -19,7 +19,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), listarInfosDeUm()" style="background-color: #161618;">
+<body onload="validarSessao(), buscarInfosDeUm()" style="background-color: #823985;">
 
     <div class="janela">
         <div class="header-left dash-header">
@@ -59,12 +59,6 @@
                 <div class="container">
                     <h1>Editar um aviso</h1>
                     <div class="div-form">
-                        <label>
-                            ID:
-                            <br>
-                            <input id="input_id" maxlength="100" type="text" style="color: rgb(196, 196, 196)" disabled>
-                        </label><br>
-                        <label>
                             Autor:
                             <br>
                             <input id="input_nome" maxlength="100" type="text" style="color: rgb(196, 196, 196)"
@@ -74,7 +68,7 @@
                             Título:
                             <br>
                             <input id="input_titulo" maxlength="100" type="text" style="color: rgb(196, 196, 196)"
-                                disabled>
+                            disabled>
                         </label>
                         <br>
                         <label>
@@ -83,7 +77,7 @@
                             <textarea id="textarea_descricao" maxlength="250" rows="5"></textarea>
                         </label>
                         <br>
-                        <button onclick="editar()">Editar</button>
+                        <button onclick="buscarValores()">Editar</button>
                     </div>
 
                 </div>
@@ -95,12 +89,42 @@
 </html>
 
 <script>
-    function listarInfosDeUm() {
-        console.log("Criar função de trazer informações de post escolhido");
+
+    var idEvento = sessionStorage.getItem("ID_POSTAGEM_EDITANDO")
+    var descricao;
+    var input_titulo = document.getElementById("input_titulo");
+    var textarea_descricao = document.getElementById("textarea_descricao");
+
+
+    function buscarValores(){
+        descricao = textarea_descricao.value
+        editar(descricao, idEvento)
     }
 
-    function editar() {
-        fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+    function buscarInfosDeUm(){
+        fetch(`http://localhost:3333/eventos/mostrarInfos/${idEvento}`)
+
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            listarInfosDeUm(data);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+        }
+
+    function listarInfosDeUm(dados) {
+        var titulo = dados[0].titulo;
+        var autor = dados[0].nome;
+
+        input_titulo.value = titulo
+        input_nome.value = autor
+    }
+
+    function editar(novaDescricao, idEvento) {
+        fetch(`/eventos/editar/${idEvento}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -112,7 +136,7 @@
 
             if (resposta.ok) {
                 window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/mural.html"   
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

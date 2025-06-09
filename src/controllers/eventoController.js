@@ -214,6 +214,24 @@ function cancelar(req, res) {
         );
 }
 
+// puxar titulo para o editar
+function mostrarInfos(req, res) {
+    var idEvento = req.params.idEvento;
+
+    eventoModel.mostrarInfos(idEvento)
+        .then(resultado => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!");
+            }
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
@@ -224,5 +242,6 @@ module.exports = {
     confirmar,
     mostrarConfirmadas,
     listarEventosComConfirmacao,
-    cancelar
+    cancelar,
+    mostrarInfos
 }
