@@ -193,13 +193,19 @@
         divFrase.innerHTML = `${palavra}`
         posicaoAtual += (1370/quantidade);
         patins.style.left = posicaoAtual + "px";
+        divFrase.classList.remove('erro');
 
         errouAntes = false
+        divFrase.style.color = 'white';
+        divFrase.style.fontSize = '1.5em'
     }
     else{
         erros +=1
         acertosSeguidos = 0
         errouAntes = true
+
+        divFrase.style.color = 'red';
+        divFrase.style.fontSize = '2em';
     }
 
     if(acertosSeguidos>acertosSeguidosRcd){
@@ -212,12 +218,27 @@
         calcularPpm()
         calcularDesempenho()
 
-        divFrase.innerHTML = `Você venceu!<br> 
-        Quantidade de erros: ${erros} <br>
-        PPM: ${ppm} <br>
-        Tempo: ${10 - tempoRestante} segundos <br>
-        Máximo de acertos seguidos: ${acertosSeguidosRcd}<br>
-        `
+            divFrase.innerHTML = `
+        <div class="kpi-container">
+            <div class="kpi-box">
+                <h4>Erros:</h4>
+                <p>${erros}</p>
+            </div>
+            <div class="kpi-box">
+                <h4>PPM:</h4>
+                <p>${parseInt(ppm)}</p>
+            </div>
+            <div class="kpi-box">
+                <h4>Tempo:</h4>
+                <p>${10 - tempoRestante} seg</p>
+            </div>
+            <div class="kpi-box">
+                <h4>Pontuação:</h4>
+                <p>${acertosSeguidosRcd}</p>
+            </div>
+        </div>
+    `
+
         iniciou = false
         nivel+=1
         botoesJogo.hidden = false;

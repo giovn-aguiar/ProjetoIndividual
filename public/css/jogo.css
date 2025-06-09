@@ -143,3 +143,40 @@ button {
 button:hover {
   background-color: #8e44ad;
 }
+
+/* css dinamico para o javascript */
+
+.kpi-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.kpi-box {
+  background-color: #c799e9;
+  padding: 15px 20px;
+  border-radius: 8px;
+  min-width: 120px;
+  text-align: center;
+}
+
+.kpi-box h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.4em;
+}
+
+.kpi-box h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #3c022e;
+}
+
+.kpi-box p {
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
