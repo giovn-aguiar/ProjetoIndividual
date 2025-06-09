@@ -47,7 +47,6 @@
 
     <h1 class="tituloDash">MÉTRICAS DE EVOLUCÃO DO JOGADOR </h1>
 
-
   <div class="kpi">
 
     <div class="kpiBox recorde">
@@ -357,8 +356,7 @@ function plotarGraficoPizza(dados){
           }]
       },
   });
-} 
-
+}
 
 function plotarGraficoLinha(dados){
   
@@ -388,8 +386,45 @@ function plotarGraficoLinha(dados){
               borderWidth: 1 // Largura da borda das linhas
           }]
       },
+      options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white'
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: {
+        display: true,
+        text: 'DATA/HORA',
+        color: 'aquamarine  ',
+        font: {
+          size: 18
+        }
+      },
+          ticks: {
+            color: 'white'
+          }
+        },
+        y: {
+          title: {
+        display: true,
+        text: 'PALAVRAS POR MINUTO',
+        color: 'aquamarine  ',
+        font: {
+          size: 18
+        }
+      },
+          ticks: {
+            color: 'white'
+          }
+        }
+      }
+    }
   });
-} 
+}
 
 
 function plotarGraficoBarra(dados){
@@ -420,6 +455,43 @@ function plotarGraficoBarra(dados){
               borderWidth: 1 // Largura da borda das barras
           }]
       },
+      options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white'
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: {
+        display: true,
+        text: 'DATA/HORA',
+        color: 'aquamarine  ',
+        font: {
+          size: 18
+        }
+      },
+          ticks: {
+            color: 'white'
+          }
+        },
+        y: {
+          title: {
+        display: true,
+        text: 'TEMPO',
+        color: 'aquamarine  ',
+        font: {
+          size: 18
+        }
+      },
+          ticks: {
+            color: 'white'
+          }
+        }
+      }
+    }
   });
 }
 
@@ -452,7 +524,44 @@ var myChart = new Chart(ctx, {
             borderWidth: 1 // Largura da borda das barras
         }]
     },
-});
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white'
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: {
+        display: true,
+        text: 'DATA/HORA',
+        color: 'aquamarine  ',
+        font: {
+          size: 18
+        }
+      },
+          ticks: {
+            color: 'white'
+          }
+        },
+        y: {
+          title: {
+        display: true,
+        text: 'DESEMPENHO EM %',
+        color: 'aquamarine  ',
+        font: {
+          size: 18
+        }
+      },
+          ticks: {
+            color: 'white'
+          }
+        }
+      }
+    }
+  });
 }
 
 function formatarMomento(dataBruta) {
