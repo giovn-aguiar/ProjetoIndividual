@@ -180,3 +180,11 @@ button:hover {
   font-weight: bold;
 }
 
+/* posicao suave pro patins */
+
+#patins {
+  position: absolute;
+  transition: left 1.5s ease;
+}
+
+
