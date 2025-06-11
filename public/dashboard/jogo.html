@@ -67,6 +67,20 @@
     i = 0
     iniciou = false;
 
+    const estadoInicial = {
+    i: 0,
+    acertos: 0,
+    erros: 0,
+    tempoRestante: 10,
+    ppm: 0,
+    totalPalavras: 0,
+    totalAcertos: 0,
+    totalErros: 0,
+    desempenho: 0,
+    acertosSeguidos: 0,
+    acertosSeguidosRcd: 0
+};
+
     function atribuirValor(){}
     //Escolher e rodar frase:
     var random;
@@ -101,15 +115,17 @@
     var nivel;
 
     function selecionarNivel() {
-        const selectNivel = document.getElementById("selectNivel");
-        nivel = selectNivel.value;
+
+        nivel = document.getElementById("selectNivel").value;;
 
         document.getElementById("telaSelecao").hidden = true;
         document.getElementById("telaJogo").hidden = false;
 
         buscarFrases(nivel);
-    }
+    } 
 
+    /*-------------------------------------------puxando frases diretamente do banco de dados--------------------------------------------------*/
+    var frases = []
 
     function buscarFrases(nivel){
         fetch(`http://localhost:3333/frases/buscarFrases/${nivel}`)
@@ -123,9 +139,7 @@
         .catch(function(err){
             console.log(err);
         })
-        }
-
-        var frases = []
+    }
 
     function criarListaFrases(listaFrases){
         frasesBanco = listaFrases
@@ -137,6 +151,7 @@
         console.log(frases)
     }
 
+    /*-------------------------------------------colocando a funcao da barra de espaço----------------------------------------------------*/
     function zerarEntrada(){
       setTimeout(function () {
             inputEntrada.value = ''
@@ -158,6 +173,21 @@
         }
     });
 
+/*-------------------------------------------Iniciando jogo--------------------------------------------------*/
+    function cronometrar(){
+        if(tempoRestante > 0){
+            // tempoRestante--
+            tempoRestante -= 0.01
+            timer.innerHTML = `Restam ${tempoRestante.toFixed(2)} segundos`
+        }
+        else{
+            timer.innerHTML = "Poxa :( Seu tempo se esgotou! Vamos tentar novamente?"
+            botoesJogo.hidden = false;
+            btnNovamente.hidden = false;
+            inputEntrada.hidden = true;
+        }
+    }
+
     function obterPalavra(frase, indice) {
         const palavras = frase.split(" "); 
         return palavras[indice]; 
@@ -174,10 +204,9 @@
       divFrase.innerHTML = `${palavra}`   
       palavras = frases[random].split(" ");
       quantidade = palavras.length;
-      palavra = obterPalavra(frases[random], 0);
       divFrase.innerHTML = `${palavra}`;
 
-      cronometro = setInterval(cronometrar, 1000)
+      cronometro = setInterval(cronometrar, 10)
     }
 
     function play(){                                      
@@ -187,7 +216,7 @@
         i++
         acertosSeguidos++
     
-        if (!errouAntes) acertos++; // Só conta como acerto se o jogador NÃO errou antes. Palavras reescritas não são acertos.
+        if (!errouAntes) acertos++; // Só conta como acerto se o jogador NÃO errou antes. Palavras reescritas não são acertos.  
 
         palavra = obterPalavra(frases[random], i)
         divFrase.innerHTML = `${palavra}`
@@ -203,20 +232,15 @@
         erros +=1
         acertosSeguidos = 0
         errouAntes = true
-
         divFrase.style.color = 'red';
         divFrase.style.fontSize = '2em';
     }
-
     if(acertosSeguidos>acertosSeguidosRcd){
         acertosSeguidosRcd = acertosSeguidos
     }
-
-
     if(i == quantidade)
     {
-        calcularPpm()
-        calcularDesempenho()
+        calcularMetricas();
 
             divFrase.innerHTML = `
         <div class="kpi-container">
@@ -238,7 +262,6 @@
             </div>
         </div>
     `
-
         iniciou = false
         nivel+=1
         botoesJogo.hidden = false;
@@ -249,48 +272,20 @@
     }
     }
 
-    function calcularDesempenho() {
-        desempenho = (acertos / (totalPalavras)) * 100
+    function calcularMetricas(){
+    tempo = 10 - tempoRestante;
+    totalPalavras = palavras.length;
+    totalAcertos = acertos;
+    totalErros = erros;
+    ppm = (acertos * 60) / tempo;
+    desempenho = (acertos / totalPalavras) * 100;
     }
 
-  function calcularPpm(){
-        tempo = 10 - tempoRestante
-        totalPalavras = palavras.length;
-        totalAcertos = acertos;
-        totalErros = erros;
-        ppm = (acertos * 60)/ tempo
-    }
-
-    function recomecar(){
-        i = 0;
-        acertos = 0;
-        erros = 0;
-        acertosSeguidos = 0;
-        acertosSeguidosRcd = 0;
-        tempoRestante = 10;
-        ppm = 0;
-        totalPalavras = 0;
-        totalAcertos = 0;
-        totalErros = 0;
-        desempenho = 0;
-
-        botoesJogo.hidden = true;
-        inputEntrada.hidden = false;
-        divFrase.innerHTML = `Digite barra de espaço para recomeçar!
-        `
-    }
-
-    function cronometrar(){
-        if(tempoRestante > 0){
-            tempoRestante--
-            timer.innerHTML = `Restam ${tempoRestante} segundos`
-        }
-        else{
-            timer.innerHTML = "Poxa :( Seu tempo se esgotou! Vamos tentar novamente?"
-            botoesJogo.hidden = false;
-            btnNovamente.hidden = false;
-            inputEntrada.hidden = true;
-        }
+    function recomecar() {
+    Object.assign(window, estadoInicial);
+    botoesJogo.hidden = true;
+    inputEntrada.hidden = false;
+    divFrase.innerHTML = `Digite barra de espaço para recomeçar!`; 
     }
 
     // Essa função faz o post para enviar os resultados da partida

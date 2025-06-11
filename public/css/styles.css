@@ -478,3 +478,10 @@ gap: 50px;
     font-weight: 700;
     color: var(--amarelo);
   }
+
+  .inspire-se img{
+    border-radius: 50%;
+    width: 300px; /* ou outro valor, dependendo do tamanho desejado */
+    height: 300px;
+    filter: saturate(1) brightness(0.7);
+  }
