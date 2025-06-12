@@ -102,6 +102,26 @@ body{
   color: rgb(80, 31, 78);
 }
 
+.mensagem {
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+.mensagem.sucesso {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.mensagem.erro {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+
 .formulario {
   display: flex;
   height: 90%;
@@ -295,11 +315,11 @@ input {
     position: fixed;
     top: 0;
     left: 0;
-    min-width: 100vw;
-    min-height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
     object-fit: cover;
     z-index: -1;
-    opacity: 0.10; 
+    opacity: 0.05; 
 }
 
 @keyframes girar {

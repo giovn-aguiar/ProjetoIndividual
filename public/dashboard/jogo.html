@@ -81,7 +81,6 @@
     acertosSeguidosRcd: 0
 };
 
-    function atribuirValor(){}
     //Escolher e rodar frase:
     var random;
     var palavras;
@@ -111,8 +110,6 @@
     // Mover o patins:
     patins.style.position = "absolute" 
     var posicaoAtual = 0
-
-    var nivel;
 
     function selecionarNivel() {
 
@@ -253,8 +250,9 @@
                 <p>${parseInt(ppm)}</p>
             </div>
             <div class="kpi-box">
-                <h4>Tempo:</h4>
-                <p>${10 - tempoRestante} seg</p>
+                <h4>Segundos:</h4>
+                <p>${parseInt(10 - tempoRestante)} seg</p>
+
             </div>
             <div class="kpi-box">
                 <h4>Pontuação:</h4>

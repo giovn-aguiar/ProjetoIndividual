@@ -1,3 +1,7 @@
+create database underline;
+
+use underline;
+
 CREATE DATABASE underline;
 USE underline;
 
@@ -31,7 +35,8 @@ CREATE TABLE usuarioEvento(
 
 CREATE TABLE frases (
 	idFrase INT PRIMARY KEY AUTO_INCREMENT, 
-    descricao VARCHAR(300) NOT NULL
+    descricao VARCHAR(300) NOT NULL,
+    nivel INT
 );
 
 CREATE TABLE logUsuario(
@@ -82,11 +87,11 @@ FROM resultados r
 GROUP BY id_usuario;
 
 -- Tempo recorde
+
 CREATE VIEW tempoRecorde AS
-SELECT id_usuario, ROUND(tempo,2) as tempo
+SELECT id_usuario, MAX(tempo) AS tempo
 FROM resultados
-ORDER BY tempo ASC
-LIMIT 1;
+GROUP BY id_usuario;
 
 -- Selecionando o tempo médio
 CREATE VIEW tempoMedio AS 
@@ -94,3 +99,17 @@ SELECT ROUND(avg(r.tempo),2) as media, id_usuario
 FROM resultados r
 GROUP BY id_usuario;
 
+CREATE VIEW frasesDinamicas AS
+SELECT descricao, nivel, idFrase FROM frases;
+
+-- FAZENDO INSERTS 
+INSERT INTO frases (descricao, nivel )VALUES
+('patinar ensina a meditar em movimento', 1),
+('patinar induz quase que uma hipnose de foco intenso e felicidade, chamada de estado de flow', 2),
+('o primeiro patins do mundo foi feito de ossos com objetivo de atravessar regioes congeladas ', 2),
+('existem mais de 100 grupos de patins gratuitos no Brasil, muitos até emprestam o patins para quem quiser utilizar', 3),
+('patinar é um esporte cardiorrespiratório, mas que diferente de muitos cardios, não tem impacto nas articulações', 3);
+
+select * from eventos;
+
+alter table eventos modify column descricao varchar(500);

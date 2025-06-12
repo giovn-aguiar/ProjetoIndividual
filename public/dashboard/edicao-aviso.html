@@ -79,9 +79,9 @@
                         <br>
                         <button onclick="buscarValores()">Editar</button>
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
 </body>
@@ -94,12 +94,6 @@
     var descricao;
     var input_titulo = document.getElementById("input_titulo");
     var textarea_descricao = document.getElementById("textarea_descricao");
-
-
-    function buscarValores(){
-        descricao = textarea_descricao.value
-        editar(descricao, idEvento)
-    }
 
     function buscarInfosDeUm(){
         fetch(`http://localhost:3333/eventos/mostrarInfos/${idEvento}`)
@@ -123,6 +117,11 @@
         input_nome.value = autor
     }
 
+    function buscarValores(){
+        descricao = textarea_descricao.value
+        editar(descricao, idEvento)
+    }
+    
     function editar(novaDescricao, idEvento) {
         fetch(`/eventos/editar/${idEvento}`, {
             method: "PUT",
@@ -135,7 +134,6 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
                 window.location = "/dashboard/mural.html"   
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");

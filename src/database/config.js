@@ -4,9 +4,9 @@ var mysql = require("mysql2");
 var mySqlConfig = {
     host: 'localhost',
     database: 'underline',
-    user: 'giovanna',
-    password: 'giovanna',
-    port: process.env.DB_PORT
+    user: 'underline',
+    password: 'underline',
+    port: 3307
 };
 
 function executar(instrucao) {

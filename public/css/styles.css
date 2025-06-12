@@ -414,6 +414,8 @@ gap: 50px;
     color: var(--amarelo);
     padding: 60px 30px;
     text-align: center;
+    align-items: center; 
+    text-align: center;
   }
   
   .inspire-se h2 {
@@ -422,45 +424,11 @@ gap: 50px;
     font-weight: 700;
   }
   
-  .timeline-horizontal {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 2000px;
-    margin: 0 auto;
-    position: relative;
-    padding: 40px 20px 20px 20px;
-  }
-  
-  .timeline-horizontal::before {
-    content: '';
-    position: absolute;
-    top: 50px;
-    left: 25px;
-    right: 25px;
-    height: 15px;
-    background-color: var(--amarelo);
-    border-radius: 100px;
-  }
-  
   .timeline-item {
-    position: relative;
-    width: 18%;
-    text-align: center;
-    z-index: 1;
+    width: 50%;
+    margin: 0 auto;
   }
   
-  .timeline-point {
-    background-color: var(--rosa);
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 15px auto;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 0 8px var(--amarelo);
-  }
   
   .timeline-content {
     background-color: var(--roxo-fundo);
@@ -481,7 +449,8 @@ gap: 50px;
 
   .inspire-se img{
     border-radius: 50%;
-    width: 300px; /* ou outro valor, dependendo do tamanho desejado */
+    width: 300px; 
     height: 300px;
     filter: saturate(1) brightness(0.7);
   }
+

@@ -107,7 +107,6 @@
                                <button id="domingo" onclick="mostrarId(this)" class="card-comunidades-individual" href="">Domingo</button>
                     </div>
 
-                    <!-- Modal (fica escondido por padrão) -->
                     <div id="modal" class="modal hidden">
                         <div class="modal-content">
                         <span class="close">x</span>
@@ -196,49 +195,19 @@
     <div class="inspire-se" id="inspire">
         <h2>Minha História com Patins</h2>
         <img src="./img/sobreMim/sobremim2.jpg" alt="">
-        <div class="timeline-horizontal">
       
           <div class="timeline-item">
-            <div class="timeline-point"></div>
             <div class="timeline-content">
-              <h3>Transição de carreira</h3>
-              <p>Eu era da área de design, e percebi que não me identificava com isso. Decidi fazer transição de carreira pra dados/back-end. Esse momento me trouxe muitos questionamentos,
-            e necessidade de manejar a ansiedade e autocobrança</p>
+              <h3>Meu amor sobre rodas</h3>
+              <p>Eu sempre fui uma pessoa que gostava de rodas, me recordo de andar de patins, bicicleta, skate. Lembro de ter tênis de rodinha e ir com meu pai no museu do ipiranga com aquelas rodinhas de gel. Sempre gostei de adrenalina, quando eu era criança eu sentia poucas emoções,  mas estar sob rodas me levava pra um estado de felicidade imensa. <br><br>
+
+                Eu voltei a andar de patins em um momento em que decidi que iria passar a me tratar com mais “carinho”, pois eu tenho uma autocobrança muito forte. Então eu reagi, decidi que iria migrar pra área que eu realmente queria ir desde o começo, e passaria a patinar pra aliviar a mente de toda a ansiedade. <br><br>
+                
+                Porém, dessa vez foi diferente de quando eu era criança:
+                Eu descobri um mundo de pessoas que amam rodas assim como eu. A patinação tem uma cultura de união entre os praticantes que ninguém imagina. Através disso, eu não só melhorei meus pensamentos, mas também fiz grandes amigos e aprendi na prática sobre resiliência e autosuperação. <br><br>
+                
+              </p>
             </div>
-          </div>
-      
-          <div class="timeline-item">
-            <div class="timeline-point"></div>
-            <div class="timeline-content">
-              <h3>Momento presente</h3>
-              <p>Fui orientada a praticar mindfulness, mas ainda não sabia como. Até que um dia vi um vídeo de patinação e senti que aquilo tinha o potencial de entender o que é estar no aqui e no agora.</p>
-            </div>
-          </div>
-      
-          <div class="timeline-item">
-            <div class="timeline-point"></div>
-            <div class="timeline-content">
-              <h3 style="color: rgb(252, 146, 238);">GANHEI MEU PRIMEIRO PATINS!</h3>
-            </div>
-          </div>
-      
-          <div class="timeline-item">
-            <div class="timeline-point"></div>
-            <div class="timeline-content">
-              <h3>Conhecendo a patinação em seu núcleo</h3>
-              <p>Inicialmente eu andava sozinha. Até que descobri que no subsolo de um shopping havia um evento fixo semanal de patinação. Por lá eu comecei a ir em grupos de patinação,
-                conheci amigos de todas as idades, áreas e lugares possíveis, passei por vários lugares patinando em grupo, e entendi de fato o que é viver o momento presente. Desde então, patinar 
-            é refúgio!</p>
-            </div>
-          </div>
-      
-          <div class="timeline-item">
-            <div class="timeline-point"></div>
-            <div class="timeline-content">
-                <h3>Valores na cultura do patins que me encantam?</h3>
-                <p>Desenvolvemos <b style="color:rgb(252, 146, 238);">resiliencia</b>, busca pela <b style="color:rgb(252, 146, 238);">autosuperação</b>, é necessário <b style="color:rgb(252, 146, 238);">atenção plena</b> no momento presente (prática que faz bem para mente). Também adoro a <b style="color:rgb(252, 146, 238);">diversidade e inclusão</b> presente entre os grupos de patinação, e junto a isso, a <b style="color:rgb(252, 146, 238);"" >união</b> entre os patinadores. Basta encontrar seu evento e ir patinar.</p>
-            </div>
-          </div>
       
         </div>
       </div>
@@ -267,7 +236,7 @@
     }
 
     function abrirModal(){
-      if (id === 'segunda') {
+      if (id == 'segunda') {
         titulo.textContent = `Segunda`;
         texto.innerHTML = `<br><p><b  id="titulo-eventos">GRU ROLLERS - GUARULHOS</b><br>
         <b>Local</b>: Av. Odair Santanelli, 800 (Cecap)<br>
@@ -285,7 +254,7 @@
         <b>Atividade</b>: Skate park exclusivo para patins.</p>`;
       } 
       
-      else if (id === 'terca') {
+      else if (id == 'terca') {
         titulo.textContent = `Terça`;
         texto.innerHTML = `<p><b  id="titulo-eventos">FRIENDS INLINE - JUNDIAÍ</b><br>
         <b>Local</b>: Rua Cica, 201 (Shopping Pátio Cica)<br>
@@ -323,7 +292,7 @@
         <b>Atividade</b>: Treino de patinação para todas as idades.</p><br>`;
       } 
       
-      else if (id === 'quarta') {
+      else if (id == 'quarta') {
         titulo.textContent = `Quarta`;
         texto.innerHTML = `<p><b  id="titulo-eventos">FRIENDS INLINE - JUNDIAÍ</b><br>
         <b>Local</b>: Viaduto Francisco de Assis Cechelli Oliva (Viaduto das valquírias)<br>
@@ -362,7 +331,7 @@
         <b>Atividade</b>: Para todos os níveis!</p><br>`;
       } 
       
-      else if (id === 'quinta') {
+      else if (id == 'quinta') {
         titulo.textContent = `Quinta`;
         texto.innerHTML = `<p><b  id="titulo-eventos">CARACAS CITY PATINS - BARUERI</b><br>
         <b>Local</b>: Ginásio Poliesportivo José Correia (estacionamento)<br>
@@ -405,7 +374,7 @@
         <b>Atividade</b>: Vem patinar com a gente!</p><br>`;
       } 
       
-      else if (id === 'sexta') {
+      else if (id == 'sexta') {
         titulo.textContent = `Sexta`;
         texto.innerHTML = `<p><b  id="titulo-eventos">IBIRA HOCKEY - ÁGUA BRANCA</b><br>
         <b>Local</b>: Rua Dona Ana Pimentel, 41 - Barra Funda<br>
@@ -443,7 +412,7 @@
         <b>Atividade</b>: Venha conhecer!</p><br>`;
       } 
       
-      else if (id === 'sabado') {
+      else if (id =='sabado') {
         titulo.textContent = `Sábado`;
         texto.innerHTML = `<p><b  id="titulo-eventos">AULA EM GRUPO COM BRAVO INLINE</b><br>
         <b>Local</b>: Novo Anhangabau<br>
@@ -472,7 +441,7 @@
         <b>Atividade</b>: Piso de madeira!</p><br>`;
       } 
       
-      else if (id === 'domingo') {
+      else if (id == 'domingo') {
         titulo.textContent = `Domingo`;
         texto.innerHTML = `
         <p><b  id="titulo-eventos">SAMPA ROLLERS - PARQUE VILA LOBOS</b><br>
@@ -523,7 +492,7 @@
     });
 
     modal.addEventListener('click', (event) => {
-      if (event.target === modal) {
+      if (event.target == modal) {
         modal.classList.add('hidden');
       }
     });
